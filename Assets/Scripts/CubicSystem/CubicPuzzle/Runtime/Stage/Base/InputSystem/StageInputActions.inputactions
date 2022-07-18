@@ -1,0 +1,98 @@
+{
+    "name": "StageInputActions",
+    "maps": [
+        {
+            "name": "Touch",
+            "id": "181fea59-4752-45d7-92d8-c0a302ad8a96",
+            "actions": [
+                {
+                    "name": "TouchPosition",
+                    "type": "PassThrough",
+                    "id": "b8742246-409b-4c94-9cb8-9ab7e058f410",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TouchClick",
+                    "type": "PassThrough",
+                    "id": "99737f6b-fc70-4293-8467-867d6636b8cc",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "TouchPress",
+                    "type": "Button",
+                    "id": "31757df5-8072-4a82-9013-94f3f0c37ff9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "46d76f63-5c28-4779-885a-127ae6a194f4",
+                    "path": "<Touchscreen>/primaryTouch/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TouchPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "83622b20-66ab-42dd-85e1-817af6c5e793",
+                    "path": "<Touchscreen>/primaryTouch",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TouchClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "91aa5841-e055-42ad-87bd-77d89a01c348",
+                    "path": "<Touchscreen>/primaryTouch/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TouchPress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Editor",
+            "id": "d318e281-c4b2-49c9-97f8-3af572e69fbd",
+            "actions": [
+                {
+                    "name": "PressDown",
+                    "type": "Value",
+                    "id": "e935491f-7b7a-4f56-a575-6d41f25ef9f6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "288e22c3-49f9-4bc0-a7c5-4c24332e332e",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PressDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

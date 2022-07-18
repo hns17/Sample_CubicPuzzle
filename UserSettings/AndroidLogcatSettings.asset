@@ -1,0 +1,203 @@
+{
+    "m_SelectedDeviceId": "LMG820N4cf51d7b",
+    "m_SelectedPackage": {
+        "deviceId": "LMG820N4cf51d7b",
+        "name": "com.DefaultCompany.WithCubic_HexPuzzle",
+        "processId": 20519,
+        "exited": false
+    },
+    "m_SelectedPriority": 0,
+    "m_KnownPackagesForSerialization": [
+        {
+            "deviceId": "LMG820N4cf51d7b",
+            "name": "com.DefaultCompany.WithCubic_HexPuzzle",
+            "processId": 12794,
+            "exited": true
+        },
+        {
+            "deviceId": "LMG820N4cf51d7b",
+            "name": "com.DefaultCompany.WithCubic_HexPuzzle",
+            "processId": 1077,
+            "exited": true
+        },
+        {
+            "deviceId": "LMG820N4cf51d7b",
+            "name": "com.DefaultCompany.WithCubic_HexPuzzle",
+            "processId": 2601,
+            "exited": true
+        },
+        {
+            "deviceId": "LMG820N4cf51d7b",
+            "name": "com.DefaultCompany.WithCubic_HexPuzzle",
+            "processId": 7767,
+            "exited": true
+        },
+        {
+            "deviceId": "LMG820N4cf51d7b",
+            "name": "com.DefaultCompany.WithCubic_HexPuzzle",
+            "processId": 8824,
+            "exited": true
+        },
+        {
+            "deviceId": "LMG820N4cf51d7b",
+            "name": "com.lge.launcher3",
+            "processId": 3042,
+            "exited": false
+        },
+        {
+            "deviceId": "LMG820N4cf51d7b",
+            "name": "com.DefaultCompany.WithCubic_HexPuzzle",
+            "processId": 10520,
+            "exited": false
+        },
+        {
+            "deviceId": "LMG820N4cf51d7b",
+            "name": "com.DefaultCompany.WithCubic_HexPuzzle",
+            "processId": 13032,
+            "exited": false
+        },
+        {
+            "deviceId": "LMG820N4cf51d7b",
+            "name": "com.DefaultCompany.WithCubic_HexPuzzle",
+            "processId": 13508,
+            "exited": false
+        },
+        {
+            "deviceId": "LMG820N4cf51d7b",
+            "name": "com.DefaultCompany.WithCubic_HexPuzzle",
+            "processId": 24834,
+            "exited": false
+        },
+        {
+            "deviceId": "LMG820N4cf51d7b",
+            "name": "com.DefaultCompany.WithCubic_HexPuzzle",
+            "processId": 25627,
+            "exited": false
+        },
+        {
+            "deviceId": "LMG820N4cf51d7b",
+            "name": "com.DefaultCompany.WithCubic_HexPuzzle",
+            "processId": 26077,
+            "exited": false
+        },
+        {
+            "deviceId": "LMG820N4cf51d7b",
+            "name": "com.DefaultCompany.WithCubic_HexPuzzle",
+            "processId": 26631,
+            "exited": false
+        },
+        {
+            "deviceId": "LMG820N4cf51d7b",
+            "name": "com.DefaultCompany.WithCubic_HexPuzzle",
+            "processId": 27142,
+            "exited": false
+        },
+        {
+            "deviceId": "LMG820N4cf51d7b",
+            "name": "com.DefaultCompany.WithCubic_HexPuzzle",
+            "processId": 27657,
+            "exited": false
+        },
+        {
+            "deviceId": "LMG820N4cf51d7b",
+            "name": "com.DefaultCompany.WithCubic_HexPuzzle",
+            "processId": 9659,
+            "exited": false
+        },
+        {
+            "deviceId": "LMG820N4cf51d7b",
+            "name": "com.DefaultCompany.WithCubic_HexPuzzle",
+            "processId": 27967,
+            "exited": false
+        },
+        {
+            "deviceId": "LMG820N4cf51d7b",
+            "name": "com.DefaultCompany.WithCubic_HexPuzzle",
+            "processId": 28888,
+            "exited": false
+        },
+        {
+            "deviceId": "LMG820N4cf51d7b",
+            "name": "com.DefaultCompany.WithCubic_HexPuzzle",
+            "processId": 29255,
+            "exited": false
+        },
+        {
+            "deviceId": "LMG820N4cf51d7b",
+            "name": "com.DefaultCompany.WithCubic_HexPuzzle",
+            "processId": 29620,
+            "exited": false
+        },
+        {
+            "deviceId": "LMG820N4cf51d7b",
+            "name": "com.DefaultCompany.WithCubic_HexPuzzle",
+            "processId": 30006,
+            "exited": false
+        },
+        {
+            "deviceId": "LMG820N4cf51d7b",
+            "name": "com.DefaultCompany.WithCubic_HexPuzzle",
+            "processId": 30251,
+            "exited": false
+        },
+        {
+            "deviceId": "LMG820N4cf51d7b",
+            "name": "com.DefaultCompany.WithCubic_HexPuzzle",
+            "processId": 20519,
+            "exited": false
+        }
+    ],
+    "m_Tags": {
+        "m_Entries": [
+            {
+                "m_Name": "Filter by all listed tags",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "No Filter",
+                "m_Selected": true
+            },
+            {
+                "m_Name": "",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "Tag Control...",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "Unity",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "CRASH",
+                "m_Selected": false
+            }
+        ]
+    },
+    "m_MemoryViewerState": {
+        "MemoryWindowHeight": 300.0,
+        "MemoryWindowWidth": 170.0,
+        "MemoryTypeEnabled": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+        ],
+        "MemoryGroup": 2,
+        "Behavior": 0
+    },
+    "m_Filter": "",
+    "m_FilterIsRegularExpression": false,
+    "m_SymbolPaths": []
+}

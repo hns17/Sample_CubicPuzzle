@@ -1,0 +1,14 @@
+[
+  {
+    "stageName": "SampleStage",
+    "stagePath": ""
+  },
+  {
+    "stageName": "TestStage",
+    "stagePath": ""
+  },
+  {
+    "stageName": "Exit",
+    "stagePath": "Exit"
+  }
+]
