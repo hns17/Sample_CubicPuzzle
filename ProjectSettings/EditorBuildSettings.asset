@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/StageListScene.unity
     guid: ac392702cee0d3f4589253dbb4a19139
   - enabled: 1
-    path: Assets/Scenes/SampleStage.unity
+    path: Assets/Scenes/ThreeMatchStage.unity
     guid: f484de83798a76248a40f3a957f4f107
   - enabled: 1
     path: Assets/Scenes/TestStage.unity

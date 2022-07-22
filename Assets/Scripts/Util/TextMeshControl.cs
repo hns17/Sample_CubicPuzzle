@@ -42,13 +42,16 @@ public class TextMeshControl : MonoBehaviour
 
     private void PressDown_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        textMesh.text = blockPresenter.Block.Idx.ToString();
+        var block = blockPresenter.Block;
+        
+        textMesh.text = block.Idx.ToString();
     }
 
     private void LateUpdate()
     {
-        
-        textMesh.text = blockPresenter.Block.Idx.ToString();
+        var block = blockPresenter.Block;
+
+        textMesh.text = block.Idx.ToString();
         //textMesh.text = blockPresenter.Block.Position.ToString();
     }
 

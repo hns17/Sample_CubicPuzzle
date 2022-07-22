@@ -1,11 +1,10 @@
 ﻿using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace CubicSystem.CubicPuzzle
 {
     public interface IMatchEvaluator
     {
-        public bool EvalNUpdateMatchBoard();
-        public bool EvalNUpdateMatchBlock(BlockModel block);
-        public UniTask<bool> EvalPossibleBoard();
+        public bool Evaluator(BlockModel block, HashSet<int> matchIndices);
     }
 }

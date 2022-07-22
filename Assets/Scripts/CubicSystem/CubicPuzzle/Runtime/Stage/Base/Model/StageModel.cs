@@ -103,6 +103,9 @@ namespace CubicSystem.CubicPuzzle
                     if(state == BoardState.CLEAR) {
                         ClearBoardEvent(newBoard).Forget();
                     }
+                    else if(state == BoardState.GAME_OVER) {
+                        newBoard.SetBoardState(BoardState.CLEAR);
+                    }
                 });
 
                 activeBoards.Add(newBoard);

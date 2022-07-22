@@ -1,10 +1,10 @@
 [
   {
-    "stageName": "SampleStage",
+    "stageName": "ThreeMatchStage",
     "stagePath": ""
   },
   {
-    "stageName": "TestStage",
+    "stageName": "OneTouchStage",
     "stagePath": ""
   },
   {

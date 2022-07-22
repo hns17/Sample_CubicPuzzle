@@ -39,9 +39,6 @@ namespace CubicSystem.CubicPuzzle
         //Board의 전체 이벤트 처리기(Swipe, Match Check, Destroy, Drop&Fill) 
         public BoardActManager ActManager { get; protected set; }
 
-        //매치 가능한 블럭 정보를 기록
-        public MatchHelpInfo MatchHelper { get; protected set; }
-
         //Board Clear Event 관리
         protected BoardQuest clearQuest;
 
@@ -51,6 +48,9 @@ namespace CubicSystem.CubicPuzzle
          */
         public void SetBoardState(BoardState state)
         {
+            if(state == BoardState.READY && State == BoardState.CLEAR) {
+                return;
+            }
             boardState.Value = state;
         }
 
@@ -184,10 +184,5 @@ namespace CubicSystem.CubicPuzzle
          */
         protected abstract void BuildBoard(List<BoardItemData> boardItems);
 
-        /**
-         *  @brief  더 이상 Match 가능한 Block이 없는 경우 
-         *          호출하는 함수
-         */
-        public abstract UniTask NoMoreMatchEvent();
     }
 }

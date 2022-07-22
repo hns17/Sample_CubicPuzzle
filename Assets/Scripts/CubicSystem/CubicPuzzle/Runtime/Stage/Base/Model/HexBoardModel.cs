@@ -34,7 +34,6 @@ namespace CubicSystem.CubicPuzzle
                                     IBoardActManagerFactory actManagerFactory,
                                     BoardPresenter.Factory boardPresenterFactory)
         {
-            MatchHelper = new MatchHelpInfo(this);
             ActManager = actManagerFactory.Create(this);
 
             //Board GameObject 생성
@@ -51,6 +50,11 @@ namespace CubicSystem.CubicPuzzle
             {
                 return blockFactory.Create(boardItem, boardPresenter.Blocks, position);
             };
+
+            StateObservable.Subscribe((state) =>
+            {
+                Debug.Log(state);
+            });
 
             Initialize(boardInfo);
         }
@@ -73,9 +77,11 @@ namespace CubicSystem.CubicPuzzle
 
             //Make Board Clear Quest
             this.clearQuest = questFactory?.CreateBoardQuest(this, boardData.clearQuestData);
-            MatchHelper.Clear();
+
+            ActManager.Initalize();
             SetBoardState(BoardState.READY);
 
+            
             //MatchEvent
             UniTask.Action(async () =>
             {
@@ -208,51 +214,6 @@ namespace CubicSystem.CubicPuzzle
             }
 
             return res;
-        }
-
-        public override UniTask NoMoreMatchEvent()
-        {
-            return UniTask.Create(async () =>
-            {
-                //모든 Block의 색상을 기본 색상으로 변경
-                foreach(var block in Blocks) {
-                    if(block.IsEnableBlock()) {
-                        block.SetMatchColor(MatchColorType.NONE);
-                        await UniTask.Delay(100);
-                    }
-                }
-
-                await UniTask.Delay(500);
-
-                //Board에 Block을 채우는 Event가 있는지 검사
-                if(!IsThereFillInfo()) {
-                    //GameOver
-                    await DestroyBoard();
-                    return;
-                }
-
-                //Destroy & Fill
-                await ActManager.MatchEvent();
-
-                SetBoardState(BoardState.READY);
-            });
-        }
-
-        /**
-         *  @brief  Block 채우기 이벤트가 있는가?
-         *  @return bool : true(있는 경우) / false(없는 경우)
-         */
-        public bool IsThereFillInfo()
-        {
-            bool checkFillInfo = false;
-            foreach(var cell in Cells) {
-                if(cell.IsFillBlock) {
-                    checkFillInfo = true;
-                    break;
-                }
-            }
-
-            return checkFillInfo;
         }
 
         public class Factory :PlaceholderFactory<PuzzleBoardInfo, Transform, HexBoardModel>

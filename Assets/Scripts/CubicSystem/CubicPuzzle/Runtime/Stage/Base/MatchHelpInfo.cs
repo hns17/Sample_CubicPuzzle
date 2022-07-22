@@ -23,7 +23,7 @@ namespace CubicSystem.CubicPuzzle
 
         public int MatchCount => MatchIndices.Count;
 
-        private HexBoardModel board;
+        private BoardModel board;
 
         //외곽선 만들기에 사용되는 이웃의 위치 정보
         private readonly BlockNeighType[] detectOrderNeighType = {
@@ -33,7 +33,7 @@ namespace CubicSystem.CubicPuzzle
 
         private List<Vector2> outLineVertexPositions;
 
-        public MatchHelpInfo(HexBoardModel board)
+        public MatchHelpInfo(BoardModel board)
         {
             this.board = board;
             MatchIndices = new HashSet<int>();

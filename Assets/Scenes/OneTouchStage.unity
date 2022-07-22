@@ -274,8 +274,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1012751357}
   - component: {fileID: 1012751356}
-  - component: {fileID: 1012751355}
   - component: {fileID: 1012751358}
+  - component: {fileID: 1012751359}
   m_Layer: 0
   m_Name: ZenjectContext
   m_TagString: Untagged
@@ -283,24 +283,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1012751355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1012751354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 217dca3f2d416f845a40910b440861fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pfStage: {fileID: 6268273508860230704, guid: 80b6f7a75940af749bb16faad494a6ab, type: 3}
-  pfBoard: {fileID: 2999946838806715814, guid: b211a968752416b42ba1f44eee783f81, type: 3}
-  pfCell: {fileID: 4709905463819592292, guid: 6ce3e0d087bad1e4390abf12969d8c02, type: 3}
-  pfBlock: {fileID: 1161249239955119766, guid: 2707387cf6898be408efdc9eaa442140, type: 3}
-  stageData: {fileID: 11400000, guid: c6767c9a428ab1f4e8fb895bb0dd5c30, type: 2}
-  stageInputManager: {fileID: 1012751358}
 --- !u!114 &1012751356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,7 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
-  - {fileID: 1012751355}
+  - {fileID: 1012751359}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -359,3 +341,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2e11b477d5c5a84a80b0e7dd326fc8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1012751359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012751354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e8be82b7e5d65c40828723cff1a5bc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pfStage: {fileID: 6268273508860230704, guid: 80b6f7a75940af749bb16faad494a6ab, type: 3}
+  pfBoard: {fileID: 2999946838806715814, guid: 03cf5c8beded51740880acf2b67a709c, type: 3}
+  pfCell: {fileID: 4709905463819592292, guid: 6ce3e0d087bad1e4390abf12969d8c02, type: 3}
+  pfBlock: {fileID: 1161249239955119766, guid: 2707387cf6898be408efdc9eaa442140, type: 3}
+  stageData: {fileID: 11400000, guid: 18331c8f8c4d7c644b776c23c8905c36, type: 2}
+  stageInputManager: {fileID: 1012751358}

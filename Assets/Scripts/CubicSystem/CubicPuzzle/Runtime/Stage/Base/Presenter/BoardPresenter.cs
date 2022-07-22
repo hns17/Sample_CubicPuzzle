@@ -15,33 +15,34 @@ namespace CubicSystem.CubicPuzzle
      */
     public class BoardPresenter :MonoBehaviour
     {
-        //Touch를 기다린 시간
-        private float touchWaitTime = 0f;
-
-        //Guide 활성화 시간
-        private float helpInfoShowTime = 10f;
-        private HexBoardModel board;
-        private ISwipeEvent swipeEvent;
+        
+        protected BoardModel board;
+        //Touch Hit된 Block
+        protected BlockPresenter fromBlock = null;
 
         public Transform Cells { get; private set; }
         public Transform Blocks { get; private set; }
 
-        //Touch Hit된 Block
-        private BlockPresenter fromBlock = null;
-
-        [SerializeField] private BoardMatchHelper matchHelper;
-
-        [Inject] private StageInputManager inputManager;
+        [Inject] protected StageInputManager inputManager;
 
         [Inject]
         private void InjectDependencies(HexBoardModel boardModel, Transform parent)
         {
             this.board = boardModel;
             transform.SetParent(parent);
-
         }
 
         private void Awake()
+        {
+            InitalizeAwake();
+        }
+
+        private void Start()
+        {
+            InitalizeStart();
+        }
+
+        public virtual void InitalizeAwake()
         {
             Cells = new GameObject("Cells").transform;
             Cells.SetParent(this.transform);
@@ -50,14 +51,12 @@ namespace CubicSystem.CubicPuzzle
             Blocks = new GameObject("Blocks").transform;
             Blocks.SetParent(this.transform);
             Blocks.localPosition = Vector2.zero;
-
-            swipeEvent = board.ActManager as SwipeHexBoardActManager;
         }
 
-        private void Start()
+        public virtual void InitalizeStart()
         {
             Debug.Assert(inputManager != null, "InputManager is null");
-            
+
             //Regist Touch Input Event
             inputManager.OnPressDown += TouchStart;
             inputManager.OnPressUp += TouchCancel;
@@ -80,37 +79,17 @@ namespace CubicSystem.CubicPuzzle
             });
         }
 
-        private void OnEnable()
-        {
-            touchWaitTime = 0;
-        }
-
-        private void LateUpdate()
-        {
-            //Touch 대기시간 계산 후 Guide 표시
-            if(board.State == BoardState.READY) {
-                touchWaitTime += Time.fixedDeltaTime;
-
-                //오랜시간 Touch가 없으면 Guide 활성화
-                if(touchWaitTime >= helpInfoShowTime) {
-                    ShowHelpInfo(true);
-                }
-            }
-        }
-
         /**
          *  @author hns17@naver.com
          *  @brief  터치 시작 이벤트
          */
-        private void TouchStart()
+        protected virtual void TouchStart()
         {
             if(board.State == BoardState.READY) {
                 //터치된 블럭 정보 가져오기
                 fromBlock = GetHitBlock(inputManager.GetTouchPoisition());
 
                 if(fromBlock != null) {
-                    //Touch 입력시 Guide 비활성화
-                    ShowHelpInfo(false);
                     inputManager.OnPerformed += TouchPosition_performed;
                 }
             }
@@ -120,7 +99,7 @@ namespace CubicSystem.CubicPuzzle
          *  @author hns17@naver.com
          *  @brief  터치 종료 이벤트
          */
-        private void TouchCancel()
+        protected virtual void TouchCancel()
         {
             inputManager.OnPerformed -= TouchPosition_performed;
         }
@@ -129,23 +108,16 @@ namespace CubicSystem.CubicPuzzle
          *  @author hns17@naver.com
          *  @brief  터치 슬라이드 이벤트
          */
-        private void TouchPosition_performed()
+        protected virtual void TouchPosition_performed()
         {
-            BlockPresenter toBlock = GetHitBlock(inputManager.GetTouchPoisition());
-
-            if(toBlock != null && toBlock != fromBlock) {
-                inputManager.OnPerformed -= TouchPosition_performed;
-
-                //Do Swipe
-                swipeEvent?.DoSwipeAction(fromBlock.Block, toBlock.Block).Forget();
-            }
+            
         }
 
         /**
          *  @brief  Touch Block 가져오기
          *  @param  pos : Touch Position
          */
-        private BlockPresenter GetHitBlock(Vector2 pos)
+        protected BlockPresenter GetHitBlock(Vector2 pos)
         {
             BlockPresenter res = null;
 
@@ -165,25 +137,7 @@ namespace CubicSystem.CubicPuzzle
             return res;
         }
 
-
-        /**
-         *  @brief  Match 가능한 블럭 화면에 표시
-         *  @param  isShow(true : 표시, false : 비활성화)
-         */
-        private void ShowHelpInfo(bool isShow)
-        {
-            //Enable HelpInfo
-            if(isShow) {
-                matchHelper.ShowMatchHelper(board.MatchHelper);
-            }
-            //Disable Help Info
-            else {
-                touchWaitTime = 0;
-                matchHelper.ShowMatchHelper(null);
-            }
-        }
-
-        public class Factory : PlaceholderFactory<HexBoardModel, Transform, BoardPresenter>
+        public class Factory : PlaceholderFactory<BoardModel, Transform, BoardPresenter>
         {
 
         }
