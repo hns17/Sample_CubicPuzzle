@@ -1,5 +1,7 @@
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
+using System.Threading;
+using Zenject;
 
 namespace CubicSystem.CubicPuzzle
 {
@@ -17,19 +19,14 @@ namespace CubicSystem.CubicPuzzle
         //Drop & Fill Event 처리
         protected IDropAndFillEvent eventDropNFill;
 
-        protected HashSet<int> matchIndices;
+        protected HashSet<int> matchIndices = new HashSet<int>();
+        protected CancellationTokenSource cts;
 
-
-        //Injection Parameter
-        public BoardActManager(BoardModel board, 
-                            IMatchEvaluator matchEvaluator, 
-                            IDropAndFillEvent eventDropNFill)
+        [Inject]
+        public void InjectDependices(BoardModel boardModel, CTSManager ctsManager)
         {
-            this.board = board;
-            this.matchEvaluator = matchEvaluator;
-            this.eventDropNFill = eventDropNFill;
-
-            this.matchIndices = new HashSet<int>();
+            this.board = boardModel;
+            this.cts = ctsManager.GetDefaultCancellationTokenSource();
         }
 
         public virtual void Initalize()
@@ -42,7 +39,6 @@ namespace CubicSystem.CubicPuzzle
          */
         public abstract UniTask MatchEvent();
 
-
         protected abstract UniTask<bool> IsPossibleBoard();
 
         /**
@@ -50,6 +46,7 @@ namespace CubicSystem.CubicPuzzle
          */
         protected async UniTask DestroyMatchBlocks()
         {
+
             //Match 상태인 Block -> Destroy로 변경
             var blocks = board.Blocks;
             for(int i=0; i<blocks.Count; i++) {
@@ -186,6 +183,9 @@ namespace CubicSystem.CubicPuzzle
             }
 
             return checkFillInfo;
+        }
+
+        public class Factory :PlaceholderFactory<BoardModel, BoardActManager> { 
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
+using System.Threading;
 using Zenject;
 
 namespace CubicSystem.CubicPuzzle
@@ -8,12 +9,6 @@ namespace CubicSystem.CubicPuzzle
     {
         //매치 가능한 블럭 정보를 기록
         private MatchHelpInfo matchHelper;
-
-        public ThreeMatchBoardActManager(BoardModel board, IMatchEvaluator matchEvaluator, IDropAndFillEvent eventDropNFill) 
-            : base(board, matchEvaluator, eventDropNFill)
-        {
-            matchHelper = new MatchHelpInfo(board);
-        }
 
         public override void Initalize()
         {
@@ -68,6 +63,7 @@ namespace CubicSystem.CubicPuzzle
         {
             board.SetBoardState(BoardState.MATCH_EVENT);
             do {
+                cts.Token.ThrowIfCancellationRequested();
                 //Start Block Destory
                 await DestroyMatchBlocks();
 
@@ -136,6 +132,21 @@ namespace CubicSystem.CubicPuzzle
         public MatchHelpInfo GetMatchHelpInfo()
         {
             return matchHelper;
+        }
+
+        public new class Factory :IFactory<BoardModel, BoardActManager>
+        {
+            [Inject] private DiContainer diContainer;
+            public BoardActManager Create(BoardModel param)
+            {
+                var newActManager = diContainer.Instantiate<ThreeMatchBoardActManager>(new object[] { param });
+
+                newActManager.matchHelper = new MatchHelpInfo(param);
+                newActManager.matchEvaluator = new ThreeMatchHexEvaluator(param);
+                newActManager.eventDropNFill = new HexDropDownAndFillEvent(param);
+
+                return newActManager;
+            }
         }
     }
 }

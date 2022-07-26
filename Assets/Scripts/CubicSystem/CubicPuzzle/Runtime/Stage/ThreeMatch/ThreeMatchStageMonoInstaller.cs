@@ -1,4 +1,5 @@
 
+using System.Threading;
 using UnityEngine;
 using Zenject;
 
@@ -20,8 +21,8 @@ namespace CubicSystem.CubicPuzzle
             Container.BindFactory<StageModel, StageModel.Factory>()
                 .AsSingle();
 
-            Container.BindFactory<PuzzleBoardInfo, Transform, 
-                HexBoardModel, HexBoardModel.Factory>()
+            Container.BindFactory<PuzzleBoardInfo, Transform,BoardModel, BoardModel.Factory>()
+                .To<HexBoardModel>()
                 .AsSingle();
 
             Container.BindFactory<BoardItemData, Transform, Vector2, CellModel, CellModel.Factory>()
@@ -59,9 +60,14 @@ namespace CubicSystem.CubicPuzzle
             Container.BindInstance<PuzzleStageData>(stageData);
 
 
-            Container.Bind<IBoardActManagerFactory>()
-                .To<ThreeMatchBoardActManagerFactory>()
-                .AsSingle();
+            //Container.BindFactory<BoardModel, BoardActManager, BoardActManager.Factory>()
+            //    .To<ThreeMatchBoardActManager>()
+            //    .AsSingle();
+
+            Container.BindFactory<BoardModel, BoardActManager, BoardActManager.Factory>()
+                .FromFactory<ThreeMatchBoardActManager.Factory>();
+
+            Container.Bind<CTSManager>().AsSingle();
         }
     }
 }

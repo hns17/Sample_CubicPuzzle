@@ -5,7 +5,6 @@ using Zenject;
 using UniRx;
 using System;
 
-
 namespace CubicSystem.CubicPuzzle
 {
     /**
@@ -26,12 +25,13 @@ namespace CubicSystem.CubicPuzzle
         [Inject] private CellModel.Factory cellFactory;
         [Inject] private BlockModel.Factory blockFactory;
         [Inject] private BoardQuestFactory questFactory;
+        [Inject] private CTSManager ctsManager;
 
 
         [Inject]
         private void InjectDependencies(Transform parent,
                                     PuzzleBoardInfo boardInfo,
-                                    IBoardActManagerFactory actManagerFactory,
+                                    BoardActManager.Factory actManagerFactory,
                                     BoardPresenter.Factory boardPresenterFactory)
         {
             ActManager = actManagerFactory.Create(this);
@@ -81,7 +81,6 @@ namespace CubicSystem.CubicPuzzle
             ActManager.Initalize();
             SetBoardState(BoardState.READY);
 
-            
             //MatchEvent
             UniTask.Action(async () =>
             {
@@ -216,10 +215,6 @@ namespace CubicSystem.CubicPuzzle
             return res;
         }
 
-        public class Factory :PlaceholderFactory<PuzzleBoardInfo, Transform, HexBoardModel>
-        {
-
-        }
 
     }
 }

@@ -1,19 +1,17 @@
 using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
+using Zenject;
 
 namespace CubicSystem.CubicPuzzle
 {
     public class OneTouchBoardActManager :BoardActManager, IOneTouchBlockEvent
     {
-        public OneTouchBoardActManager(BoardModel board, IMatchEvaluator matchEvaluator, IDropAndFillEvent eventDropNFill) : base(board, matchEvaluator, eventDropNFill)
-        {
-        }
 
         public async UniTask DoTouchAction(BlockModel target)
         {
-            Debug.Log("DoTouchAction : " + board.State);
 
             if(target == null) {
                 return;
@@ -30,6 +28,7 @@ namespace CubicSystem.CubicPuzzle
 
         public override async UniTask MatchEvent()
         {
+            cts.Token.ThrowIfCancellationRequested();
             board.SetBoardState(BoardState.MATCH_EVENT);
             
             //Start Block Destory
@@ -60,6 +59,19 @@ namespace CubicSystem.CubicPuzzle
             await UniTask.Yield();
             return Evaluator(null);
         }
-    }
 
+        public new class Factory :IFactory<BoardModel, BoardActManager>
+        {
+            [Inject] private DiContainer diContainer;
+            public BoardActManager Create(BoardModel param)
+            {
+                var newActManager = diContainer.Instantiate<OneTouchBoardActManager>(new object[] { param });
+
+                newActManager.matchEvaluator = new OneTouchMatchEvaluator(param);
+                newActManager.eventDropNFill = new HexDropDownAndFillEvent(param);
+
+                return newActManager;
+            }
+        }
+    }
 }

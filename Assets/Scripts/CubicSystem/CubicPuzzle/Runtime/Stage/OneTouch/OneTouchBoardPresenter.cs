@@ -1,5 +1,7 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 namespace CubicSystem.CubicPuzzle
@@ -20,7 +22,7 @@ namespace CubicSystem.CubicPuzzle
             if(board.State == BoardState.READY) {
                 base.TouchStart();
                 if(fromBlock != null) {
-                    oneTouchEvent?.DoTouchAction(fromBlock.Block);
+                    oneTouchEvent.DoTouchAction(fromBlock.Block).Forget();
                 }
             }
         }

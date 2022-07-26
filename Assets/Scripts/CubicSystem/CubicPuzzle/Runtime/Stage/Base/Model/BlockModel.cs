@@ -4,6 +4,7 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -209,7 +210,7 @@ namespace CubicSystem.CubicPuzzle
          *  @brief  Block 움직이기
          *  @param  to : 이동할 위치, speed : 이동 속도, isRewind : 이동 후 위치 되돌리기
          */
-        public async UniTask MoveBlock(Vector2 to, float speed, bool isRewind = false)
+        public async UniTask MoveBlock(Vector2 to, float speed, bool isRewind)
         {
             Vector2 from = Position;
 

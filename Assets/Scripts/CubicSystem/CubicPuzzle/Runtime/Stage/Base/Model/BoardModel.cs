@@ -2,8 +2,10 @@
 using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using UniRx;
 using UnityEngine;
+using Zenject;
 
 namespace CubicSystem.CubicPuzzle
 {
@@ -72,7 +74,7 @@ namespace CubicSystem.CubicPuzzle
         }
 
 
-        public async virtual UniTask DestroyBoard()
+        public async virtual UniTask DestroyBoard(CancellationToken token)
         {
             //모든 블럭 파괴
             Blocks.ForEach(x => {
@@ -84,12 +86,12 @@ namespace CubicSystem.CubicPuzzle
             //파괴될 때까지 대기
             bool isDestroyComplete = false;
             do {
-                await UniTask.Yield();
                 isDestroyComplete = false;
                 Blocks.ForEach(x => isDestroyComplete |= x.IsEnableBlock());
+                await UniTask.Yield(token);
             } while(isDestroyComplete);
 
-            await UniTask.Delay(500);
+            await UniTask.Delay(500, false, PlayerLoopTiming.Update, token);
 
             //모든 Cell 파괴
             Cells.ForEach(x => {
@@ -100,7 +102,7 @@ namespace CubicSystem.CubicPuzzle
 
             //파괴될 때까지 대기
             do {
-                await UniTask.Yield();
+                await UniTask.Yield(token);
                 isDestroyComplete = false;
                 Cells.ForEach(x => isDestroyComplete |= x.IsEnableCell());
             } while(isDestroyComplete);
@@ -184,5 +186,9 @@ namespace CubicSystem.CubicPuzzle
          */
         protected abstract void BuildBoard(List<BoardItemData> boardItems);
 
+        public class Factory :PlaceholderFactory<PuzzleBoardInfo, Transform, BoardModel>
+        {
+
+        }
     }
 }

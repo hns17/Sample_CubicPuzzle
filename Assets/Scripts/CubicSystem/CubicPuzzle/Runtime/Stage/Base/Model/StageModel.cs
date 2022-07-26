@@ -1,11 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 using UniRx;
 using Cysharp.Threading.Tasks;
 using UnityEngine.SceneManagement;
-
+using System.Threading;
 
 namespace CubicSystem.CubicPuzzle
 {
@@ -34,7 +33,8 @@ namespace CubicSystem.CubicPuzzle
         private HashSet<string> clearBoardGuids = new HashSet<string>();
 
         [Inject] private PuzzleStageData stageData;
-        [Inject] private HexBoardModel.Factory boardFactory;
+        [Inject] private BoardModel.Factory boardFactory;
+        [Inject] private CTSManager ctsManager;
 
         /**
          *  @brief  일회성 정보를 Injection 받은 후 객체 정보 구성
@@ -58,6 +58,7 @@ namespace CubicSystem.CubicPuzzle
         {
             //더 이상 진행할 단계가 없는 경우 Stage Clear
             if(stageData.phaseInfos.Count <= level) {
+                ctsManager?.CancellationAll();
                 SceneManager.LoadSceneAsync(0);
                 return;
             }
@@ -157,7 +158,7 @@ namespace CubicSystem.CubicPuzzle
                 taskAction.Clear();
                 //모든 보드를 파괴하고 다음 Phase의 Board를 생성
                 foreach(var actBoard in activeBoards) {
-                    taskAction.Add(actBoard.DestroyBoard());
+                    taskAction.Add(actBoard.DestroyBoard(ctsManager.GetDefaultCancellationTokenSource().Token));
                 }
 
                 await UniTask.WhenAll(taskAction);
@@ -174,9 +175,9 @@ namespace CubicSystem.CubicPuzzle
             var nextBoardIndices = clearBoard.BoardInfo.nextBoardIndices;
 
             //Destroy Clear Board
-            await clearBoard.DestroyBoard();
+            await clearBoard.DestroyBoard(ctsManager.GetDefaultCancellationTokenSource().Token);
 
-            var clearBoardIndex = activeBoards.IndexOf(clearBoard);
+            //var clearBoardIndex = activeBoards.IndexOf(clearBoard);
             //activeBoards.RemoveAt(clearBoardIndex);
             clearBoardGuids.Add(clearBoard.BoardInfo.guid);
             

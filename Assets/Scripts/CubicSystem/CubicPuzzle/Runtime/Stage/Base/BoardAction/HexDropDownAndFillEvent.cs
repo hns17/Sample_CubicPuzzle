@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 namespace CubicSystem.CubicPuzzle
@@ -31,16 +32,7 @@ namespace CubicSystem.CubicPuzzle
         /**
          *  @brief  Block Drop and Fill Event
          */
-        public UniTask StartDropAndFill()
-        {
-            return CreateDropAndFillTask();
-        }
-
-
-        /**
-         *  @brief  Create Block Drop and Fill Task
-         */
-        private async UniTask CreateDropAndFillTask()
+        public async UniTask StartDropAndFill()
         {
             bool isMoveBlock;
             var blocks = board.Blocks;
@@ -69,7 +61,7 @@ namespace CubicSystem.CubicPuzzle
                         isMoveBlock |= BlockDropSlideEvent(block);
                     }
                 }
-                
+
                 //Block Fill Event
                 isMoveBlock |= BlockFillEvent();
 
@@ -89,6 +81,7 @@ namespace CubicSystem.CubicPuzzle
             uniTasks.Clear();
             ResetPathData();
         }
+
 
         /**
          *  @brief  이동 경로 정보 추가하기

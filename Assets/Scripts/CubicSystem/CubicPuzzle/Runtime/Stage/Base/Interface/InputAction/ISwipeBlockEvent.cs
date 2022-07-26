@@ -1,4 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
+using System.Threading;
 
 namespace CubicSystem.CubicPuzzle
 {
