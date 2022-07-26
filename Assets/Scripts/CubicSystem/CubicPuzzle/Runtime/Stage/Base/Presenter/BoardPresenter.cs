@@ -64,11 +64,13 @@ namespace CubicSystem.CubicPuzzle
             //Board ÆÄ±« ÀÌº¥Æ®
             board.StateObservable.Subscribe(state =>
             {
+                Physics2D.simulationMode = SimulationMode2D.Script;
                 if(state == BoardState.DESTROYED) {
                     gameObject.SetActive(false);
                     //Destroy(gameObject);
                 }
                 else if(state == BoardState.READY) {
+                    Physics2D.simulationMode = SimulationMode2D.FixedUpdate;
                     gameObject.SetActive(true);
                 }
             }).AddTo(this);
@@ -133,7 +135,6 @@ namespace CubicSystem.CubicPuzzle
                     res = null;
                 }
             }
-
             return res;
         }
 

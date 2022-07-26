@@ -54,7 +54,7 @@ namespace CubicSystem.CubicPuzzle
 
             //SetActive보다 화면 밖으로 이동시키는게 빠르다...
             //Animator, collider, renderer 등이 활성화, 비활성화가 생각보다 비용이 큼
-            colBlock.enabled = isEnable;
+            //colBlock.enabled = isEnable;
             if(!isEnable) {
                 objView.transform.localPosition = new Vector3(-2000f, -2000f, 0f);
             }

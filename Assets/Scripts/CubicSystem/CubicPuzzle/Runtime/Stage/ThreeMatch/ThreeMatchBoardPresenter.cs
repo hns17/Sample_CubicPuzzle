@@ -44,11 +44,13 @@ namespace CubicSystem.CubicPuzzle
 
         protected override void TouchStart()
         {
-            base.TouchStart();
+            if(board.State == BoardState.READY) {
+                base.TouchStart();
 
-            if(fromBlock != null) {
-                //Touch 입력시 Guide 비활성화
-                ShowHelpInfo(false);
+                if(fromBlock != null) {
+                    //Touch 입력시 Guide 비활성화
+                    ShowHelpInfo(false);
+                }
             }
         }
 
