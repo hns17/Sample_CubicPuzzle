@@ -37,8 +37,6 @@ namespace CubicSystem.CubicPuzzle
         {
             this.Block = blockModel;
             this.transform.SetParent(parent);
-
-            Initialize(true);
         }
 
         /**
@@ -47,14 +45,6 @@ namespace CubicSystem.CubicPuzzle
          */
         private void Initialize(bool isEnable)
         {
-            //if(this.objView.activeSelf != isEnable) {
-            //    this.objView.SetActive(isEnable);
-            //    this.colBlock.enabled = isEnable;
-            //}
-
-            //SetActive보다 화면 밖으로 이동시키는게 빠르다...
-            //Animator, collider, renderer 등이 활성화, 비활성화가 생각보다 비용이 큼
-            //colBlock.enabled = isEnable;
             if(!isEnable) {
                 objView.transform.localPosition = new Vector3(-2000f, -2000f, 0f);
             }
@@ -74,6 +64,7 @@ namespace CubicSystem.CubicPuzzle
             shakePosition.Kill();
         }
 
+
         private void Start()
         {
             //Caching Scale Shake Dotween
@@ -87,7 +78,7 @@ namespace CubicSystem.CubicPuzzle
             
             //Caching Position Shake Dotween 
             //Block 이동 효과
-            shakePosition = objView.transform.DOShakePosition(BlockModel.ShakePositionDuration, 0.1f)
+            shakePosition = objView.transform.DOShakePosition(BlockModel.ShakePositionDuration, 0.2f)
                                 .SetAutoKill(false)
                                 .SetLoops(-1)
                                 .Pause()
@@ -106,9 +97,22 @@ namespace CubicSystem.CubicPuzzle
                 .Subscribe(x => this.transform.localPosition = x)
                 .AddTo(this);
 
+            //Block Type 변경에 맞춰 Object 상태 변경
+            this.Block.BlockTypeObservable.Subscribe(x => {
+                if(x == BlockType.NONE) {
+                    gameObject.SetActive(false);
+                }
+                else {
+                    gameObject.SetActive(true);
+                    Initialize(!Block.IsCompareState(BlockState.EMPTY));
+                }
+            }).AddTo(this);
+
             //Block 상태 변경에 맞춰 View 상태 변경
             this.Block.StateObservable.Subscribe(x => {
-                Initialize(Block.IsEnableBlock() && x != BlockState.FILL_WAIT);
+                if(!Block.IsCompareType(BlockType.NONE)) {
+                    Initialize(!Block.IsCompareState(BlockState.EMPTY) && x != BlockState.FILL_WAIT);
+                }
             }).AddTo(this);
 
             //위치 흔들기 효과 활성화

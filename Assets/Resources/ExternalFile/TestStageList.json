@@ -8,6 +8,10 @@
     "stagePath": ""
   },
   {
+    "stageName": "TestStage",
+    "stagePath": ""
+  },
+  {
     "stageName": "Exit",
     "stagePath": "Exit"
   }

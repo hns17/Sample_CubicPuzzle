@@ -32,17 +32,18 @@ namespace CubicSystem.CubicPuzzle
         public IObservable<Vector2> PositionObservable => position;
 
         
-        private CellType cellType;
+        private ReactiveProperty<CellType> cellType = new ReactiveProperty<CellType>();
+        public IObservable<CellType> CellTypeObservable => cellType;
         public CellType CellType
         {
-            get { return cellType; }
+            get { return cellType.Value; }
             private set
             {
-                //Cell Type Empty인 경우 사용하지 않는 Cell로 처리
-                if(value == CellType.EMPTY) {
-                    state.Value = CellState.NONE;
+                //CellType None인 경우 사용하지 않는 Cell로 처리
+                cellType.Value = value;
+                if(value == CellType.NONE) {
+                    state.Value = CellState.EMPTY;
                 }
-
             }
         }
 
@@ -113,7 +114,7 @@ namespace CubicSystem.CubicPuzzle
         {
             var state = this.State;
 
-            if(state == CellState.NONE || state == CellState.EMPTY) {
+            if(CellType == CellType.NONE || state == CellState.EMPTY) {
                 return false;
             }
             return true;
@@ -126,6 +127,15 @@ namespace CubicSystem.CubicPuzzle
         public void SetCellState(CellState cellState)
         {
             this.state.Value = cellState;
+        }
+
+        /**
+         *  @brief  Cell Type 변경
+         *  @param  cellState : 변경할 상태
+         */
+        public void SetCellType(CellType cellType)
+        {
+            this.cellType.Value = cellType;
         }
 
         public class Factory :PlaceholderFactory<BoardItemData, Transform, Vector2, CellModel>

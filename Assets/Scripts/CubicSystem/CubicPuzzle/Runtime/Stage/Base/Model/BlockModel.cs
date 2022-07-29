@@ -33,6 +33,21 @@ namespace CubicSystem.CubicPuzzle
         public MatchColorType Color => color.Value;
         public IObservable<MatchColorType> ColorObservable => color;
 
+        private ReactiveProperty<BlockType> blockType = new ReactiveProperty<BlockType>();
+        public IObservable<BlockType> BlockTypeObservable => blockType;
+        public BlockType BlockType
+        {
+            get { return blockType.Value; }
+            private set
+            {
+                //CellType None인 경우 사용하지 않는 Cell로 처리
+                blockType.Value = value;
+                if(value == BlockType.NONE) {
+                    state.Value = BlockState.EMPTY;
+                }
+            }
+        }
+        
 
         //블럭의 현재 상태, IObservable, Value Getter 공개
         private ReactiveProperty<BlockState> state = new ReactiveProperty<BlockState>(BlockState.NORMAL);
@@ -56,33 +71,35 @@ namespace CubicSystem.CubicPuzzle
         private BlockModel(BoardItemData itemData, Transform parent, Vector2 position, BlockPresenter.Factory factory) {
             
             //Make Block Gameobject
-            factory.Create(this, parent);
-
             Initialize(itemData, position);
+
+            factory.Create(this, parent);
         }
 
         public void Initialize(BoardItemData itemData, Vector2 position)
         {
-            Initialize(itemData.color, position);
+            Initialize(itemData.blockType, itemData.color, position);
         }
 
         /**
          *  @brief  Block 정보 초기화
          *  @param  colorType : MatchColor, position : 위치
          */
-        public void Initialize(MatchColorType colorType, Vector2 position)
+        public void Initialize(BlockType blockType, MatchColorType colorType, Vector2 position)
         {
             this.IsLocking = false;
             this.position.Value = position;
             this.state.Value = BlockState.NORMAL;
             this.color.Value = colorType;
+            
+            this.BlockType = blockType;
         }
 
         /**
          *  @brief  Block 정보 초기화, FillRate를 이용해 확률적으로 블럭을 생성
          *  @param  blockFillRate : 블럭의 색상별 생성 확률, position : 위치
          */
-        public void Initialize(Dictionary<MatchColorType, float> blockFillRate, Vector2 position)
+        public void Initialize(BlockType blockType, Dictionary<MatchColorType, float> blockFillRate, Vector2 position)
         {
             MatchColorType colorType = MatchColorType.NONE;
 
@@ -107,7 +124,7 @@ namespace CubicSystem.CubicPuzzle
             }
 
             //초기화
-            Initialize(colorType, position);
+            Initialize(blockType, colorType, position);
         }
 
         /**
@@ -126,7 +143,7 @@ namespace CubicSystem.CubicPuzzle
          */
         public void SetBlockState(BlockState blockState)
         {
-            if(blockState == state.Value) {
+            if(blockState == state.Value || this.BlockType == BlockType.NONE) {
                 return;
             }
 
@@ -144,6 +161,19 @@ namespace CubicSystem.CubicPuzzle
 
                 actDestroy();
             }
+        }
+
+        /**
+         *  @brief  Block Type 변경
+         *  @param  blockType : 변경하려는 Type
+         */
+        public void SetBlockType(BlockType blockType)
+        {
+            if(blockType == this.blockType.Value) {
+                return;
+            }
+
+            BlockType = blockType;
         }
 
         /**
@@ -172,8 +202,20 @@ namespace CubicSystem.CubicPuzzle
          */
         public bool IsEnableBlock()
         {
-            var blockState = this.State;
-            if(blockState == BlockState.EMPTY || blockState == BlockState.NONE) {
+            if(this.State == BlockState.EMPTY || this.BlockType == BlockType.NONE) {
+                return false;
+            }
+
+            return true;
+        }
+
+        /**
+         *  @brief  빈 Block인지 확인
+         *  @return true : 빈 Block,  false : 사용하지 않거나 활성화되어 있는 Block
+         */
+        public bool IsEmptyBlock()
+        {
+            if(this.State != BlockState.EMPTY || this.BlockType == BlockType.NONE) {
                 return false;
             }
 
@@ -188,6 +230,19 @@ namespace CubicSystem.CubicPuzzle
         public bool IsCompareState(BlockState state)
         {
             if(this.state.Value == state) {
+                return true;
+            }
+            return false;
+        }
+
+        /**
+         *  @brief  Block의 Type 비교
+         *  @param  state : 확인하려는 Block Type
+         *  @return true : 동일한 상태,  false : 동일하지 않은 상태
+         */
+        public bool IsCompareType(BlockType type)
+        {
+            if(this.blockType.Value == type) {
                 return true;
             }
             return false;

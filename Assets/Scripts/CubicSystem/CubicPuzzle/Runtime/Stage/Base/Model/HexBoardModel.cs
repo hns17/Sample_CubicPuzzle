@@ -51,11 +51,6 @@ namespace CubicSystem.CubicPuzzle
                 return blockFactory.Create(boardItem, boardPresenter.Blocks, position);
             };
 
-            StateObservable.Subscribe((state) =>
-            {
-                Debug.Log(state);
-            });
-
             Initialize(boardInfo);
         }
 
@@ -101,12 +96,12 @@ namespace CubicSystem.CubicPuzzle
 
             Cells.ForEach((item) =>
             {
-                item.SetCellState(CellState.NONE);
+                item.SetCellType(CellType.NONE);
             });
 
             Blocks.ForEach((item) =>
             {
-                item.SetBlockState(BlockState.NONE);
+                item.SetBlockType(BlockType.NONE);
             });
 
             //Cell의 크기에 맞춰 초기 위치 정보 구성
@@ -149,7 +144,7 @@ namespace CubicSystem.CubicPuzzle
                     //사용하지 않는 Cell의 Block은 사용되지 않도록 상태 변경
                     //Editor Tool에서 Export 될 때 처리되도록 수정 필요
                     if(!newCellModel.IsEnableCell()) {
-                        newBlockModel.SetBlockState(BlockState.NONE);
+                        newBlockModel.SetBlockType(BlockType.NONE);
                     }
 
                     index++;

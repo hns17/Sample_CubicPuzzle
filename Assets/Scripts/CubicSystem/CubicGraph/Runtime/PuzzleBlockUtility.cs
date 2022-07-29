@@ -7,12 +7,6 @@ using UnityEngine;
  */
 namespace CubicSystem.CubicPuzzle
 {
-    public enum CellType { EMPTY, NORMAL }
-    public enum BlockType { EMPTY, NORMAL, ITEM }
-    public enum MatchColorType { RED, BLACK, YELLOW, GREEN, BLUE, PINK, VIOLETE, NONE }
-    public enum BoardQuestType { DESTROY_COUNT, SCORE, NO_MATCH, NONE }
-
-
     public static class PuzzleBlockUtility
     {
         private const int alpha = 160;

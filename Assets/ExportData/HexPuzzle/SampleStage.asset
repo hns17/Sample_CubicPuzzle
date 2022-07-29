@@ -25,7 +25,7 @@ MonoBehaviour:
       col: 4
       row: 4
       items:
-      - cellType: 1
+      - cellType: 0
         blockType: 1
         color: 4
         isFill: 1

@@ -21,6 +21,10 @@ namespace CubicSystem.CubicPuzzle
          */
         public async UniTask DoSwipeAction(BlockModel from, BlockModel to)
         {
+            if(!to.IsEnableBlock() || !from.IsEnableBlock()) {
+                return;
+            }
+
             if(board.State == BoardState.READY) {
                 //두 Block이 이웃 관계인지 확인
                 for(BlockNeighType neighType = BlockNeighType.START;

@@ -64,13 +64,11 @@ namespace CubicSystem.CubicPuzzle
             //Board 파괴 이벤트
             board.StateObservable.Subscribe(state =>
             {
-                Physics2D.simulationMode = SimulationMode2D.Script;
                 if(state == BoardState.DESTROYED) {
                     gameObject.SetActive(false);
                     //Destroy(gameObject);
                 }
                 else if(state == BoardState.READY) {
-                    Physics2D.simulationMode = SimulationMode2D.FixedUpdate;
                     gameObject.SetActive(true);
                 }
             }).AddTo(this);
@@ -123,10 +121,16 @@ namespace CubicSystem.CubicPuzzle
         {
             BlockPresenter res = null;
 
+            //Simulation : 씬 공간과 물리공간 Collider 위치 맞추기
+            Physics2D.Simulate(Time.fixedDeltaTime);
+
+
             Vector2 worldPos = Camera.main.ScreenToWorldPoint(pos);
             Ray2D ray2D = new Ray2D(worldPos, Vector2.zero);
             RaycastHit2D hit = Physics2D.Raycast(ray2D.origin, ray2D.direction);
 
+            //Simulation : RayCast Hit
+            Physics2D.Simulate(Time.fixedDeltaTime);
             if(hit) {
                 res = hit.collider.gameObject.GetComponent<BlockPresenter>();
 
@@ -135,6 +139,7 @@ namespace CubicSystem.CubicPuzzle
                     res = null;
                 }
             }
+
             return res;
         }
 

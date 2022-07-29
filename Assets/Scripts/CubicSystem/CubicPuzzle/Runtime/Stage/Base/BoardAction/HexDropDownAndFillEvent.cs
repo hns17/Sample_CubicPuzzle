@@ -120,7 +120,7 @@ namespace CubicSystem.CubicPuzzle
 
             //아래로 떨어질수 있는지 확인
             var downNeigh = board.GetNeighBlock(targetBlock, BlockNeighType.DOWN);
-            if(downNeigh == null || !downNeigh.IsCompareState(BlockState.EMPTY)) {
+            if(downNeigh == null || !downNeigh.IsEmptyBlock()) {
                 return false;
             }
             
@@ -158,13 +158,13 @@ namespace CubicSystem.CubicPuzzle
             //이동할 위치 정보 가져오기
             var slideDirection = firstSlideDireciton;
             var sideNeigh = board.GetNeighBlock(targetBlock, slideDirection);
-            if(sideNeigh == null || !sideNeigh.IsCompareState(BlockState.EMPTY)) {
+            if(sideNeigh == null || !sideNeigh.IsEmptyBlock()) {
                 slideDirection = secondSlideDireciton;
                 sideNeigh = board.GetNeighBlock(targetBlock, slideDirection);
             }
 
             //이동이 불가능한 경우
-            if(sideNeigh == null || !sideNeigh.IsCompareState(BlockState.EMPTY)) {
+            if(sideNeigh == null || !sideNeigh.IsEmptyBlock()) {
                 return false;
             }
 
@@ -175,11 +175,10 @@ namespace CubicSystem.CubicPuzzle
 
 
             //이동 하려는 Side Block의 윗 쪽에 블럭을 채우는 Cell이 있으면 제외
-            //이동 하려는 Side Block의 윗 쪽에 블럭을 채우는 Cell이 있으면 제외
             bool isFillCell = false;
             var upIdx = sideNeigh.Idx;
             while(upIdx >= 0 && !isFillCell) {
-                if(board.Blocks[upIdx].IsCompareState(BlockState.NONE)) {
+                if(board.Blocks[upIdx].IsCompareType(BlockType.NONE)) {
                     break;
                 }
                 else if(board.Cells[upIdx].IsFillBlock) {
@@ -236,7 +235,7 @@ namespace CubicSystem.CubicPuzzle
                 }
 
                 //블럭이 비어있지 않은 경우...
-                if(!block.IsCompareState(BlockState.EMPTY)) {
+                if(!block.IsEmptyBlock()) {
                     continue;
                 }
 
@@ -247,7 +246,7 @@ namespace CubicSystem.CubicPuzzle
                 var cellPos = board.GetCellPosition(block.Idx);
 
                 //블럭 정보 재구성 및 상태 변경
-                block.Initialize(targetCell.BlockFillRate, cellPos + new Vector2(0f, cellSizeY));
+                block.Initialize(BlockType.NORMAL, targetCell.BlockFillRate, cellPos + new Vector2(0f, cellSizeY));
                 block.SetBlockState(BlockState.FILL_WAIT);
 
                 //블럭의 이동 경로 정보에 추가
