@@ -138,6 +138,9 @@ namespace CubicSystem.CubicPuzzle
             return matchHelper;
         }
 
+        /**
+         *  @brief   CustomFactoryClass
+         */
         public new class Factory :IFactory<BoardModel, BoardActManager>
         {
             [Inject] private DiContainer diContainer;

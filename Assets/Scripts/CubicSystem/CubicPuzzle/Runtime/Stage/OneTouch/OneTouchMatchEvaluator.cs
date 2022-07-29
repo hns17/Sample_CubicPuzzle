@@ -22,7 +22,10 @@ namespace CubicSystem.CubicPuzzle
             }
         }
 
-
+        /**
+         *  @brief  Create Match List
+         *  @target : target block, matchIndices : Match List Index Container
+         */
         private void SearchMatchIndices(BlockModel target, HashSet<int> matchIndices)
         {
             searchs.Clear();
@@ -53,7 +56,7 @@ namespace CubicSystem.CubicPuzzle
         *  @brief  Board의 매치 Block을 확인 후 상태 업데이트
         *  @return true(매치 블럭이 있는 경우), false(매치 블럭이 없는 경우)
         */
-        public bool EvalMatchBoard(HashSet<int> matchIndices)
+        private bool EvalMatchBoard(HashSet<int> matchIndices)
         {
             var blocks = board.Blocks;
 
@@ -71,7 +74,7 @@ namespace CubicSystem.CubicPuzzle
        *  @param  block(확인 할 블럭)
        *  @return true(매치 블럭이 있는 경우), false(매치 블럭이 없는 경우)
        */
-        public bool EvalMatchBlock(BlockModel block, HashSet<int> matchIndices)
+        private bool EvalMatchBlock(BlockModel block, HashSet<int> matchIndices)
         {
             if(!block.IsEnableBlock()) {
                 return false;

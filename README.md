@@ -1,4 +1,4 @@
-# SampleProject_HexPuzzle
+# SampleProject_CubicPuzzle
 
 ### 1. 개요
 
@@ -9,7 +9,7 @@
 - 목적 : 샘플 코드 및 포트폴리오 제출
 
 -  개발 기능 
-    
+   
     - ThreeMatch
       - 라인 매치(세로, 대각선, 역대각선), Square 매치,
     - OneTouchMatch

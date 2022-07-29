@@ -10,7 +10,6 @@ namespace CubicSystem.CubicPuzzle
     {
         private IOneTouchBlockEvent oneTouchEvent;
 
-
         public override void InitalizeStart()
         {
             base.InitalizeStart();
@@ -22,6 +21,7 @@ namespace CubicSystem.CubicPuzzle
             if(board.State == BoardState.READY) {
                 base.TouchStart();
                 if(fromBlock != null) {
+                    //Call TouchEvent
                     oneTouchEvent.DoTouchAction(fromBlock.Block).Forget();
                 }
             }

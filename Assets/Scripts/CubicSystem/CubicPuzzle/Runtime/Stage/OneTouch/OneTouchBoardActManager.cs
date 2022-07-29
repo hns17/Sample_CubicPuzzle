@@ -7,25 +7,30 @@ using Zenject;
 
 namespace CubicSystem.CubicPuzzle
 {
+    /**
+     *  @brief  OneTouch Event Manager
+     */
     public class OneTouchBoardActManager :BoardActManager, IOneTouchBlockEvent
     {
-
+        /**
+         *  @brief  User Touch Input
+         *  @param  target(BlockModel) : Touch Block
+         */
         public async UniTask DoTouchAction(BlockModel target)
         {
-
-            if(target == null) {
+            if(target == null || !board.IsBoardBlock(target)) {
                 return;
             }
 
-            if(!board.IsBoardBlock(target)) {
-                return;
-            }
-
+            //Target 중심으로 Match 평가하기
             if(EvaluatorNUpdate(target)) {
                 await MatchEvent();
             }
         }
 
+        /**
+         *  @brief  Match Event
+         */
         public override async UniTask MatchEvent()
         {
             cts.Token.ThrowIfCancellationRequested();
@@ -40,19 +45,11 @@ namespace CubicSystem.CubicPuzzle
             if(!board.CheckClearQuest()) {
                 if(!await IsPossibleBoard()) {
                     await NoMoreMatchEvent();
-                    //var blocks = board.Blocks;
-                    //blocks.ForEach(block =>
-                    //{
-                    //    if(block.IsEnableBlock()) {
-                    //        block.SetBlockState(BlockState.MATCH);
-                    //        block.SetMatchColor(MatchColorType.NONE);
-                    //    }
-                    //});
-                    //await MatchEvent();
                 }
             }
             board.SetBoardState(BoardState.READY);
         }
+
 
         protected override async UniTask<bool> IsPossibleBoard()
         {
@@ -60,6 +57,10 @@ namespace CubicSystem.CubicPuzzle
             return Evaluator(null);
         }
 
+
+        /**
+         *  @brief   CustomFactoryClass
+         */
         public new class Factory :IFactory<BoardModel, BoardActManager>
         {
             [Inject] private DiContainer diContainer;

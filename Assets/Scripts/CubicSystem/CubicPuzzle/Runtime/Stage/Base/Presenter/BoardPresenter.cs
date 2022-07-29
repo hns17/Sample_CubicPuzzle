@@ -42,6 +42,9 @@ namespace CubicSystem.CubicPuzzle
             InitalizeStart();
         }
 
+        /**
+         *  @brief  Awake Initalize
+         */
         public virtual void InitalizeAwake()
         {
             Cells = new GameObject("Cells").transform;
@@ -53,6 +56,10 @@ namespace CubicSystem.CubicPuzzle
             Blocks.localPosition = Vector2.zero;
         }
 
+
+        /**
+         *  @brief  Start Initalize
+         */
         public virtual void InitalizeStart()
         {
             Debug.Assert(inputManager != null, "InputManager is null");

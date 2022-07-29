@@ -39,6 +39,10 @@ namespace CubicSystem.CubicPuzzle
          */
         public abstract UniTask MatchEvent();
 
+        /**
+         *  @brief  진행 가능한 Board인지 체크
+         *  @return bool
+         */
         protected abstract UniTask<bool> IsPossibleBoard();
 
         /**
