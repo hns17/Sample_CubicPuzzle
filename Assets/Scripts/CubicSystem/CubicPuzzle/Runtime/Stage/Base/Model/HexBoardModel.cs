@@ -2,7 +2,6 @@ using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
-using UniRx;
 using System;
 
 namespace CubicSystem.CubicPuzzle

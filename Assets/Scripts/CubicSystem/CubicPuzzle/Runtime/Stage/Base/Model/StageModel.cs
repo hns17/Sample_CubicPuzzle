@@ -4,7 +4,6 @@ using Zenject;
 using UniRx;
 using Cysharp.Threading.Tasks;
 using UnityEngine.SceneManagement;
-using System.Threading;
 
 namespace CubicSystem.CubicPuzzle
 {

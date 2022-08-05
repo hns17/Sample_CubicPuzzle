@@ -1,10 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace CubicSystem.CubicPuzzle{
+namespace CubicSystem.CubicPuzzle
+{
     public class StageInputManager :MonoBehaviour
     {
         public delegate void PressDown();
