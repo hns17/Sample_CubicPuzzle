@@ -1,6 +1,8 @@
 using Cysharp.Threading.Tasks;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 namespace CubicSystem.CubicPuzzle
 {
@@ -21,11 +23,23 @@ namespace CubicSystem.CubicPuzzle
         private Dictionary<BlockModel, BlockPathData> pathTable;
         private List<UniTask> uniTasks = new List<UniTask>();
 
+        private const int pathDataPoolCapacity = 300;
+        private IObjectPool<BlockPathData> pathDataPool;
+
         public HexDropDownAndFillEvent(BoardModel board)
         {
             stepCount = 0;
             this.board = board;
             pathTable = new Dictionary<BlockModel, BlockPathData>();
+            pathDataPool = new ObjectPool<BlockPathData>(
+                ()=> {
+                    return new BlockPathData(Vector2.zero); 
+                }, 
+                null, 
+                (BlockPathData pathData)=> {
+                    pathData.Clear(); 
+                }, 
+                null, true, pathDataPoolCapacity);
         }
 
         /**
@@ -92,7 +106,9 @@ namespace CubicSystem.CubicPuzzle
             BlockPathData blockPathData;
 
             if(!pathTable.TryGetValue(moveBlock, out blockPathData)) {
-                blockPathData = new BlockPathData(board.BlockCount, moveBlock.Position);
+                blockPathData = pathDataPool.Get();
+                pathTable[moveBlock] = blockPathData;
+                blockPathData.FromPosition = moveBlock.Position;
             }
 
             //최대 이동 거리 갱신
@@ -102,8 +118,6 @@ namespace CubicSystem.CubicPuzzle
 
             //경로 정보 추가하기
             blockPathData.InsertData(movePosition, stepCount - 1, moveDirection);
-            pathTable[moveBlock] = new BlockPathData(blockPathData);
-            blockPathData.Clear();
 
             //해당 블럭 이동 잠그기
             moveBlock.SetLocking(true);
@@ -289,8 +303,9 @@ namespace CubicSystem.CubicPuzzle
         private void ResetPathData()
         {
             stepCount = 0;
+
             foreach(var item in pathTable) {
-                item.Value.Clear();
+                pathDataPool.Release(item.Value);
             }
             pathTable.Clear();
         }

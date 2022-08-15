@@ -36,7 +36,7 @@ namespace CubicSystem.CubicPuzzle
             ActManager = actManagerFactory.Create(this);
 
             //Board GameObject 생성
-            var boardPresenter = boardPresenterFactory.Create(this, parent);
+            BoardPresenter boardPresenter = boardPresenterFactory.Create(this, parent);
 
             //Cell Creator
             funcCreateCell = (boardItem, position) =>
@@ -62,7 +62,7 @@ namespace CubicSystem.CubicPuzzle
             this.BoardInfo = boardInfo;
             this.position.Value = BoardInfo.boardData.position;
 
-            var boardData = BoardInfo.boardData;
+            BoardData boardData = BoardInfo.boardData;
             this.Row = boardData.row;
             this.Col = boardData.col;
 
@@ -81,6 +81,7 @@ namespace CubicSystem.CubicPuzzle
                 await ActManager.MatchEvent();
                 SetBoardState(BoardState.READY);
             }).Invoke();
+
         }
 
         /**
@@ -104,13 +105,13 @@ namespace CubicSystem.CubicPuzzle
             });
 
             //Cell의 크기에 맞춰 초기 위치 정보 구성
-            var cellSize = CellSize;
+            Vector2 cellSize = CellSize;
             Vector2 cellPos = new Vector2(-(Col / 2 * cellSize.x), Row / 2 * cellSize.y);
 
             int index = 0;
             for(int i = 0; i < Row; i++) {
                 for(int j = 0; j < Col; j++) {
-                    var boardItem = boardItems[index];
+                    BoardItemData boardItem = boardItems[index];
 
                     //Calc Cell & Block Position
                     Vector2 targetPos = new Vector2(cellPos.x + cellSize.x * j, cellPos.y - cellSize.y * i);
@@ -209,7 +210,42 @@ namespace CubicSystem.CubicPuzzle
             return res;
         }
 
+        /**
+         *  @brief  target Block의 최상단에 위치한 Block Index 반환
+         *  @param  targetIndex : Target Block Index
+         *  @return int : 최상단 Block Index
+         */
+        private int GetTopBlockIndex(int targetIndex)
+        {
+            return targetIndex % Col;
+        }
 
+        /**
+         *  @brief  target Block의 최하단에 위치한 Block Index 반환
+         *  @param  targetIndex : Target Block Index
+         *  @return int : 최하단 Block Index
+         */
+        private int GetFirstBottomBlockIndex(int targetIndex)
+        {
+            return Col * Row - GetTopBlockIndex(targetIndex);
+        }
+
+
+        /**
+         *  @brief  Block의 Line 위치를 반환
+         *  @param  blockIdx : Target Block Index
+         *  @return int : Line Index
+         */
+        public int GetLineIndex(int blockIdx)
+        {
+            int lineIdx = blockIdx / Col * 2;
+            int mod = blockIdx % Col;
+            if(mod % 2 != 0) {
+                lineIdx += 1;
+            }
+
+            return lineIdx;
+        }
     }
 }
 

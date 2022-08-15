@@ -14,6 +14,7 @@ public class ProjectMonoInstaller : MonoInstaller
     public override void InstallBindings()
     {
         DOTween.SetTweensCapacity(tweenersCapacity: 500, sequencesCapacity: 200);
+        Application.targetFrameRate = 60;
 
         //Stage List Á¤º¸ Load
         Container.BindInstance(LoadStageListData()).AsSingle();

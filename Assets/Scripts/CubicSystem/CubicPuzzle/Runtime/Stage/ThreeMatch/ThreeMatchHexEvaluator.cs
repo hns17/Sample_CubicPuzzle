@@ -79,9 +79,6 @@ namespace CubicSystem.CubicPuzzle
 
         private BoardModel board;
 
-        //Match Block Index 기록
-        private Dictionary<MatchColorType, List<List<int>>> matchTable;
-        
         //Board 평가 함수 Set
         private List<Func<BlockModel, HashSet<int>, bool>> boardEvaluator;
 
@@ -187,7 +184,7 @@ namespace CubicSystem.CubicPuzzle
             bool res = false;
             
             //Initialize Match index List
-            CubicNativeArray<int> indices = new CubicNativeArray<int>(board.BlockCount, Allocator.Temp);
+            CubicSpanArray<int> indices = new CubicSpanArray<int>(stackalloc int[board.BlockCount]);
             indices.Add(block.Idx);
 
             //Make Match index List
@@ -198,13 +195,11 @@ namespace CubicSystem.CubicPuzzle
             //Is Pass Match Condition Count
             if(indices.Count >= LineMatchCount) {
                 res = true;
-                foreach(int index in indices) {
-                    matchIndices?.Add(index);
+                for(int i = 0; i < indices.Count; i++) {
+                    matchIndices?.Add(indices[i]);
                 }
             }
 
-            //Release Index List
-            indices.Dispose();
             return res;
         }
 
@@ -212,7 +207,7 @@ namespace CubicSystem.CubicPuzzle
          *  @brief  지정된 이웃 방향으로 Match가 되지 않을때까지 반복적으로 평가
          *  @param  block : 평가 Block, blockNeighType : 비교할 이웃 Block 위치, indices : 현재까지 매치된 Block Index List
          */
-        private void RecursiveEvalLineBlockMatched(BlockModel block, BlockNeighType blockNeighType, ref CubicNativeArray<int> indices)
+        private void RecursiveEvalLineBlockMatched(BlockModel block, BlockNeighType blockNeighType, ref CubicSpanArray<int> indices)
         {
             var neighBlock = board.GetNeighBlock(block, blockNeighType);
             if(neighBlock != null && neighBlock.IsEnableBlock()) {
@@ -237,7 +232,7 @@ namespace CubicSystem.CubicPuzzle
             }
 
             bool res = false;
-            CubicNativeArray<int> indices = new CubicNativeArray<int>(board.BlockCount, Allocator.Temp);
+            CubicSpanArray<int> indices = new CubicSpanArray<int>(stackalloc int[board.BlockCount]);
 
             //Target Block과 이웃 Block 평가하기
             foreach(var neighType in neighTypes) {
@@ -257,11 +252,10 @@ namespace CubicSystem.CubicPuzzle
             if(neighTypes.Count == indices.Count) {
                 res = true;
                 indices.Add(block.Idx);
-                foreach(int index in indices) {
-                    matchIndices?.Add(index);
+                for(int i = 0; i <indices.Count; i++) {
+                    matchIndices?.Add(indices[i]);
                 }
             }
-            indices.Dispose();
 
             return res;
         }

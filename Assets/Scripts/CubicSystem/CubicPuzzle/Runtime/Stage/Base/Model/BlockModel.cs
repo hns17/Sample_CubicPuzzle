@@ -63,6 +63,7 @@ namespace CubicSystem.CubicPuzzle
         public const float ShakeScaleDuration = 1.2f;
         public const float ShakePositionDuration = 0.2f;
 
+        private Action actDestroy = null;
 
         [Inject]
         private BlockModel(BoardItemData itemData, Transform parent, Vector2 position, BlockPresenter.Factory factory) {
@@ -71,6 +72,12 @@ namespace CubicSystem.CubicPuzzle
             Initialize(itemData, position);
 
             factory.Create(this, parent);
+
+            actDestroy = UniTask.Action(async () => {
+                await UniTask.Delay((int)(ShakeScaleDuration * 1000));
+                isShakeScale.Value = false;
+                state.Value = BlockState.EMPTY;
+            });
         }
 
         public void Initialize(BoardItemData itemData, Vector2 position)
@@ -149,14 +156,7 @@ namespace CubicSystem.CubicPuzzle
             //Block이 Destroy로 변경될 경우 Size Shake 후 파괴
             if(blockState == BlockState.DESTROYED) {
                 isShakeScale.Value = true;
-
-                var actDestroy = UniTask.Action(async () => {
-                    await UniTask.Delay(TimeSpan.FromSeconds(ShakeScaleDuration));
-                    isShakeScale.Value = false;
-                    state.Value = BlockState.EMPTY;
-                });
-
-                actDestroy();
+                actDestroy?.Invoke();
             }
         }
 
@@ -310,7 +310,7 @@ namespace CubicSystem.CubicPuzzle
 
             //이동 완료 후 Position Shake
             isShakePosition.Value = true;
-            await UniTask.Delay(TimeSpan.FromSeconds(ShakePositionDuration));
+            await UniTask.Delay((int)(ShakePositionDuration * 1000));
             isShakePosition.Value = false;
         }
 

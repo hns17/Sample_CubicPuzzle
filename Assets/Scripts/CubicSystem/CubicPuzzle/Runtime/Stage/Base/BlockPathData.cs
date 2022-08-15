@@ -1,4 +1,4 @@
-using Unity.Burst;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -7,45 +7,25 @@ using UnityEngine;
  */
 namespace CubicSystem.CubicPuzzle
 {
-    [BurstCompile]
-    public struct BlockPathData
+    public class BlockPathData
     {
         //경로 정보(Native Array)
-        public CubicNativeArray<Vector2> PathData;
+        public List<Vector2> PathData;
         public int Count => PathData.Count;
         public BlockNeighType PrevMoveDirection;
 
         //시작 위치
-        public Vector2 FromPosition { get; private set; }
+        public Vector2 FromPosition { get; set; }
 
         /**
          *  @brief  BlockPathData 생성자
          *  @param  capacity : 경로 정보 최대 기록량, fromPosition : 경로 시작 위치
          */
-        public BlockPathData(int capacity, Vector2 fromPosition)
+        public BlockPathData(Vector2 fromPosition)
         {
             FromPosition = fromPosition;
             PrevMoveDirection = BlockNeighType.NONE;
-            PathData = new CubicNativeArray<Vector2>(capacity, Unity.Collections.Allocator.Persistent);
-        }
-
-        /**
-         *  @brief  BlockPathData 생성자(기존 경로 값 복사)
-         *  @param  blockPath : 복사하려는 경로 정보
-         */
-        public BlockPathData(BlockPathData blockPath)
-        {
-            FromPosition = blockPath.FromPosition;
-            PrevMoveDirection = blockPath.PrevMoveDirection;
-            PathData = new CubicNativeArray<Vector2>(blockPath.PathData);
-        }
-
-        /**
-         *  @brief  Release BlockPathData Instance
-         */
-        public void Clear()
-        {
-            PathData.Dispose();
+            PathData = new List<Vector2>(100);
         }
 
         /**
@@ -56,8 +36,8 @@ namespace CubicSystem.CubicPuzzle
          */
         public void InsertData(Vector2 position, int maxPathCount, BlockNeighType moveDirection)
         {
-            var interval = maxPathCount - Count;
-            var insertData = Count == 0 ? FromPosition : PathData[Count - 1];
+            int interval = maxPathCount - Count;
+            Vector2 insertData = Count == 0 ? FromPosition : PathData[Count - 1];
             for(int i = 0; i < interval; i++) {
                 PathData.Add(insertData);
             }
@@ -65,6 +45,16 @@ namespace CubicSystem.CubicPuzzle
             PrevMoveDirection = moveDirection;
 
             PathData.Add(position);
+        }
+
+        /**
+         *  @brief  Release BlockPathData Instance
+         */
+        public void Clear()
+        {
+            FromPosition = Vector2.zero;
+            PathData.Clear();
+            PrevMoveDirection = BlockNeighType.NONE;
         }
     }
 }
