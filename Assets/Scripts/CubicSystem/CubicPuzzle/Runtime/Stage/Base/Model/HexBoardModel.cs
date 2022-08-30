@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 using System;
+using UniRx;
 
 namespace CubicSystem.CubicPuzzle
 {
@@ -14,6 +15,7 @@ namespace CubicSystem.CubicPuzzle
     public class HexBoardModel : BoardModel
     {
         public override Vector2 CellSize => new Vector2(1f, 1.15f);
+        public override BoardType BoardStyle => BoardType.HEX;
 
         //Cell & Block Creator
         private Func<BoardItemData, Vector2, CellModel> funcCreateCell;
@@ -152,63 +154,6 @@ namespace CubicSystem.CubicPuzzle
             }
         }
 
-
-        /**
-         *  @brief  Block의 이웃 Block Index 정보를 반환
-         *  @param  targetIndex : target Block index, neighType : 찾으려는 이웃 블럭 위치 정보
-         *  @return int : 정보가 없는 경우 -1 / 있는 경우 이웃 block index 정보 반환
-         */
-        public override int GetNeighIndex(int targetIndex, BlockNeighType neighType)
-        {
-            int res = -1;
-            int mod = targetIndex % Col;
-
-            //Up Block
-            if(neighType == BlockNeighType.UP) {
-                res = targetIndex - Col;
-            }
-            //Down Block
-            else if(neighType == BlockNeighType.DOWN) {
-                res = targetIndex + Col;
-            }
-            //Left Side(LeftUp, LeftDown)
-            else if(neighType == BlockNeighType.LEFT_UP || neighType == BlockNeighType.LEFT_DOWN) {
-                if(mod != 0) {
-                    res = targetIndex - 1;
-
-                    //Left Up Block
-                    if(neighType == BlockNeighType.LEFT_UP && mod % 2 == 0) {
-                        res -= Col;
-                    }
-                    //Left Down Block
-                    else if(neighType == BlockNeighType.LEFT_DOWN && mod % 2 != 0) {
-                        res += Col;
-                    }
-                }
-            }
-            //Right Side(RightUp, RightDown)
-            else if(neighType == BlockNeighType.RIGHT_UP || neighType == BlockNeighType.RIGHT_DOWN) {
-                if((targetIndex + 1) % Col != 0) {
-                    res = targetIndex + 1;
-
-                    //Right Down Block
-                    if(neighType == BlockNeighType.RIGHT_DOWN && mod % 2 != 0) {
-                        res += Col;
-                    }
-                    //Right Up Block
-                    else if(neighType == BlockNeighType.RIGHT_UP && mod % 2 == 0) {
-                        res -= Col;
-                    }
-                }
-            }
-
-            //이웃 Block을 찾지 못한 경우
-            if(res >= Blocks.Count || res < 0) {
-                res = -1;
-            }
-
-            return res;
-        }
 
         /**
          *  @brief  target Block의 최상단에 위치한 Block Index 반환

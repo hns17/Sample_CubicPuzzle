@@ -10,7 +10,8 @@ namespace CubicSystem.CubicPuzzle
         [SerializeField] private GameObject pfCell;
         [SerializeField] private GameObject pfBlock;
 
-        [SerializeField] private PuzzleStageData stageData; 
+        [SerializeField] private CubicPuzzleStageData stageData; 
+        [SerializeField] private CubicPuzzlePatternData extraPattenData; 
         [SerializeField] private StageInputManager stageInputManager;
 
         public override void InstallBindings()
@@ -55,7 +56,9 @@ namespace CubicSystem.CubicPuzzle
             Container.BindInstance(stageInputManager);
 
             //Load StageData
-            Container.BindInstance<PuzzleStageData>(stageData);
+            Container.BindInstance<CubicPuzzleStageData>(stageData);
+
+            Container.BindInstance<CubicPuzzlePatternData>(extraPattenData);
 
 
             //Container.BindFactory<BoardModel, BoardActManager, BoardActManager.Factory>()

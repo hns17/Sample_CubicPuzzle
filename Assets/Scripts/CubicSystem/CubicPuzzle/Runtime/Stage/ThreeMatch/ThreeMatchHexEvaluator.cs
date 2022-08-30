@@ -123,7 +123,7 @@ namespace CubicSystem.CubicPuzzle
                 blockEvaluator.Add((block, matchIndices) =>
                 {
                     bool res = EvalSquareMatched(block, matchNeighTypes, matchIndices);
-                    for(BlockNeighType i = BlockNeighType.START + 1; i<BlockNeighType.NONE; i++) {
+                    for(BlockNeighType i = BlockNeighType.START; i<BlockNeighType.NONE; i++) {
                         var neighBlock = board.GetNeighBlock(block, i);
                         res |= EvalSquareMatched(neighBlock, matchNeighTypes, matchIndices);
                     }
@@ -260,13 +260,21 @@ namespace CubicSystem.CubicPuzzle
             return res;
         }
 
+        /**
+         *  @brief  3-Match 최소 단위(3-Line, 4-Square) 체크
+         *  @param  block : target block, null인 경우 Board 전체 체크
+         *  @param  matchIndices : Match된 Block List
+         *  @return true : Match Block이 있는 경우 / false : 없는 경우
+         */
         public bool Evaluator(BlockModel block, HashSet<int> matchIndices)
         {
             matchIndices?.Clear();
 
+            //모든 블럭을 대상으로 매치 검사
             if(block == null) {
                 return EvalMatchBoard(matchIndices);
             }
+            //지정된 블럭을 대상으로 매치 검사
             else {
                 return EvalMatchBlock(block, matchIndices);
             }

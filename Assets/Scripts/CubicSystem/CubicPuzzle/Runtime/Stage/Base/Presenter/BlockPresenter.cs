@@ -69,10 +69,7 @@ namespace CubicSystem.CubicPuzzle
             //Block 파괴 효과, 완료시 Block GameObject 비활성화
             shakeScale = objView.transform.DOShakeScale(BlockModel.ShakeScaleDuration, 0.8f, 5, 45)
                             .SetAutoKill(false)
-                            .Pause()
-                            .OnPause(() => {
-                                DestoryBlock();
-                            });
+                            .Pause();
             
             //Caching Position Shake Dotween 
             //Block 이동 효과
@@ -87,7 +84,7 @@ namespace CubicSystem.CubicPuzzle
             //Block 색상 변경에 따른 View 색상 변경
             this.Block.ColorObservable.Subscribe(x =>
             {
-                spriteRenderer.color = PuzzleBlockUtility.GetMatchColor(x);
+                spriteRenderer.color = CubicPuzzleUtility.GetMatchColor(x);
             }).AddTo(this);
             
             //Block Position 변경시 Object Position 변경
@@ -108,7 +105,10 @@ namespace CubicSystem.CubicPuzzle
 
             //Block 상태 변경에 맞춰 View 상태 변경
             this.Block.StateObservable.Subscribe(x => {
-                if(!Block.IsCompareType(BlockType.NONE)) {
+                if(x == BlockState.DESTROYED) {
+                    DestoryBlock();
+                }
+                else if(!Block.IsCompareType(BlockType.NONE)) {
                     Initialize(!Block.IsCompareState(BlockState.EMPTY) && x != BlockState.FILL_WAIT);
                 }
             }).AddTo(this);
@@ -144,7 +144,7 @@ namespace CubicSystem.CubicPuzzle
 
             //블럭 파괴 파티클 위치, 색상 지정 후 활성화
             ParticleSystem.MainModule fxParticle = fxBlockExplosion.main;
-            fxParticle.startColor = PuzzleBlockUtility.GetMatchColor(Block.Color);
+            fxParticle.startColor = CubicPuzzleUtility.GetMatchColor(Block.Color);
 
             fxBlockExplosion.gameObject.SetActive(true);
         }

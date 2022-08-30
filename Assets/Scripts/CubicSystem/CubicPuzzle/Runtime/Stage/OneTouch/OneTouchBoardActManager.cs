@@ -19,7 +19,7 @@ namespace CubicSystem.CubicPuzzle
             }
 
             //Target 중심으로 Match 평가하기
-            if(EvaluatorNUpdate(target)) {
+            if(Evaluator(target, true)) {
                 await MatchEvent();
             }
         }
@@ -33,7 +33,7 @@ namespace CubicSystem.CubicPuzzle
             board.SetBoardState(BoardState.MATCH_EVENT);
             
             //Start Block Destory
-            await DestroyMatchBlocks();
+            await DestroyMatchBlocks(board.GetMatchBlocks());
 
             //Start Drop And Fille
             await eventDropNFill.StartDropAndFill();
@@ -50,7 +50,7 @@ namespace CubicSystem.CubicPuzzle
         protected override async UniTask<bool> IsPossibleBoard()
         {
             await UniTask.Yield();
-            return Evaluator(null);
+            return Evaluator(null, false);
         }
 
 

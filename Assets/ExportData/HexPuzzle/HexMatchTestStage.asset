@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 806a4da309df7ad4da6eca6ae401deba, type: 3}
-  m_Name: TestStage
+  m_Name: HexMatchTestStage
   m_EditorClassIdentifier: 
   stageName: NewStage
   boards:
-  - guid: 99e0dc59-466b-484d-944f-36a319a427ea
+  - guid: dbf97f72-4c21-44fe-8ae1-b47058e2cd05
     prevBoardIndices: 
     nextBoardIndices: 
     boardData:
@@ -25,8 +25,8 @@ MonoBehaviour:
       col: 16
       row: 8
       items:
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 1
         fillRate:
@@ -34,29 +34,29 @@ MonoBehaviour:
           values:
           - 1
           - 1
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 1
         fillRate:
@@ -64,43 +64,43 @@ MonoBehaviour:
           values:
           - 1
           - 1
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 1
         fillRate:
@@ -108,36 +108,29 @@ MonoBehaviour:
           values:
           - 1
           - 1
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
-        color: 0
-        isFill: 0
-        fillRate:
-          keys: 
-          values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 1
         fillRate:
@@ -145,785 +138,792 @@ MonoBehaviour:
           values:
           - 1
           - 1
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:
           keys: 
           values: []
-      - cellType: 1
-        blockType: 1
+      - cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellType: 0
+        blockType: 0
         color: 0
         isFill: 0
         fillRate:

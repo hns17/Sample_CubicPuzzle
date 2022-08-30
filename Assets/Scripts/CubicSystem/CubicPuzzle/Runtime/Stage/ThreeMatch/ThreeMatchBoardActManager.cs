@@ -1,12 +1,31 @@
 ﻿using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
+using UnityEngine;
 using Zenject;
 
 namespace CubicSystem.CubicPuzzle
 {
+    /**
+     *  @brief  3-Match Board 이벤트를 수행하는 클래스
+     *  @detail swipe, match and destroy, drop and fill, extra pattern event
+     */
     public class ThreeMatchBoardActManager :BoardActManager, ISwipeBlockEvent
     {
         //매치 가능한 블럭 정보를 기록
         private MatchHelpInfo matchHelper;
+        
+        //current swipe blocks
+        private BlockModel[] swipeBlock = new BlockModel[2];
+
+        //extra pattern event
+        private ThreeMatchExtraPatternEvent extraEvent;
+
+        [Inject]
+        private void InjectDependices(CubicPuzzlePatternData extraPattern)
+        {
+            //create extra pattern event
+            extraEvent = new ThreeMatchExtraPatternEvent(board, extraPattern.patternData[board.BoardStyle].container);
+        }
 
         public override void Initalize()
         {
@@ -24,6 +43,10 @@ namespace CubicSystem.CubicPuzzle
             }
 
             if(board.State == BoardState.READY) {
+
+                swipeBlock[0] = from;
+                swipeBlock[1] = to;
+
                 //두 Block이 이웃 관계인지 확인
                 for(BlockNeighType neighType = BlockNeighType.START;
                         neighType < BlockNeighType.NONE; neighType++) {
@@ -37,8 +60,8 @@ namespace CubicSystem.CubicPuzzle
                         board.SwapBlock(from.Idx, to.Idx);
 
                         //Match Check
-                        bool isMatch = EvaluatorNUpdate(from);
-                        isMatch |= EvaluatorNUpdate(to);
+                        bool isMatch = Evaluator(from, true);
+                        isMatch |= Evaluator(to, true);
 
                         //Move Block
                         await (
@@ -46,10 +69,11 @@ namespace CubicSystem.CubicPuzzle
                             to.MoveBlock(from.Position, 0.25f, !isMatch)
                         );
 
-                        //Match되지 않은 경우 Board Container의 Block 정보를 이전 상태로 
+                        
                         if(isMatch) {
                             await MatchEvent();
                         }
+                        //Match되지 않은 경우 Block 정보를 이전 상태로 
                         else {
                             board.SwapBlock(from.Idx, to.Idx);
                         }
@@ -59,19 +83,25 @@ namespace CubicSystem.CubicPuzzle
                     }
                 }
             }
+
+            swipeBlock[0] = swipeBlock[1] = null;
         }
+
 
         public override async UniTask MatchEvent()
         {
             board.SetBoardState(BoardState.MATCH_EVENT);
+
             do {
                 cts.Token.ThrowIfCancellationRequested();
+
                 //Start Block Destory
-                await DestroyMatchBlocks();
+                await DestroyMatchBlocks(board.GetMatchBlocks());
 
                 //Start Drop And Fille
                 await eventDropNFill.StartDropAndFill();
-            } while(EvaluatorNUpdate(null));
+            } while(Evaluator(null, true));
+
 
             //Check board clear quest
             if(!board.CheckClearQuest()) {
@@ -83,6 +113,18 @@ namespace CubicSystem.CubicPuzzle
             }
             board.SetBoardState(BoardState.READY);
         }
+
+
+        protected override UniTask DestroyMatchBlocks(List<BlockModel> matchBlocks)
+        {
+            //eval extra pattern
+            var extraMatchs = extraEvent.Evaluator(matchBlocks);
+
+            //run extra patten event & destroy match blocks
+            return UniTask.WhenAll(base.DestroyMatchBlocks(matchBlocks), 
+                extraEvent.RunExtraPatternEvent(extraMatchs, swipeBlock));
+        }
+
 
         /**
         *  @brief  게임 진행이 가능한 보드인지 확인한다.
@@ -96,27 +138,25 @@ namespace CubicSystem.CubicPuzzle
 
             //Board의 전체 Block을 대상으로 Block 단위 평가
             for(int i = 0; i < blocks.Count; i++) {
+                await UniTask.Yield();
                 if(!blocks[i].IsEnableBlock()) {
                     continue;
                 }
 
                 var blockIndex = blocks[i].Idx;
                 //대상 Block을 전체 Neigh Block과 Swipe
-                for(BlockNeighType neighType = BlockNeighType.START + 1; neighType < BlockNeighType.NONE; neighType++) {
-                    await UniTask.Yield();
-
-                    var neighBlock = board.GetNeighBlock(blocks[i], neighType);
+                for(BlockNeighType neighType = BlockNeighType.START; neighType < BlockNeighType.NONE; neighType++) {
+                    BlockModel neighBlock = board.GetNeighBlock(blocks[i], neighType);
                     if(neighBlock == null || !neighBlock.IsEnableBlock()) {
                         continue;
                     }
-                    var neighIndex = neighBlock.Idx;
+                    int neighIndex = neighBlock.Idx;
 
                     //대상 블럭과 이웃 블럭 위치 Swap
                     board.SwapBlock(blockIndex, neighIndex);
 
-                    matchIndices.Clear();
-
-                    isMatched |= Evaluator(blocks[i]);
+                    HashSet<int> matchIndices = UnityEngine.Pool.HashSetPool<int>.Get();
+                    isMatched |= Evaluator(blocks[i], false, matchIndices);
 
                     //Match 정보 Update
                     if(isMatched) {
@@ -127,7 +167,6 @@ namespace CubicSystem.CubicPuzzle
                     board.SwapBlock(blockIndex, neighIndex);
                 }
             }
-            matchIndices.Clear();
             return isMatched;
         }
 

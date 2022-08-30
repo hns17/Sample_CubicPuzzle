@@ -1,4 +1,5 @@
 
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using UniRx;
@@ -12,6 +13,8 @@ namespace CubicSystem.CubicPuzzle
      */
     public class CellModel
     {
+        private const int destroyDelay = 500;
+
         //Cell의 Vertex 위치 정보
         private readonly Vector2[] vertexPosition = {
             new Vector2(-0.35f, 0.575f),   //LEFT_UP
@@ -137,6 +140,14 @@ namespace CubicSystem.CubicPuzzle
         {
             this.cellType.Value = cellType;
         }
+
+        public async UniTask DestroyCell()
+        {
+            state.Value = CellState.DESTROYED;
+            await UniTask.Delay(destroyDelay);
+            state.Value = CellState.EMPTY;
+        }
+
 
         public class Factory :PlaceholderFactory<BoardItemData, Transform, Vector2, CellModel>
         {

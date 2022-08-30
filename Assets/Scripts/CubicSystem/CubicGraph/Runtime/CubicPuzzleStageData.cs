@@ -9,7 +9,7 @@ namespace CubicSystem.CubicPuzzle
      *  @brief  Game에 사용될 Stage 정보
      */
     //[CreateAssetMenu(fileName = "StageData", menuName = "CubicGraph/StageData", order = 1)]
-    public class PuzzleStageData :ScriptableObject
+    public class CubicPuzzleStageData :ScriptableObject
     {
         public string stageName = "Stage";
         public List<PuzzleBoardInfo> boards = new List<PuzzleBoardInfo>();

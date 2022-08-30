@@ -27,6 +27,7 @@ namespace CubicSystem.CubicPuzzle
 
         //전체 Block Count
         public int BlockCount => Blocks.Count;
+        public virtual BoardType BoardStyle=>BoardType.HEX;
 
         //현재 Board 상태 확인을 위한 Ractive용 변수
         //값 확인 및 이벤트 등록을 위해 Value와 Observable만 공개
@@ -76,36 +77,30 @@ namespace CubicSystem.CubicPuzzle
 
         public async virtual UniTask DestroyBoard(CancellationToken token)
         {
+            List<UniTask> destroyTasks = UnityEngine.Pool.ListPool<UniTask>.Get();
+
             //모든 블럭 파괴
             Blocks.ForEach(x => {
                 if(x.IsEnableBlock()) {
-                    x.SetBlockState(BlockState.DESTROYED);
+                    destroyTasks.Add(x.DestroyBlock());
                 }
             });
 
             //파괴될 때까지 대기
-            bool isDestroyComplete = false;
-            do {
-                isDestroyComplete = false;
-                Blocks.ForEach(x => isDestroyComplete |= x.IsEnableBlock());
-                await UniTask.Yield(token);
-            } while(isDestroyComplete);
-
+            await UniTask.WhenAll(destroyTasks);
             await UniTask.Delay(500, false, PlayerLoopTiming.Update, token);
 
+
             //모든 Cell 파괴
+            destroyTasks.Clear();
             Cells.ForEach(x => {
                 if(x.IsEnableCell()) {
-                    x.SetCellState(CellState.DESTROYED);
+                    destroyTasks.Add(x.DestroyCell());
                 }
             });
 
             //파괴될 때까지 대기
-            do {
-                await UniTask.Yield(token);
-                isDestroyComplete = false;
-                Cells.ForEach(x => isDestroyComplete |= x.IsEnableCell());
-            } while(isDestroyComplete);
+            await UniTask.WhenAll(destroyTasks);
 
             SetBoardState(BoardState.DESTROYED);
         }
@@ -164,6 +159,17 @@ namespace CubicSystem.CubicPuzzle
             Blocks[secondIdx]?.SetIndex(secondIdx);
         }
 
+        public List<BlockModel> GetMatchBlocks()
+        {
+            List<BlockModel> matchBlocks = UnityEngine.Pool.ListPool<BlockModel>.Get();
+            for(int i = 0; i < Blocks.Count; i++) {
+                if(Blocks[i].IsCompareState(BlockState.MATCH)) {
+                    matchBlocks.Add(Blocks[i]);
+                }
+            }
+            return matchBlocks;
+        }
+
 
         /**
          *  @brief      Board 정보 초기화
@@ -178,7 +184,10 @@ namespace CubicSystem.CubicPuzzle
          *  @param  targetIndex : target Block index, neighType : 찾으려는 이웃 블럭 위치 정보
          *  @return int : 정보가 없는 경우 -1 / 있는 경우 이웃 block index 정보 반환
          */
-        public abstract int GetNeighIndex(int targetIndex, BlockNeighType neighType);
+        public int GetNeighIndex(int targetIndex, BlockNeighType neighType)
+        {
+            return CubicPuzzleUtility.GetNeighIndex(BoardStyle, Col, Row, targetIndex, neighType);
+        }
 
         /**
          *  @brief  Board에 사용될 Cell & Block 생성

@@ -65,7 +65,7 @@ namespace CubicSystem.CubicPuzzle
                 //Dummy 정보 업데이트
                 tfDummyCell.localPosition = helpInfo.FromBlock.Position;
                 tfDummyBlock.localPosition = helpInfo.FromBlock.Position;
-                spriteDummyBlock.color = PuzzleBlockUtility.GetMatchColor(helpInfo.FromBlock.Color);
+                spriteDummyBlock.color = CubicPuzzleUtility.GetMatchColor(helpInfo.FromBlock.Color);
 
                 //보여주기
                 gameObject.SetActive(true);

@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
 using System.Threading;
 using Zenject;
+using Pool = UnityEngine.Pool;
 
 namespace CubicSystem.CubicPuzzle
 {
@@ -18,8 +19,6 @@ namespace CubicSystem.CubicPuzzle
 
         //Drop & Fill Event 처리
         protected IDropAndFillEvent eventDropNFill;
-
-        protected HashSet<int> matchIndices = new HashSet<int>();
         protected CancellationTokenSource cts;
 
         [Inject]
@@ -47,40 +46,26 @@ namespace CubicSystem.CubicPuzzle
 
         /**
          *  @brief  Match된 블럭 파괴
+         *  @param  matchBlocks : Match 처리된 Block List
          */
-        protected async UniTask DestroyMatchBlocks()
+        protected async virtual UniTask DestroyMatchBlocks(List<BlockModel> matchBlocks)
         {
+            List<UniTask> destroyTasks = UnityEngine.Pool.ListPool<UniTask>.Get();
 
             //Match 상태인 Block -> Destroy로 변경
-            var blocks = board.Blocks;
-            for(int i=0; i<blocks.Count; i++) {
-                if(blocks[i] == null) {
-                    continue;
-                }
-                else if(blocks[i].IsCompareState(BlockState.MATCH)) {
-                    blocks[i].SetBlockState(BlockState.DESTROYED);
+            for(int idx = 0; idx < matchBlocks.Count; idx++) { 
+                if(matchBlocks[idx].IsCompareState(BlockState.MATCH)) {
+                    destroyTasks.Add(matchBlocks[idx].DestroyBlock());
                 }
             }
 
-            //Destroy로 변경된 블럭이 모두 파괴될때까지 대기
-            bool isDestroyed = false;
-            while(!isDestroyed) {
-                await UniTask.Yield();
-                isDestroyed = true;
-
-                for(int i = 0; i < blocks.Count; i++) {
-                    if(blocks[i].IsCompareState(BlockState.DESTROYED)) {
-                        isDestroyed = false;
-                        break;
-                    }
-                }
-            }            
+            await UniTask.WhenAll(destroyTasks);
         }
 
         /**
          *  @brief  기록된 Match Block의 상태를 변경
          */
-        public void UpdateMatchBlockState()
+        public void UpdateMatchBlockState(HashSet<int> matchIndices)
         {
             var blocks = board.Blocks;
             foreach(int index in matchIndices) {
@@ -89,20 +74,18 @@ namespace CubicSystem.CubicPuzzle
         }
 
 
-        public bool Evaluator(BlockModel block)
+        public bool Evaluator(BlockModel block, bool isUpdate, HashSet<int> matchIndices = null)
         {
-            return matchEvaluator.Evaluator(block, matchIndices);
-        }
+            matchIndices ??= Pool.HashSetPool<int>.Get();
 
-        public bool EvaluatorNUpdate(BlockModel block)
-        {
             if(matchEvaluator.Evaluator(block, matchIndices)) {
-                UpdateMatchBlockState();
+                if(isUpdate) {
+                    UpdateMatchBlockState(matchIndices);
+                }
                 return true;
             }
             return false;
         }
-
 
         public async UniTask NoMoreMatchEvent()
         {
@@ -117,7 +100,7 @@ namespace CubicSystem.CubicPuzzle
             }
 
             await UniTask.Delay(500);
-            await DestroyMatchBlocks();
+            await DestroyMatchBlocks(board.Blocks);
 
             //Board에 Block을 채우는 Event가 있는지 검사
             if(!IsThereFillInfo()) {

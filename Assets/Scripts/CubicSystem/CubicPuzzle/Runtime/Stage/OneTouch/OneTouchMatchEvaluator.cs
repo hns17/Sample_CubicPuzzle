@@ -89,13 +89,13 @@ namespace CubicSystem.CubicPuzzle
             bool isMatched = false;
             if(block == null) {
                 isMatched = EvalMatchBoard(matchIndices);
-                string print = isMatched + " ";
+                //string print = isMatched + " ";
 
-                foreach(var index in matchIndices) {
-                    print += index + ", ";
-                }
-                print += "End";
-                Debug.Log(print);
+                //foreach(var index in matchIndices) {
+                //    print += index + ", ";
+                //}
+                //print += "End";
+                //Debug.Log(print);
             }
             else {
                 isMatched = EvalMatchBlock(block, matchIndices);

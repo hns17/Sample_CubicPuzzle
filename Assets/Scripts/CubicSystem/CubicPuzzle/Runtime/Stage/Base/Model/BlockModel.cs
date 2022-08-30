@@ -62,8 +62,7 @@ namespace CubicSystem.CubicPuzzle
         //Shake Duration
         public const float ShakeScaleDuration = 1.2f;
         public const float ShakePositionDuration = 0.2f;
-
-        private Action actDestroy = null;
+        
 
         [Inject]
         private BlockModel(BoardItemData itemData, Transform parent, Vector2 position, BlockPresenter.Factory factory) {
@@ -72,12 +71,6 @@ namespace CubicSystem.CubicPuzzle
             Initialize(itemData, position);
 
             factory.Create(this, parent);
-
-            actDestroy = UniTask.Action(async () => {
-                await UniTask.Delay((int)(ShakeScaleDuration * 1000));
-                isShakeScale.Value = false;
-                state.Value = BlockState.EMPTY;
-            });
         }
 
         public void Initialize(BoardItemData itemData, Vector2 position)
@@ -152,12 +145,6 @@ namespace CubicSystem.CubicPuzzle
             }
 
             state.Value = blockState;
-
-            //Block이 Destroy로 변경될 경우 Size Shake 후 파괴
-            if(blockState == BlockState.DESTROYED) {
-                isShakeScale.Value = true;
-                actDestroy?.Invoke();
-            }
         }
 
         /**
@@ -314,6 +301,21 @@ namespace CubicSystem.CubicPuzzle
             isShakePosition.Value = false;
         }
 
+        public async UniTask DestroyBlock()
+        {
+            await ShakeScale();
+            //delay one frame, play destroy particle effect
+            state.Value = BlockState.DESTROYED;
+            await UniTask.Yield();
+            state.Value = BlockState.EMPTY;
+        }
+
+        public async UniTask ShakeScale()
+        {
+            isShakeScale.Value = true;
+            await UniTask.Delay((int)(ShakeScaleDuration * 1000));
+            isShakeScale.Value = false;
+        }
 
         public class Factory :PlaceholderFactory<BoardItemData, Transform, Vector2, BlockModel>
         {

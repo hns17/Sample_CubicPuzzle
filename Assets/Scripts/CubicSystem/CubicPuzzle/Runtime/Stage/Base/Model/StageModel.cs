@@ -31,7 +31,7 @@ namespace CubicSystem.CubicPuzzle
 
         private HashSet<string> clearBoardGuids = new HashSet<string>();
 
-        [Inject] private PuzzleStageData stageData;
+        [Inject] private CubicPuzzleStageData stageData;
         [Inject] private BoardModel.Factory boardFactory;
         [Inject] private CTSManager ctsManager;
 

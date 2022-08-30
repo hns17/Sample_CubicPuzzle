@@ -162,6 +162,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -260,6 +261,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -299,7 +301,8 @@ MonoBehaviour:
   pfBoard: {fileID: 2999946838806715814, guid: b211a968752416b42ba1f44eee783f81, type: 3}
   pfCell: {fileID: 4709905463819592292, guid: 6ce3e0d087bad1e4390abf12969d8c02, type: 3}
   pfBlock: {fileID: 1161249239955119766, guid: 2707387cf6898be408efdc9eaa442140, type: 3}
-  stageData: {fileID: 11400000, guid: c6767c9a428ab1f4e8fb895bb0dd5c30, type: 2}
+  stageData: {fileID: 11400000, guid: b87ec931cc35ad1409ad8017007e3804, type: 2}
+  extraPattenData: {fileID: 11400000, guid: 0e95c8d7b4a462d4f902a73cc79355f6, type: 2}
   stageInputManager: {fileID: 1012751358}
 --- !u!114 &1012751356
 MonoBehaviour:
@@ -343,6 +346,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1

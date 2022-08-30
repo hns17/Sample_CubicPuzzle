@@ -46,30 +46,16 @@ namespace CubicSystem.CubicPuzzle
             {
                 if(x== CellState.EMPTY) {
                     objView.SetActive(false);
+                    fxCellExplosion.gameObject.SetActive(false);
                 }
                 else if(x== CellState.NORMAL) {
                     objView.SetActive(true);
                 }
                 else if(x == CellState.DESTROYED) {
-                    StartCoroutine(CellExplosionEffect());
+                    objView.SetActive(false);
+                    fxCellExplosion.gameObject.SetActive(true);
                 }
             }).AddTo(this);
-        }
-
-
-        /**
-         *  @brief  Cell ÆÄ±« ¿¬Ãâ·Î Board Clear½Ã »ç¿ë µÊ.
-         */
-        private IEnumerator CellExplosionEffect()
-        {
-            objView.SetActive(false);
-            fxCellExplosion.gameObject.SetActive(true);
-
-            while(fxCellExplosion.isPlaying) {
-                yield return null;
-            }
-
-            Cell.SetCellState(CellState.EMPTY);
         }
 
         public class Factory :PlaceholderFactory<CellModel, Transform, CellPresenter>

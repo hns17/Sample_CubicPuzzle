@@ -238,9 +238,9 @@ namespace CubicSystem.CubicPuzzle
                 var targetCell = board.Cells[block.Idx];
 
                 //숨겨진 셀은 제외
-                if(!targetCell.IsEnableCell()) {
-                    continue;
-                }
+                //if(!targetCell.IsEnableCell()) {
+                //    continue;
+                //}
 
                 //블럭이 채워지는 셀이 아닌 경우...
                 if(!targetCell.IsFillBlock) {
