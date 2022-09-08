@@ -1,9 +1,9 @@
 {
-    "m_SelectedDeviceId": "LMG820N4cf51d7b",
+    "m_SelectedDeviceId": "R5CRB0V2QPF",
     "m_SelectedPackage": {
-        "deviceId": "LMG820N4cf51d7b",
+        "deviceId": "R5CRB0V2QPF",
         "name": "com.DefaultCompany.WithCubic_HexPuzzle",
-        "processId": 30193,
+        "processId": 29618,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -114,6 +114,36 @@
             "deviceId": "R5CRB0V2QPF",
             "name": "com.DefaultCompany.WithCubic_HexPuzzle",
             "processId": 3599,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CRB0V2QPF",
+            "name": "com.DefaultCompany.WithCubic_HexPuzzle",
+            "processId": 19695,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CRB0V2QPF",
+            "name": "com.DefaultCompany.WithCubic_HexPuzzle",
+            "processId": 20208,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CRB0V2QPF",
+            "name": "com.DefaultCompany.WithCubic_HexPuzzle",
+            "processId": 21192,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CRB0V2QPF",
+            "name": "com.DefaultCompany.WithCubic_HexPuzzle",
+            "processId": 21825,
+            "exited": false
+        },
+        {
+            "deviceId": "R5CRB0V2QPF",
+            "name": "com.DefaultCompany.WithCubic_HexPuzzle",
+            "processId": 29618,
             "exited": false
         }
     ],

@@ -59,15 +59,28 @@ namespace CubicSystem.CubicPuzzle
             }
         }
 
+
+
+        public List<Vector2> CalcOutLineVertex()
+        {
+            outLineVertexPositions.Clear();
+
+            if(board.BoardStyle == BoardType.HEX) {
+                return CalcOutLineVertexHex();
+            }
+
+            return outLineVertexPositions;
+        }
+
         /**
          *  @brief  외곽선 위치 정보 만들기
          *  @return List<Vector2> : OutLine Vertex Position
          */
-        public List<Vector2> CalcOutLineVertex()
+        public List<Vector2> CalcOutLineVertexHex()
         {
             //정보 가져오기
             var cells = board.Cells;
-            outLineVertexPositions.Clear();
+            
 
             if(MatchCount <= 0) {
                 return outLineVertexPositions;

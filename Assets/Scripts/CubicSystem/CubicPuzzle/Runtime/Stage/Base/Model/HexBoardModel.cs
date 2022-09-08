@@ -17,75 +17,6 @@ namespace CubicSystem.CubicPuzzle
         public override Vector2 CellSize => new Vector2(1f, 1.15f);
         public override BoardType BoardStyle => BoardType.HEX;
 
-        //Cell & Block Creator
-        private Func<BoardItemData, Vector2, CellModel> funcCreateCell;
-        private Func<BoardItemData, Vector2, BlockModel> funcCreateBlock;
-
-        //[Field Injection]
-        //Cell & Block Model Factory
-        [Inject] private CellModel.Factory cellFactory;
-        [Inject] private BlockModel.Factory blockFactory;
-        [Inject] private BoardQuestFactory questFactory;
-        [Inject] private CTSManager ctsManager;
-
-
-        [Inject]
-        private void InjectDependencies(Transform parent,
-                                    PuzzleBoardInfo boardInfo,
-                                    BoardActManager.Factory actManagerFactory,
-                                    BoardPresenter.Factory boardPresenterFactory)
-        {
-            ActManager = actManagerFactory.Create(this);
-
-            //Board GameObject 생성
-            BoardPresenter boardPresenter = boardPresenterFactory.Create(this, parent);
-
-            //Cell Creator
-            funcCreateCell = (boardItem, position) =>
-            {
-                return cellFactory.Create(boardItem, boardPresenter.Cells, position);
-            };
-
-            //Block Creator
-            funcCreateBlock = (boardItem, position) =>
-            {
-                return blockFactory.Create(boardItem, boardPresenter.Blocks, position);
-            };
-
-            Initialize(boardInfo);
-        }
-
-        /**
-         *  @brief      Board 정보 초기화
-         */
-        public override void Initialize(PuzzleBoardInfo boardInfo)
-        {
-            SetBoardState(BoardState.INITIALIZE);
-            this.BoardInfo = boardInfo;
-            this.position.Value = BoardInfo.boardData.position;
-
-            BoardData boardData = BoardInfo.boardData;
-            this.Row = boardData.row;
-            this.Col = boardData.col;
-
-            //Make Board
-            BuildBoard(boardData.items);
-
-            //Make Board Clear Quest
-            this.clearQuest = questFactory?.CreateBoardQuest(this, boardData.clearQuestData);
-
-            ActManager.Initalize();
-            SetBoardState(BoardState.READY);
-
-            //MatchEvent
-            UniTask.Action(async () =>
-            {
-                await ActManager.MatchEvent();
-                SetBoardState(BoardState.READY);
-            }).Invoke();
-
-        }
-
         /**
          *  @brief  Board에 사용될 Cell & Block 생성
          *  @param  boardItems : Cell & Block 정보
@@ -114,6 +45,7 @@ namespace CubicSystem.CubicPuzzle
             for(int i = 0; i < Row; i++) {
                 for(int j = 0; j < Col; j++) {
                     BoardItemData boardItem = boardItems[index];
+                    boardItem.cellStyle = CellStyle.HEX;
 
                     //Calc Cell & Block Position
                     Vector2 targetPos = new Vector2(cellPos.x + cellSize.x * j, cellPos.y - cellSize.y * i);

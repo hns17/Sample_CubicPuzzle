@@ -6,7 +6,7 @@ namespace CubicSystem.CubicPuzzle
 {
     /**
      *  @brief  Board와 Block의 Match 상태를 평가
-     *  @detail Line(세로, 대각선, 역대각선) Mattch, Square Match(인접한 4개의 블럭)가 있는지 
+     *  @detail Line(세로, 대각선, 역대각선) Match, Square Match(인접한 4개의 블럭)가 있는지 
      *          평가하고 블럭의 상태를 Update
      */
     public class ThreeMatchHexEvaluator : IMatchEvaluator

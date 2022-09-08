@@ -8,6 +8,13 @@ namespace CubicSystem.CubicPuzzle
      */
     public class OneTouchBoardActManager :BoardActManager, IOneTouchBlockEvent
     {
+
+        [Inject]
+        private void InjectDependices(IFactory<BoardModel, IMatchEvaluator> matchEvalFactory)
+        {
+            this.matchEvaluator = matchEvalFactory.Create(board);
+        }
+
         /**
          *  @brief  User Touch Input
          *  @param  target(BlockModel) : Touch Block
@@ -57,18 +64,18 @@ namespace CubicSystem.CubicPuzzle
         /**
          *  @brief   CustomFactoryClass
          */
-        public new class Factory :IFactory<BoardModel, BoardActManager>
-        {
-            [Inject] private DiContainer diContainer;
-            public BoardActManager Create(BoardModel param)
-            {
-                var newActManager = diContainer.Instantiate<OneTouchBoardActManager>(new object[] { param });
+        //public new class Factory :IFactory<BoardModel, BoardActManager>
+        //{
+        //    [Inject] private DiContainer diContainer;
+        //    public BoardActManager Create(BoardModel param)
+        //    {
+        //        var newActManager = diContainer.Instantiate<OneTouchBoardActManager>(new object[] { param });
 
-                newActManager.matchEvaluator = new OneTouchMatchEvaluator(param);
-                newActManager.eventDropNFill = new HexDropDownAndFillEvent(param);
+        //        newActManager.matchEvaluator = new OneTouchMatchEvaluator(param);
+        //        newActManager.eventDropNFill = new HexDropDownAndFillEvent(param);
 
-                return newActManager;
-            }
-        }
+        //        return newActManager;
+        //    }
+        //}
     }
 }

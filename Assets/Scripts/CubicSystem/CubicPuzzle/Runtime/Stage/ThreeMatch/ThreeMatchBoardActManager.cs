@@ -21,14 +21,17 @@ namespace CubicSystem.CubicPuzzle
         private ThreeMatchExtraPatternEvent extraEvent;
 
         [Inject]
-        private void InjectDependices(CubicPuzzlePatternData extraPattern)
+        private void InjectDependices(CubicPuzzlePatternData extraPattern
+            , ThreeMatchEvaluatorFactory matchEvalFactory)
         {
+            matchEvaluator = matchEvalFactory.Create(board);
             //create extra pattern event
             extraEvent = new ThreeMatchExtraPatternEvent(board, extraPattern.patternData[board.BoardStyle].container);
         }
 
         public override void Initalize()
         {
+            matchHelper ??= new MatchHelpInfo(board);
             matchHelper.Clear();
         }
 
@@ -121,7 +124,7 @@ namespace CubicSystem.CubicPuzzle
             var extraMatchs = extraEvent.Evaluator(matchBlocks);
 
             //run extra patten event & destroy match blocks
-            return UniTask.WhenAll(base.DestroyMatchBlocks(matchBlocks), 
+            return UniTask.WhenAll(base.DestroyMatchBlocks(matchBlocks),
                 extraEvent.RunExtraPatternEvent(extraMatchs, swipeBlock));
         }
 
@@ -178,19 +181,19 @@ namespace CubicSystem.CubicPuzzle
         /**
          *  @brief   CustomFactoryClass
          */
-        public new class Factory :IFactory<BoardModel, BoardActManager>
-        {
-            [Inject] private DiContainer diContainer;
-            public BoardActManager Create(BoardModel param)
-            {
-                var newActManager = diContainer.Instantiate<ThreeMatchBoardActManager>(new object[] { param });
+        //public new class Factory :IFactory<BoardModel, BoardActManager>
+        //{
+        //    [Inject] private DiContainer diContainer;
+        //    public BoardActManager Create(BoardModel param)
+        //    {
+        //        var newActManager = diContainer.Instantiate<ThreeMatchBoardActManager>(new object[] { param });
 
-                newActManager.matchHelper = new MatchHelpInfo(param);
-                newActManager.matchEvaluator = new ThreeMatchHexEvaluator(param);
-                newActManager.eventDropNFill = new HexDropDownAndFillEvent(param);
+        //        newActManager.matchHelper = new MatchHelpInfo(param);
+        //        newActManager.matchEvaluator = new ThreeMatchHexEvaluator(param);
+        //        newActManager.eventDropNFill = new HexDropDownAndFillEvent(param);
 
-                return newActManager;
-            }
-        }
+        //        return newActManager;
+        //    }
+        //}
     }
 }

@@ -45,6 +45,7 @@ namespace CubicSystem.CubicPuzzle
     {
         public Vector3 position;
 
+        [HideInInspector] public BoardType boardType;
         [HideInInspector] public BoardClearQuestData clearQuestData;
 
         [HideInInspector] public int col;
@@ -54,18 +55,25 @@ namespace CubicSystem.CubicPuzzle
         [HideInInspector] public List<BoardItemData> items;
 
 
-        public void Initialize(int col, int row)
+        public void Initialize(BoardType boardType, int col, int row)
         {
             this.col = col;
             this.row = row;
+
+            this.boardType = boardType;
+
             this.clearQuestData ??= new BoardClearQuestData();
 
             this.items ??= new List<BoardItemData>();
             this.items.Clear();
 
+            CellStyle cStyle = boardType == BoardType.HEX ? CellStyle.HEX : CellStyle.SQUARE;
+
             //Create Default Board ItemData
             for(int i = 0; i < col * row; i++) {
-                this.items.Add(new BoardItemData());
+                this.items.Add(new BoardItemData() { 
+                    cellStyle = cStyle
+                });
             }
         }
     }
@@ -78,6 +86,7 @@ namespace CubicSystem.CubicPuzzle
     public class BoardItemData
     {
         //Cell Info
+        public CellStyle cellStyle = CellStyle.NONE;
         public CellType cellType = CellType.NORMAL;
 
         //Block Info

@@ -20,7 +20,7 @@ namespace CubicSystem.CubicPuzzle
                 .AsSingle();
 
             Container.BindFactory<PuzzleBoardInfo, Transform, BoardModel, BoardModel.Factory>()
-                .To<HexBoardModel>();
+                .FromFactory<BoardModelFactory>();
 
             Container.BindFactory<BoardItemData, Transform, Vector2, CellModel, CellModel.Factory>()
                 .AsSingle();
@@ -57,14 +57,16 @@ namespace CubicSystem.CubicPuzzle
             Container.BindInstance<CubicPuzzleStageData>(stageData);
 
 
-            //Container.BindFactory<BoardModel, BoardActManager, BoardActManager.Factory>()
-            //    .To<OneTouchBoardActManager>()
-            //    .AsSingle();
-
             Container.BindFactory<BoardModel, BoardActManager, BoardActManager.Factory>()
-                .FromFactory<OneTouchBoardActManager.Factory>();
+                .To<OneTouchBoardActManager>()
+                .AsSingle();
+
+            Container.Bind<IFactory<BoardModel, IMatchEvaluator>>()
+                .To<OneTouchMatchEvaluatorFactory>()
+                .AsSingle();
 
             Container.Bind<CTSManager>().AsSingle();
+            Container.Bind<DropDownAndFillEventFactory>().AsSingle();
         }
     }
 }

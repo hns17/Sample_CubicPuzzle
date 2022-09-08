@@ -34,7 +34,11 @@ namespace CubicSystem.CubicPuzzle
         public Vector2 Position => position.Value;
         public IObservable<Vector2> PositionObservable => position;
 
-        
+
+        private ReactiveProperty<CellStyle> cellStyle = new ReactiveProperty<CellStyle>(CellStyle.NONE);
+        public IObservable<CellStyle> CellStyleObservable => cellStyle;
+
+
         private ReactiveProperty<CellType> cellType = new ReactiveProperty<CellType>();
         public IObservable<CellType> CellTypeObservable => cellType;
         public CellType CellType
@@ -78,6 +82,7 @@ namespace CubicSystem.CubicPuzzle
             this.IsFillBlock = itemData.isFill;
             this.state.Value = CellState.NORMAL;
             this.CellType = itemData.cellType;
+            this.cellStyle.Value = itemData.cellStyle;
 
             foreach(var rateItem in itemData.fillRate) {
                 if(rateItem.Value > 0f) {

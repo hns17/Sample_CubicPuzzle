@@ -1,0 +1,233 @@
+using Cysharp.Threading.Tasks;
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Pool;
+
+namespace CubicSystem.CubicPuzzle
+{
+    /**
+     *  @brief  Board의 Block 이동 및 채우기 이벤트 처리
+     */
+    public class SquareDropDownAndFillEvent :IDropAndFillEvent
+    {
+        //Block 이동 속도
+        private const float BlockMoveSpeed = .15f;
+
+        private BoardModel board;
+
+        //단계별 이동 계산 횟수
+        private int stepCount;
+
+        //Block의 이동 경로 정보
+        private Dictionary<BlockModel, BlockPathData> pathTable;
+        private List<UniTask> uniTasks = new List<UniTask>();
+
+        private const int pathDataPoolCapacity = 300;
+        private IObjectPool<BlockPathData> pathDataPool;
+
+        public SquareDropDownAndFillEvent(BoardModel board)
+        {
+            stepCount = 0;
+            this.board = board;
+            pathTable = new Dictionary<BlockModel, BlockPathData>();
+            pathDataPool = new ObjectPool<BlockPathData>(
+                ()=> {
+                    return new BlockPathData(Vector2.zero); 
+                }, 
+                null, 
+                (BlockPathData pathData)=> {
+                    pathData.Clear(); 
+                }, 
+                null, true, pathDataPoolCapacity);
+        }
+
+        /**
+         *  @brief  Block Drop and Fill Event
+         */
+        public async UniTask StartDropAndFill()
+        {
+            bool isMoveBlock;
+            var blocks = board.Blocks;
+            //Board의 전체 Block을 대상으로
+            //이동 가능한 Block이 없을때 까지 이동 정보 생성
+            int loopCount = blocks.Count - 1;
+            do {
+                isMoveBlock = false;
+
+                for(int i = loopCount; i >= 0; i--) {
+                    var block = blocks[i];
+
+                    //빈 블럭은 제외
+                    if(!block.IsEnableBlock()
+                        || block.IsLocking) {
+                        continue;
+                    }
+
+                    //Block Drop Down Event
+                    isMoveBlock |= BlockDropDownEvent(block);
+                }
+
+                //Block Fill Event
+                isMoveBlock |= BlockFillEvent();
+
+                //이동을 막아둔 블럭 해제
+                blocks.ForEach(x => x.SetLocking(false));
+            }
+            while(isMoveBlock);
+
+            foreach(var item in pathTable) {
+                uniTasks.Add(item.Key.MoveBlock(item.Value, BlockMoveSpeed));
+            }
+
+            //Wait Tasks
+            await UniTask.WhenAll(uniTasks);
+
+            //End Task -> Clear
+            uniTasks.Clear();
+            ResetPathData();
+        }
+
+
+        /**
+         *  @brief  이동 경로 정보 추가하기
+         *  @param  moveBlock(이동 블럭), movePosition(이동할 위치)
+         */
+        private void InsertPathData(BlockModel moveBlock, Vector2 movePosition, BlockNeighType moveDirection = BlockNeighType.NONE)
+        {
+            //경로 정보에 정보가 없는 경우 초기 데이터 생성(struct BlockPathData)
+            BlockPathData blockPathData;
+
+            if(!pathTable.TryGetValue(moveBlock, out blockPathData)) {
+                blockPathData = pathDataPool.Get();
+                pathTable[moveBlock] = blockPathData;
+                blockPathData.FromPosition = moveBlock.Position;
+            }
+
+            //최대 이동 거리 갱신
+            if(blockPathData.Count + 1 > stepCount) {
+                stepCount = blockPathData.Count + 1;
+            }
+
+            //경로 정보 추가하기
+            blockPathData.InsertData(movePosition, stepCount - 1, moveDirection);
+
+            //해당 블럭 이동 잠그기
+            moveBlock.SetLocking(true);
+        }
+
+
+        /**
+         *  @brief  블럭 아래로 떨어뜨리기
+         *  @return 떨어지는 블럭이 있는 경우(true) / 없는 경우(false)
+         */
+        private bool BlockDropDownEvent(BlockModel targetBlock)
+        {
+
+            //아래로 떨어질수 있는지 확인
+            var downNeigh = board.GetNeighBlock(targetBlock, BlockNeighType.DOWN);
+            if(downNeigh == null || !downNeigh.IsEmptyBlock()) {
+                return false;
+            }
+            
+            //이동 경로 정보에 추가
+            var toPos = board.GetCellPosition(downNeigh.Idx);
+            InsertPathData(targetBlock, toPos);
+            
+            //보드의 블럭 위치 정보 변경
+            board.SwapBlock(targetBlock.Idx, downNeigh.Idx);
+
+            return true;
+        }
+
+        /**
+         *  @brief  보드에 새로운 블럭 추가하기
+         *  @return 추가 블럭이 있는 경우(true) / 없는 경우(false)
+         */
+        private bool BlockFillEvent()
+        {
+            var blocks = board.Blocks;
+            bool isFillBlocks = false;
+            float offsetY = 0.5f;
+
+            int blockCount = board.BlockCount;
+
+            for(int i = 0; i < blockCount; i++) {
+                var block = blocks[i];
+                var targetCell = board.Cells[block.Idx];
+
+                //숨겨진 셀은 제외
+                //if(!targetCell.IsEnableCell()) {
+                //    continue;
+                //}
+
+                //블럭이 채워지는 셀이 아닌 경우...
+                if(!targetCell.IsFillBlock) {
+                    continue;
+                }
+
+                //블럭이 비어있지 않은 경우...
+                if(!block.IsEmptyBlock()) {
+                    continue;
+                }
+
+                isFillBlocks = true;
+
+                //블럭의 초기 위치 정보
+                float cellSizeY = board.CellSize.y + offsetY;
+                var cellPos = board.GetCellPosition(block.Idx);
+
+                //블럭 정보 재구성 및 상태 변경
+                block.Initialize(BlockType.NORMAL, targetCell.BlockFillRate, cellPos + new Vector2(0f, cellSizeY));
+                block.SetBlockState(BlockState.FILL_WAIT);
+
+                //블럭의 이동 경로 정보에 추가
+                InsertPathData(block, cellPos);
+            }
+
+            return isFillBlocks;
+        }
+
+        
+        /**
+         *  @brief  지정된 방향의 이웃 블럭에 특정 상태를 가진 블럭이 있는지 판단
+         *          블럭을 찾거나 더 이상 탐색 불가능할때 까지 반복 탐색
+         *  @param  target : 탐색 기준 블럭, neighType : 탐색 방향, blockState : 탐색할 블럭의 상태
+         */
+        private bool IsDetectBlockState_InNeighDirection(BlockModel target, BlockNeighType neighType, BlockState blockState)
+        {
+            var targetBlock = target;
+
+            while(true) {
+                var neighBlock = board.GetNeighBlock(targetBlock, neighType);
+
+                //탐색 방향으로 더 이상 진행이 불가능 한 경우
+                if(neighBlock == null || !board.Cells[neighBlock.Idx].IsEnableCell()) {
+                    return false;
+                }
+                
+                //조건에 맞는 블럭을 찾은 경우
+                if(neighBlock.IsCompareState(blockState)) {
+                    return true;
+                }
+
+                targetBlock = neighBlock;
+            }
+        }
+
+
+        /**
+         *  @brief  PathTable 정보 초기화
+         */
+        private void ResetPathData()
+        {
+            stepCount = 0;
+
+            foreach(var item in pathTable) {
+                pathDataPool.Release(item.Value);
+            }
+            pathTable.Clear();
+        }
+    }
+}
+

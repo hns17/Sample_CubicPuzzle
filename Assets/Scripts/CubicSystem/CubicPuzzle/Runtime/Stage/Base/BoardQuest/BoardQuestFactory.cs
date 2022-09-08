@@ -6,7 +6,7 @@ namespace CubicSystem.CubicPuzzle
     public class BoardQuestFactory
     {
 
-        public BoardQuest CreateBoardQuest(HexBoardModel board, BoardClearQuestData conditionData)
+        public BoardQuest CreateBoardQuest(BoardModel board, BoardClearQuestData conditionData)
         {
             BoardQuest quest = null;
 

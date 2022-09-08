@@ -13,7 +13,7 @@ namespace CubicSystem.CubicPuzzle
         //´Þ¼º·®
         private int archiveValue = 0;
 
-        public BoardQuest_DestroyBlockCount(HexBoardModel board, int clearValue)
+        public BoardQuest_DestroyBlockCount(BoardModel board, int clearValue)
         {
             this.clearValue = clearValue;
 

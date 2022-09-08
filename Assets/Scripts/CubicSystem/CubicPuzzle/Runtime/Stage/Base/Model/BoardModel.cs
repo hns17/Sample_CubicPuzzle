@@ -45,6 +45,45 @@ namespace CubicSystem.CubicPuzzle
         //Board Clear Event 관리
         protected BoardQuest clearQuest;
 
+        //Cell & Block Creator
+        protected Func<BoardItemData, Vector2, CellModel> funcCreateCell;
+        protected Func<BoardItemData, Vector2, BlockModel> funcCreateBlock;
+
+        //[Field Injection]
+        //Cell & Block Model Factory
+        [Inject] private CellModel.Factory cellFactory;
+        [Inject] private BlockModel.Factory blockFactory;
+        [Inject] protected BoardQuestFactory questFactory;
+        [Inject] protected CTSManager ctsManager;
+
+        [Inject]
+        private void InjectDependencies(Transform parent,
+                                    PuzzleBoardInfo boardInfo,
+                                    BoardActManager.Factory actManagerFactory,
+                                    BoardPresenter.Factory boardPresenterFactory)
+        {
+            ActManager = actManagerFactory.Create(this);
+
+            //Board GameObject 생성
+            BoardPresenter boardPresenter = boardPresenterFactory.Create(this, parent);
+
+            //Cell Creator
+            funcCreateCell = (boardItem, position) =>
+            {
+                return cellFactory.Create(boardItem, boardPresenter.Cells, position);
+            };
+
+            //Block Creator
+            funcCreateBlock = (boardItem, position) =>
+            {
+                return blockFactory.Create(boardItem, boardPresenter.Blocks, position);
+            };
+
+            Initialize(boardInfo);
+        }
+
+
+
         /**
          *  @brief  Board의 상태 변경
          *  @param  state : 변경할 상태
@@ -176,6 +215,29 @@ namespace CubicSystem.CubicPuzzle
          */
         public virtual void Initialize(PuzzleBoardInfo boardInfo)
         {
+            SetBoardState(BoardState.INITIALIZE);
+            this.BoardInfo = boardInfo;
+            this.position.Value = BoardInfo.boardData.position;
+
+            BoardData boardData = BoardInfo.boardData;
+            this.Row = boardData.row;
+            this.Col = boardData.col;
+
+            //Make Board
+            BuildBoard(boardData.items);
+
+            //Make Board Clear Quest
+            this.clearQuest = questFactory?.CreateBoardQuest(this, boardData.clearQuestData);
+
+            ActManager.Initalize();
+            SetBoardState(BoardState.READY);
+
+            //MatchEvent
+            UniTask.Action(async () =>
+            {
+                await ActManager.MatchEvent();
+                SetBoardState(BoardState.READY);
+            }).Invoke();
         }
 
 

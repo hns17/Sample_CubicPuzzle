@@ -14,10 +14,7 @@ namespace CubicSystem.CubicPuzzle
         public OneTouchMatchEvaluator(BoardModel board)
         {
             this.board = board;
-
-            for(var neigh = BlockNeighType.START; neigh < BlockNeighType.NONE; neigh++) {
-                this.blockNeighs.Add(neigh);
-            }
+            blockNeighs = CubicPuzzleUtility.GetBlockNeighTypes(board.BoardStyle);
         }
 
         /**
@@ -89,13 +86,6 @@ namespace CubicSystem.CubicPuzzle
             bool isMatched = false;
             if(block == null) {
                 isMatched = EvalMatchBoard(matchIndices);
-                //string print = isMatched + " ";
-
-                //foreach(var index in matchIndices) {
-                //    print += index + ", ";
-                //}
-                //print += "End";
-                //Debug.Log(print);
             }
             else {
                 isMatched = EvalMatchBlock(block, matchIndices);

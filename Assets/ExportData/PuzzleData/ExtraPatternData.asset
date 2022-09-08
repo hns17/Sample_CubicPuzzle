@@ -1,0 +1,1188 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ff93d5a2ea83c94cb9b0750c70763ba, type: 3}
+  m_Name: ExtraPatternData
+  m_EditorClassIdentifier: 
+  patternData:
+    keys: 0000000001000000
+    values:
+    - container:
+      - neighType: 8
+        child:
+        - rid: 8763591631481602048
+        - rid: 8763591631481602049
+        - rid: 8763591631481602050
+      - neighType: 8
+        child:
+        - rid: 8763591631481602051
+        - rid: 8763591631481602052
+        - rid: 8763591631481602053
+      - neighType: 8
+        child:
+        - rid: 8763591631481602054
+        - rid: 8763591631481602055
+        - rid: 8763591631481602056
+      - neighType: 8
+        child:
+        - rid: 8763591631481602057
+        - rid: 8763591631481602058
+        - rid: 8763591631481602059
+      - neighType: 8
+        child:
+        - rid: 8763591631481602060
+        - rid: 8763591631481602061
+        - rid: 8763591631481602062
+      - neighType: 8
+        child:
+        - rid: 8763591631481602063
+        - rid: 8763591631481602064
+        - rid: 8763591631481602065
+      - neighType: 8
+        child:
+        - rid: 8763591631481602066
+        - rid: 8763591631481602067
+      - neighType: 8
+        child:
+        - rid: 8763591631481602068
+        - rid: 8763591631481602069
+      - neighType: 8
+        child:
+        - rid: 8763591631481602070
+        - rid: 8763591631481602071
+      - neighType: 8
+        child:
+        - rid: 8763591631481602072
+        - rid: 8763591631481602073
+      - neighType: 8
+        child:
+        - rid: 8763591631481602074
+        - rid: 8763591631481602075
+      - neighType: 8
+        child:
+        - rid: 8763591631481602076
+        - rid: 8763591631481602077
+      - neighType: 8
+        child:
+        - rid: 8763591631481602078
+      - neighType: 8
+        child:
+        - rid: 8763591631481602079
+      - neighType: 8
+        child:
+        - rid: 8763591631481602080
+      - neighType: 8
+        child:
+        - rid: 8763591631481602081
+      - neighType: 8
+        child:
+        - rid: 8763591631481602082
+      - neighType: 8
+        child:
+        - rid: 8763591631481602083
+      - neighType: 8
+        child:
+        - rid: 8763591631481602084
+        - rid: 8763591631481602085
+      - neighType: 8
+        child:
+        - rid: 8763591631481602086
+        - rid: 8763591631481602087
+      - neighType: 8
+        child:
+        - rid: 8763591631481602088
+        - rid: 8763591631481602089
+      - neighType: 8
+        child:
+        - rid: 8763591631481602090
+        - rid: 8763591631481602091
+      - neighType: 8
+        child:
+        - rid: 8763591631481602092
+        - rid: 8763591631481602093
+      - neighType: 8
+        child:
+        - rid: 8763591631481602094
+        - rid: 8763591631481602095
+      - neighType: 8
+        child:
+        - rid: 8763591631481602096
+        - rid: 8763591631481602097
+      - neighType: 8
+        child:
+        - rid: 8763591631481602098
+        - rid: 8763591631481602099
+      - neighType: 8
+        child:
+        - rid: 8763591631481602100
+        - rid: 8763591631481602101
+      - neighType: 8
+        child:
+        - rid: 8763591631481602102
+      - neighType: 8
+        child:
+        - rid: 8763591631481602103
+      - neighType: 8
+        child:
+        - rid: 8763591631481602104
+      - neighType: 8
+        child:
+        - rid: 8763591631481602105
+      - neighType: 8
+        child:
+        - rid: 8763591631481602106
+      - neighType: 8
+        child:
+        - rid: 8763591631481602107
+      - neighType: 8
+        child:
+        - rid: 8763591631481602108
+      - neighType: 8
+        child:
+        - rid: 8763591631481602109
+      - neighType: 8
+        child:
+        - rid: 8763591631481602110
+    - container:
+      - neighType: 8
+        child:
+        - rid: 8763591631481602111
+        - rid: 8763591631481602112
+        - rid: 8763591631481602113
+      - neighType: 8
+        child:
+        - rid: 8763591631481602114
+        - rid: 8763591631481602115
+        - rid: 8763591631481602116
+      - neighType: 8
+        child:
+        - rid: 8763591631481602117
+        - rid: 8763591631481602118
+        - rid: 8763591631481602119
+      - neighType: 8
+        child:
+        - rid: 8763591631481602120
+        - rid: 8763591631481602121
+        - rid: 8763591631481602122
+      - neighType: 8
+        child:
+        - rid: 8763591631481602123
+        - rid: 8763591631481602124
+      - neighType: 8
+        child:
+        - rid: 8763591631481602125
+        - rid: 8763591631481602126
+      - neighType: 8
+        child:
+        - rid: 8763591631481602127
+        - rid: 8763591631481602128
+      - neighType: 8
+        child:
+        - rid: 8763591631481602129
+        - rid: 8763591631481602130
+      - neighType: 8
+        child:
+        - rid: 8763591631481602131
+      - neighType: 8
+        child:
+        - rid: 8763591631481602132
+  references:
+    version: 2
+    RefIds:
+    - rid: 8763591631481602048
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 0
+        child: []
+    - rid: 8763591631481602049
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 2
+        child: []
+    - rid: 8763591631481602050
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child:
+        - rid: 8763591631481602133
+    - rid: 8763591631481602051
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 1
+        child: []
+    - rid: 8763591631481602052
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 4
+        child: []
+    - rid: 8763591631481602053
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 6
+        child:
+        - rid: 8763591631481602134
+    - rid: 8763591631481602054
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 2
+        child: []
+    - rid: 8763591631481602055
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child: []
+    - rid: 8763591631481602056
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 0
+        child:
+        - rid: 8763591631481602135
+    - rid: 8763591631481602057
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 4
+        child: []
+    - rid: 8763591631481602058
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 6
+        child: []
+    - rid: 8763591631481602059
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 1
+        child:
+        - rid: 8763591631481602136
+    - rid: 8763591631481602060
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child: []
+    - rid: 8763591631481602061
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 0
+        child: []
+    - rid: 8763591631481602062
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 2
+        child:
+        - rid: 8763591631481602137
+    - rid: 8763591631481602063
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 6
+        child: []
+    - rid: 8763591631481602064
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 1
+        child: []
+    - rid: 8763591631481602065
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 4
+        child:
+        - rid: 8763591631481602138
+    - rid: 8763591631481602066
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 0
+        child:
+        - rid: 8763591631481602139
+    - rid: 8763591631481602067
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child: []
+    - rid: 8763591631481602068
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 1
+        child:
+        - rid: 8763591631481602140
+    - rid: 8763591631481602069
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 6
+        child: []
+    - rid: 8763591631481602070
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 2
+        child:
+        - rid: 8763591631481602141
+    - rid: 8763591631481602071
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 0
+        child: []
+    - rid: 8763591631481602072
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 4
+        child:
+        - rid: 8763591631481602142
+    - rid: 8763591631481602073
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 1
+        child: []
+    - rid: 8763591631481602074
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child:
+        - rid: 8763591631481602143
+    - rid: 8763591631481602075
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 2
+        child: []
+    - rid: 8763591631481602076
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 6
+        child:
+        - rid: 8763591631481602144
+    - rid: 8763591631481602077
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 4
+        child: []
+    - rid: 8763591631481602078
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 0
+        child:
+        - rid: 8763591631481602145
+        - rid: 8763591631481602146
+    - rid: 8763591631481602079
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 1
+        child:
+        - rid: 8763591631481602147
+        - rid: 8763591631481602148
+    - rid: 8763591631481602080
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 2
+        child:
+        - rid: 8763591631481602149
+        - rid: 8763591631481602150
+    - rid: 8763591631481602081
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 4
+        child:
+        - rid: 8763591631481602151
+        - rid: 8763591631481602152
+    - rid: 8763591631481602082
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child:
+        - rid: 8763591631481602153
+        - rid: 8763591631481602154
+    - rid: 8763591631481602083
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 6
+        child:
+        - rid: 8763591631481602155
+        - rid: 8763591631481602156
+    - rid: 8763591631481602084
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 2
+        child:
+        - rid: 8763591631481602157
+    - rid: 8763591631481602085
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child:
+        - rid: 8763591631481602158
+    - rid: 8763591631481602086
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 4
+        child:
+        - rid: 8763591631481602159
+    - rid: 8763591631481602087
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 6
+        child:
+        - rid: 8763591631481602160
+    - rid: 8763591631481602088
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child:
+        - rid: 8763591631481602161
+    - rid: 8763591631481602089
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 0
+        child:
+        - rid: 8763591631481602162
+    - rid: 8763591631481602090
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 6
+        child:
+        - rid: 8763591631481602163
+    - rid: 8763591631481602091
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 1
+        child:
+        - rid: 8763591631481602164
+    - rid: 8763591631481602092
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 0
+        child:
+        - rid: 8763591631481602165
+    - rid: 8763591631481602093
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 2
+        child:
+        - rid: 8763591631481602166
+    - rid: 8763591631481602094
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 1
+        child:
+        - rid: 8763591631481602167
+    - rid: 8763591631481602095
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 4
+        child:
+        - rid: 8763591631481602168
+    - rid: 8763591631481602096
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 0
+        child:
+        - rid: 8763591631481602169
+    - rid: 8763591631481602097
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 2
+        child:
+        - rid: 8763591631481602170
+    - rid: 8763591631481602098
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 1
+        child:
+        - rid: 8763591631481602171
+    - rid: 8763591631481602099
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 4
+        child:
+        - rid: 8763591631481602172
+    - rid: 8763591631481602100
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 2
+        child:
+        - rid: 8763591631481602173
+    - rid: 8763591631481602101
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child:
+        - rid: 8763591631481602174
+    - rid: 8763591631481602102
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child:
+        - rid: 8763591631481602175
+    - rid: 8763591631481602103
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 6
+        child:
+        - rid: 8763591631481602176
+    - rid: 8763591631481602104
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 4
+        child:
+        - rid: 8763591631481602177
+    - rid: 8763591631481602105
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 2
+        child:
+        - rid: 8763591631481602178
+    - rid: 8763591631481602106
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 4
+        child:
+        - rid: 8763591631481602179
+    - rid: 8763591631481602107
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child:
+        - rid: 8763591631481602180
+    - rid: 8763591631481602108
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 6
+        child:
+        - rid: 8763591631481602181
+    - rid: 8763591631481602109
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 0
+        child:
+        - rid: 8763591631481602182
+    - rid: 8763591631481602110
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 1
+        child:
+        - rid: 8763591631481602183
+    - rid: 8763591631481602111
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 7
+        child: []
+    - rid: 8763591631481602112
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 3
+        child: []
+    - rid: 8763591631481602113
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child:
+        - rid: 8763591631481602184
+    - rid: 8763591631481602114
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 1
+        child: []
+    - rid: 8763591631481602115
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child: []
+    - rid: 8763591631481602116
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 7
+        child:
+        - rid: 8763591631481602185
+    - rid: 8763591631481602117
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 3
+        child: []
+    - rid: 8763591631481602118
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 7
+        child: []
+    - rid: 8763591631481602119
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 1
+        child:
+        - rid: 8763591631481602186
+    - rid: 8763591631481602120
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child: []
+    - rid: 8763591631481602121
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 1
+        child: []
+    - rid: 8763591631481602122
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 3
+        child:
+        - rid: 8763591631481602187
+    - rid: 8763591631481602123
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 3
+        child:
+        - rid: 8763591631481602188
+    - rid: 8763591631481602124
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child:
+        - rid: 8763591631481602189
+    - rid: 8763591631481602125
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child:
+        - rid: 8763591631481602190
+    - rid: 8763591631481602126
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 7
+        child:
+        - rid: 8763591631481602191
+    - rid: 8763591631481602127
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 7
+        child:
+        - rid: 8763591631481602192
+    - rid: 8763591631481602128
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 1
+        child:
+        - rid: 8763591631481602193
+    - rid: 8763591631481602129
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 1
+        child:
+        - rid: 8763591631481602194
+    - rid: 8763591631481602130
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 3
+        child:
+        - rid: 8763591631481602195
+    - rid: 8763591631481602131
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 3
+        child:
+        - rid: 8763591631481602196
+    - rid: 8763591631481602132
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child:
+        - rid: 8763591631481602197
+    - rid: 8763591631481602133
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child: []
+    - rid: 8763591631481602134
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 6
+        child: []
+    - rid: 8763591631481602135
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 0
+        child: []
+    - rid: 8763591631481602136
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 1
+        child: []
+    - rid: 8763591631481602137
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 2
+        child: []
+    - rid: 8763591631481602138
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 4
+        child: []
+    - rid: 8763591631481602139
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 2
+        child:
+        - rid: 8763591631481602198
+    - rid: 8763591631481602140
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 4
+        child:
+        - rid: 8763591631481602199
+    - rid: 8763591631481602141
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child:
+        - rid: 8763591631481602200
+    - rid: 8763591631481602142
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 6
+        child:
+        - rid: 8763591631481602201
+    - rid: 8763591631481602143
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 0
+        child:
+        - rid: 8763591631481602202
+    - rid: 8763591631481602144
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 1
+        child:
+        - rid: 8763591631481602203
+    - rid: 8763591631481602145
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 0
+        child: []
+    - rid: 8763591631481602146
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child:
+        - rid: 8763591631481602204
+    - rid: 8763591631481602147
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 1
+        child: []
+    - rid: 8763591631481602148
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 6
+        child:
+        - rid: 8763591631481602205
+    - rid: 8763591631481602149
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 2
+        child: []
+    - rid: 8763591631481602150
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 0
+        child:
+        - rid: 8763591631481602206
+    - rid: 8763591631481602151
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 4
+        child: []
+    - rid: 8763591631481602152
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 1
+        child:
+        - rid: 8763591631481602207
+    - rid: 8763591631481602153
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child: []
+    - rid: 8763591631481602154
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 2
+        child:
+        - rid: 8763591631481602208
+    - rid: 8763591631481602155
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 6
+        child: []
+    - rid: 8763591631481602156
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 4
+        child:
+        - rid: 8763591631481602209
+    - rid: 8763591631481602157
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 2
+        child: []
+    - rid: 8763591631481602158
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child: []
+    - rid: 8763591631481602159
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 4
+        child: []
+    - rid: 8763591631481602160
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 6
+        child: []
+    - rid: 8763591631481602161
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child: []
+    - rid: 8763591631481602162
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 0
+        child: []
+    - rid: 8763591631481602163
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 6
+        child: []
+    - rid: 8763591631481602164
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 1
+        child: []
+    - rid: 8763591631481602165
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 0
+        child: []
+    - rid: 8763591631481602166
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 2
+        child: []
+    - rid: 8763591631481602167
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 1
+        child: []
+    - rid: 8763591631481602168
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 4
+        child: []
+    - rid: 8763591631481602169
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child: []
+    - rid: 8763591631481602170
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child: []
+    - rid: 8763591631481602171
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 6
+        child: []
+    - rid: 8763591631481602172
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 6
+        child: []
+    - rid: 8763591631481602173
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 0
+        child: []
+    - rid: 8763591631481602174
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 0
+        child: []
+    - rid: 8763591631481602175
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child:
+        - rid: 8763591631481602210
+    - rid: 8763591631481602176
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 6
+        child:
+        - rid: 8763591631481602211
+    - rid: 8763591631481602177
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 4
+        child:
+        - rid: 8763591631481602212
+    - rid: 8763591631481602178
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child:
+        - rid: 8763591631481602213
+    - rid: 8763591631481602179
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 6
+        child:
+        - rid: 8763591631481602214
+    - rid: 8763591631481602180
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 0
+        child:
+        - rid: 8763591631481602215
+    - rid: 8763591631481602181
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 1
+        child:
+        - rid: 8763591631481602216
+    - rid: 8763591631481602182
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 2
+        child:
+        - rid: 8763591631481602217
+    - rid: 8763591631481602183
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 4
+        child:
+        - rid: 8763591631481602218
+    - rid: 8763591631481602184
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child: []
+    - rid: 8763591631481602185
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 7
+        child: []
+    - rid: 8763591631481602186
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 1
+        child: []
+    - rid: 8763591631481602187
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 3
+        child: []
+    - rid: 8763591631481602188
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 3
+        child: []
+    - rid: 8763591631481602189
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child: []
+    - rid: 8763591631481602190
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child: []
+    - rid: 8763591631481602191
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 7
+        child: []
+    - rid: 8763591631481602192
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 7
+        child: []
+    - rid: 8763591631481602193
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 1
+        child: []
+    - rid: 8763591631481602194
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 1
+        child: []
+    - rid: 8763591631481602195
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 3
+        child: []
+    - rid: 8763591631481602196
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 3
+        child:
+        - rid: 8763591631481602219
+    - rid: 8763591631481602197
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child:
+        - rid: 8763591631481602220
+    - rid: 8763591631481602198
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 4
+        child: []
+    - rid: 8763591631481602199
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child: []
+    - rid: 8763591631481602200
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 6
+        child: []
+    - rid: 8763591631481602201
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 0
+        child: []
+    - rid: 8763591631481602202
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 1
+        child: []
+    - rid: 8763591631481602203
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 2
+        child: []
+    - rid: 8763591631481602204
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 6
+        child: []
+    - rid: 8763591631481602205
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 0
+        child: []
+    - rid: 8763591631481602206
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 1
+        child: []
+    - rid: 8763591631481602207
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 2
+        child: []
+    - rid: 8763591631481602208
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 4
+        child: []
+    - rid: 8763591631481602209
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child: []
+    - rid: 8763591631481602210
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child: []
+    - rid: 8763591631481602211
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 6
+        child: []
+    - rid: 8763591631481602212
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 4
+        child: []
+    - rid: 8763591631481602213
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 6
+        child:
+        - rid: 8763591631481602221
+    - rid: 8763591631481602214
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 0
+        child:
+        - rid: 8763591631481602222
+    - rid: 8763591631481602215
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 1
+        child:
+        - rid: 8763591631481602223
+    - rid: 8763591631481602216
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 2
+        child:
+        - rid: 8763591631481602224
+    - rid: 8763591631481602217
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 4
+        child:
+        - rid: 8763591631481602225
+    - rid: 8763591631481602218
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child:
+        - rid: 8763591631481602226
+    - rid: 8763591631481602219
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 3
+        child: []
+    - rid: 8763591631481602220
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child: []
+    - rid: 8763591631481602221
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 0
+        child: []
+    - rid: 8763591631481602222
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 1
+        child: []
+    - rid: 8763591631481602223
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 2
+        child: []
+    - rid: 8763591631481602224
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 4
+        child: []
+    - rid: 8763591631481602225
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 5
+        child: []
+    - rid: 8763591631481602226
+      type: {class: PatternNode, ns: CubicSystem.CubicPuzzle, asm: Assembly-CSharp}
+      data:
+        neighType: 6
+        child: []

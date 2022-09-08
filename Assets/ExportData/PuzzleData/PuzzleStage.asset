@@ -1,0 +1,1147 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 806a4da309df7ad4da6eca6ae401deba, type: 3}
+  m_Name: PuzzleStage
+  m_EditorClassIdentifier: 
+  stageName: NewStage
+  boards:
+  - guid: ee951b33-2ec8-47d8-8084-56137503e07c
+    prevBoardIndices: 
+    nextBoardIndices: 01000000
+    boardData:
+      position: {x: 0, y: 0, z: 0}
+      boardType: 0
+      clearQuestData:
+        clearValue: 20
+        clearType: 0
+      col: 4
+      row: 4
+      items:
+      - cellStyle: 2
+        cellType: 1
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 1
+        fillRate:
+          keys: 00000000020000000100000004000000
+          values:
+          - 1
+          - 1
+          - 1
+          - 1
+      - cellStyle: 2
+        cellType: 1
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 1
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 2
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 2
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 4
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 1
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 4
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 2
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 4
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 1
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+  - guid: 616ff89b-7b48-481c-93ca-34e9d0d55957
+    prevBoardIndices: 00000000
+    nextBoardIndices: 02000000
+    boardData:
+      position: {x: 0, y: 0, z: 0}
+      boardType: 0
+      clearQuestData:
+        clearValue: 20
+        clearType: 0
+      col: 5
+      row: 5
+      items:
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 3
+        isFill: 1
+        fillRate:
+          keys: 000000000100000003000000
+          values:
+          - 1
+          - 1
+          - 1
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 1
+        fillRate:
+          keys: 020000000400000001000000
+          values:
+          - 0.01
+          - 1
+          - 1
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 1
+        isFill: 1
+        fillRate:
+          keys: 00000000040000000100000002000000
+          values:
+          - 1
+          - 1
+          - 1
+          - 1
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 1
+        fillRate:
+          keys: 0200000003000000
+          values:
+          - 1
+          - 1
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 1
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 3
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 1
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 1
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 1
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 2
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 3
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 3
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 1
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+  - guid: 464150f3-8dfe-4dca-aa2f-00b437b1ee2b
+    prevBoardIndices: 01000000
+    nextBoardIndices: 
+    boardData:
+      position: {x: 0, y: 0, z: 0}
+      boardType: 1
+      clearQuestData:
+        clearValue: 20
+        clearType: 0
+      col: 5
+      row: 5
+      items:
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 1
+        fillRate:
+          keys: 0000000001000000
+          values:
+          - 1
+          - 1
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 1
+        fillRate:
+          keys: 0100000002000000
+          values:
+          - 1
+          - 1
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 2
+        isFill: 1
+        fillRate:
+          keys: 0200000000000000
+          values:
+          - 1
+          - 1
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 1
+        fillRate:
+          keys: 020000000100000000000000
+          values:
+          - 1
+          - 1
+          - 1
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 1
+        fillRate:
+          keys: 01000000000000000300000002000000
+          values:
+          - 0.03
+          - 0.14
+          - 1
+          - 1
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 1
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 1
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 2
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 2
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 2
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 2
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 1
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 1
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 3
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 1
+        cellType: 1
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 1
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 1
+        cellType: 1
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 1
+        cellType: 1
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 1
+        cellType: 1
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 1
+        cellType: 1
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 1
+        cellType: 1
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+  - guid: 69f3051f-58ba-46f4-b32a-c384d587981e
+    prevBoardIndices: 
+    nextBoardIndices: 04000000
+    boardData:
+      position: {x: -3, y: 0, z: 0}
+      boardType: 0
+      clearQuestData:
+        clearValue: 10
+        clearType: 0
+      col: 4
+      row: 5
+      items:
+      - cellStyle: 2
+        cellType: 1
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 6
+        isFill: 1
+        fillRate:
+          keys: 04000000060000000300000005000000
+          values:
+          - 0.5
+          - 0.42
+          - 0.84
+          - 0.82
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 2
+        isFill: 1
+        fillRate:
+          keys: 020000000300000005000000
+          values:
+          - 1
+          - 1
+          - 1
+      - cellStyle: 2
+        cellType: 1
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 6
+        isFill: 1
+        fillRate:
+          keys: 0400000006000000
+          values:
+          - 1
+          - 1
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 6
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 2
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 3
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 4
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 4
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 3
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 6
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 4
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 5
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 3
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 6
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 6
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 6
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 5
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 1
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+  - guid: 4e42edac-af91-4bbb-adfa-f22aa5d59449
+    prevBoardIndices: 0300000005000000
+    nextBoardIndices: 
+    boardData:
+      position: {x: 0, y: 0, z: 0}
+      boardType: 0
+      clearQuestData:
+        clearValue: 20
+        clearType: 0
+      col: 5
+      row: 5
+      items:
+      - cellStyle: 2
+        cellType: 1
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 1
+        fillRate:
+          keys: 00000000010000000200000003000000
+          values:
+          - 1
+          - 1
+          - 1
+          - 1
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 1
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 1
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 1
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 1
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 1
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 2
+        cellType: 1
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+  - guid: 7059d3cb-4eb1-494b-b23b-d9f2ba0dbf08
+    prevBoardIndices: 
+    nextBoardIndices: 04000000
+    boardData:
+      position: {x: 3, y: 0, z: 0}
+      boardType: 1
+      clearQuestData:
+        clearValue: 10
+        clearType: 0
+      col: 3
+      row: 5
+      items:
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 1
+        fillRate:
+          keys: 0000000001000000
+          values:
+          - 1
+          - 1
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 1
+        isFill: 1
+        fillRate:
+          keys: 0000000002000000
+          values:
+          - 1
+          - 1
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 1
+        fillRate:
+          keys: 0100000002000000
+          values:
+          - 1
+          - 1
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 1
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 1
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 1
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 2
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+      - cellStyle: 1
+        cellType: 0
+        blockType: 0
+        color: 0
+        isFill: 0
+        fillRate:
+          keys: 
+          values: []
+  phaseInfos:
+  - container: 00000000
+  - container: 0300000005000000

@@ -83,7 +83,8 @@ namespace CubicSystem.CubicPuzzle
             BoardModel newBoard = null;
             //사용되지 않는 BoardModel Instance를 찾는다.
             foreach(var actBoard in activeBoards) {
-                if(actBoard.State == BoardState.DESTROYED) {
+                if(actBoard.State == BoardState.DESTROYED
+                    && actBoard.BoardStyle == boardInfo.boardData.boardType) {
                     newBoard = actBoard;
                     break;
                 }

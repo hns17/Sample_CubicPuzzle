@@ -22,10 +22,12 @@ namespace CubicSystem.CubicPuzzle
         protected CancellationTokenSource cts;
 
         [Inject]
-        public void InjectDependices(BoardModel boardModel, CTSManager ctsManager)
-        {
+        public void InjectDependices(BoardModel boardModel, 
+                                        DropDownAndFillEventFactory dropEventFactory, 
+                                        CTSManager ctsManager) {
             this.board = boardModel;
             this.cts = ctsManager.GetDefaultCancellationTokenSource();
+            eventDropNFill = dropEventFactory.Create(boardModel);
         }
 
         public virtual void Initalize()

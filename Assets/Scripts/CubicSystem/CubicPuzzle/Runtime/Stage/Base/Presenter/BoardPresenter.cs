@@ -22,7 +22,7 @@ namespace CubicSystem.CubicPuzzle
         [Inject] protected StageInputManager inputManager;
 
         [Inject]
-        private void InjectDependencies(HexBoardModel boardModel, Transform parent)
+        private void InjectDependencies(BoardModel boardModel, Transform parent)
         {
             this.board = boardModel;
             transform.SetParent(parent);

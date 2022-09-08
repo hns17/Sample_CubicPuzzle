@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -20,9 +21,12 @@ namespace CubicSystem.CubicPuzzle
             Container.BindFactory<StageModel, StageModel.Factory>()
                 .AsSingle();
 
-            Container.BindFactory<PuzzleBoardInfo, Transform,BoardModel, BoardModel.Factory>()
-                .To<HexBoardModel>()
-                .AsSingle();
+            //Container.BindFactory<PuzzleBoardInfo, Transform,BoardModel, BoardModel.Factory>()
+            //    .To<HexBoardModel>()
+            //    .AsSingle();
+
+            Container.BindFactory<PuzzleBoardInfo, Transform, BoardModel, BoardModel.Factory>()
+                .FromFactory<BoardModelFactory>();
 
             Container.BindFactory<BoardItemData, Transform, Vector2, CellModel, CellModel.Factory>()
                 .AsSingle();
@@ -61,14 +65,15 @@ namespace CubicSystem.CubicPuzzle
             Container.BindInstance<CubicPuzzlePatternData>(extraPattenData);
 
 
-            //Container.BindFactory<BoardModel, BoardActManager, BoardActManager.Factory>()
-            //    .To<ThreeMatchBoardActManager>()
-            //    .AsSingle();
-
             Container.BindFactory<BoardModel, BoardActManager, BoardActManager.Factory>()
-                .FromFactory<ThreeMatchBoardActManager.Factory>();
+                .To<ThreeMatchBoardActManager>()
+                .AsSingle();
+
 
             Container.Bind<CTSManager>().AsSingle();
+
+            Container.Bind<DropDownAndFillEventFactory>().AsSingle();
+            Container.Bind<ThreeMatchEvaluatorFactory>().AsSingle();
         }
     }
 }

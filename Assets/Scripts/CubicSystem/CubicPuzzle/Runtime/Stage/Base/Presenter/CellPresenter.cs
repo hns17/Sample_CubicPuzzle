@@ -12,8 +12,12 @@ namespace CubicSystem.CubicPuzzle
     public class CellPresenter :MonoBehaviour
     {
         public CellModel Cell { get; private set; }
-        [SerializeField] private GameObject objView;
+        [SerializeField] private SpriteRenderer spriteView;
         [SerializeField] private ParticleSystem fxCellExplosion;
+
+        [Header("[Sprite]")]
+        [SerializeField] private Sprite hexSprite;
+        [SerializeField] private Sprite squareSprite;
 
         [Inject]
         private void InjectDependencies(CellModel cellModel, Transform parent)
@@ -41,18 +45,29 @@ namespace CubicSystem.CubicPuzzle
                 }
             }).AddTo(this);
 
+            this.Cell.CellStyleObservable.Subscribe(x =>
+            {
+                spriteView.sprite = null;
+                if(x == CellStyle.HEX) {
+                    spriteView.sprite = hexSprite;
+                }
+                else if(x == CellStyle.SQUARE) {
+                    spriteView.sprite = squareSprite;
+                }
+            }).AddTo(this);
+
             //Cell 상태 변경시 상태에 맞게 GameObject 상태 변경
             this.Cell.CellStateObservable.Subscribe(x =>
             {
                 if(x== CellState.EMPTY) {
-                    objView.SetActive(false);
+                    spriteView.gameObject.SetActive(false);
                     fxCellExplosion.gameObject.SetActive(false);
                 }
                 else if(x== CellState.NORMAL) {
-                    objView.SetActive(true);
+                    spriteView.gameObject.SetActive(true);
                 }
                 else if(x == CellState.DESTROYED) {
-                    objView.SetActive(false);
+                    spriteView.gameObject.SetActive(false);
                     fxCellExplosion.gameObject.SetActive(true);
                 }
             }).AddTo(this);

@@ -18,9 +18,6 @@ namespace CubicSystem.CubicPuzzle
                 { BoardType.SQUARE, new List<BlockNeighType>(){
                     BlockNeighType.LEFT, BlockNeighType.UP, BlockNeighType.RIGHT, BlockNeighType.DOWN
                 }},
-                { BoardType.TRIANGLE, new List<BlockNeighType>(){
-                    BlockNeighType.LEFT_UP, BlockNeighType.RIGHT_UP, BlockNeighType.DOWN
-                }},
             };
 
         //Block Color Table
@@ -55,10 +52,7 @@ namespace CubicSystem.CubicPuzzle
                 return GetNeighIndex_Hex(col, row, targetIdx, neighType);
             }
             else if(boardType == BoardType.SQUARE) {
-
-            }
-            else if(boardType == BoardType.TRIANGLE) {
-
+                return GetNeighIndex_Square(col, row, targetIdx, neighType);
             }
             return -1;
         }
@@ -107,6 +101,35 @@ namespace CubicSystem.CubicPuzzle
                     }
                 }
             }
+
+            //이웃 Block을 찾지 못한 경우
+            if(res >= objectCount || res < 0) {
+                res = -1;
+            }
+            return res;
+        }
+
+        private static int GetNeighIndex_Square(int col, int row, int targetIndex, BlockNeighType neighType)
+        {
+            int res = -1;
+            int mod = targetIndex % col;
+            int objectCount = col * row;
+
+            //Up Block
+            if(neighType == BlockNeighType.UP) {
+                res = targetIndex - col;
+            }
+            //Down Block
+            else if(neighType == BlockNeighType.DOWN) {
+                res = targetIndex + col;
+            }
+            else if(neighType == BlockNeighType.RIGHT) {
+                res = (targetIndex + 1) % col != 0 ? targetIndex + 1 : -1;
+            }
+            else if(neighType == BlockNeighType.LEFT) {
+                res = targetIndex % col != 0 ? targetIndex - 1 : -1;
+            }
+
 
             //이웃 Block을 찾지 못한 경우
             if(res >= objectCount || res < 0) {
