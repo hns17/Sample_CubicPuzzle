@@ -96,7 +96,10 @@ namespace CubicSystem.CubicPuzzle
                 return false;
             }
             //match failed
-            else if(!targetBlock.IsCompareColor(neighBlock.Color) || !neighBlock.IsCompareState(BlockState.MATCH)) {
+            else if(!targetBlock.IsCompareColor(neighBlock.Color) || 
+                    !(neighBlock.IsCompareState(BlockState.MATCH) 
+                        || neighBlock.IsCompareState(BlockState.NORMAL))
+            ) {
                 return false;
             }
             else {

@@ -13,8 +13,6 @@ public class LoadStageListData :ILoadData<List<StageListData>>
 
     public LoadStageListData()
     {
-        Debug.Log("LoadStageListData");
-
         //Load StageList Data
         TextAsset textData = Resources.Load("ExternalFile/TestStageList") as TextAsset;
         Debug.Assert(textData, "not found stage list data");

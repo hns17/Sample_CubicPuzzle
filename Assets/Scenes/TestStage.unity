@@ -300,10 +300,10 @@ MonoBehaviour:
   pfStage: {fileID: 6268273508860230704, guid: 80b6f7a75940af749bb16faad494a6ab, type: 3}
   pfBoard: {fileID: 2999946838806715814, guid: b211a968752416b42ba1f44eee783f81, type: 3}
   pfCell: {fileID: 4709905463819592292, guid: 6ce3e0d087bad1e4390abf12969d8c02, type: 3}
-  pfBlock: {fileID: 1161249239955119766, guid: 2707387cf6898be408efdc9eaa442140, type: 3}
-  stageData: {fileID: 11400000, guid: 3a8334b0e2ada954bbb51bedbf2616ab, type: 2}
-  extraPattenData: {fileID: 11400000, guid: 5d9a3542ddf9bc740bb3c70ba3e44e17, type: 2}
+  pfBlock: {fileID: 1835392057517818112, guid: a8ae057a50e3b424592d9c2507020b8a, type: 3}
+  stageData: {fileID: 11400000, guid: a3ebea6fa4a9494499ea3a766ad50d61, type: 2}
   stageInputManager: {fileID: 1012751358}
+  extraPattenData: {fileID: 11400000, guid: 5d9a3542ddf9bc740bb3c70ba3e44e17, type: 2}
 --- !u!114 &1012751356
 MonoBehaviour:
   m_ObjectHideFlags: 0
