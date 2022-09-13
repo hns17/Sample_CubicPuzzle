@@ -1,15 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Pool;
 
 namespace CubicSystem.CubicPuzzle
 {
     /**
-     *  @brief  Block Match Guide를 위한 정보 관리
+     *  @brief  Three Match Guide를 위한 정보 관리
      *  @detail 장시간 입력이 없는 경우 매치 가능한 블럭의 
      *          이동 방향 및 매치 리스트를 안내하기 위해 필요한 정보 관리 및 외곽선 계산 처리
      */
-    public class MatchHelpInfo
+    public class ThreeMatchHelpInfo
     {
         //Swipe Target Block
         public BlockModel FromBlock { get; private set; }
@@ -25,18 +25,25 @@ namespace CubicSystem.CubicPuzzle
         private BoardModel board;
 
         //외곽선 만들기에 사용되는 이웃의 위치 정보
-        private readonly BlockNeighType[] detectOrderNeighType = {
-            BlockNeighType.LEFT_UP, BlockNeighType.UP, BlockNeighType.RIGHT_UP,
-            BlockNeighType.RIGHT_DOWN, BlockNeighType.DOWN, BlockNeighType.LEFT_DOWN
+        private readonly Dictionary<BoardType, BlockNeighType[]> detectOrderNeighs
+            = new Dictionary<BoardType, BlockNeighType[]>() {
+                { 
+                    BoardType.HEX, new BlockNeighType[]{
+                        BlockNeighType.LEFT_UP, BlockNeighType.UP, BlockNeighType.RIGHT_UP,
+                        BlockNeighType.RIGHT_DOWN, BlockNeighType.DOWN, BlockNeighType.LEFT_DOWN
+                    }
+                },
+                {
+                    BoardType.SQUARE, new BlockNeighType[] {
+                        BlockNeighType.LEFT, BlockNeighType.UP, BlockNeighType.RIGHT, BlockNeighType.DOWN
+                    }
+                }
         };
 
-        private List<Vector2> outLineVertexPositions;
-
-        public MatchHelpInfo(BoardModel board)
+        public ThreeMatchHelpInfo(BoardModel board)
         {
             this.board = board;
             MatchIndices = new HashSet<int>();
-            outLineVertexPositions = new List<Vector2>();
         }
 
         /**
@@ -63,13 +70,7 @@ namespace CubicSystem.CubicPuzzle
 
         public List<Vector2> CalcOutLineVertex()
         {
-            outLineVertexPositions.Clear();
-
-            if(board.BoardStyle == BoardType.HEX) {
-                return CalcOutLineVertexHex();
-            }
-
-            return outLineVertexPositions;
+            return CalcOutLineVertexHex();
         }
 
         /**
@@ -80,7 +81,7 @@ namespace CubicSystem.CubicPuzzle
         {
             //정보 가져오기
             var cells = board.Cells;
-            
+            List<Vector2> outLineVertexPositions = ListPool<Vector2>.Get();
 
             if(MatchCount <= 0) {
                 return outLineVertexPositions;
@@ -88,6 +89,9 @@ namespace CubicSystem.CubicPuzzle
 
             int vertexCnt = 1;
             int targetBlockIdx = -1;
+
+            BlockNeighType[] detectOrderNeighType = detectOrderNeighs[board.BoardStyle];
+            int offsetCnt = board.BoardStyle == BoardType.HEX ? 2 : 1;
 
             //외곽선을 그리기 위한 시작 블럭 선택하기
             foreach(var index in MatchIndices) {
@@ -112,7 +116,7 @@ namespace CubicSystem.CubicPuzzle
                 else {
                     //블럭 변경 후 변경된 블럭 기준으로 VertextCnt 수정
                     targetBlockIdx = neighIdx;
-                    vertexCnt -= 2;
+                    vertexCnt -= offsetCnt;
                 }
 
                 vertexCnt %= detectOrderNeighType.Length;
@@ -123,6 +127,11 @@ namespace CubicSystem.CubicPuzzle
             } while(startBlockIdx != targetBlockIdx || vertexCnt != 1);
 
             return outLineVertexPositions;
+        }
+
+        public CellStyle GetCellStyle()
+        {
+            return board.Cells[FromBlock.Idx].Style;
         }
 
         /**

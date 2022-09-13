@@ -12,7 +12,13 @@ namespace CubicSystem.CubicPuzzle
         //Swipe Animation 용 Dummy Object
         [SerializeField] private Transform tfDummyCell;
         [SerializeField] private Transform tfDummyBlock;
+        
+        [SerializeField] private SpriteRenderer spriteDummyCell;
         [SerializeField] private SpriteRenderer spriteDummyBlock;
+
+        [Header("[Sprite]", order = 1)]
+        [SerializeField] private Sprite hexCellSprite;
+        [SerializeField] private Sprite squareCellSprite;
 
         private void Start()
         {
@@ -43,7 +49,7 @@ namespace CubicSystem.CubicPuzzle
          *  @brief  가이드 정보 구성 후 표시하기
          *  @param  helpInfo : 가이드 관련 정보
          */
-        public void ShowMatchHelper(MatchHelpInfo helpInfo)
+        public void ShowMatchHelper(ThreeMatchHelpInfo helpInfo)
         {
             //비 활성화
             if(helpInfo == null || helpInfo.MatchCount <= 0) {
@@ -67,7 +73,8 @@ namespace CubicSystem.CubicPuzzle
                 tfDummyBlock.localPosition = helpInfo.FromBlock.Position;
                 spriteDummyBlock.color = CubicPuzzleUtility.GetMatchColor(helpInfo.FromBlock.Color);
 
-                //보여주기
+                spriteDummyCell.sprite = helpInfo.GetCellStyle() == CellStyle.HEX ? hexCellSprite : squareCellSprite;
+
                 gameObject.SetActive(true);
                 StartCoroutine(AnimateTargetBlock(helpInfo.ToBlock.Position));
             }

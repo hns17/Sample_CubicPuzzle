@@ -15,14 +15,22 @@ namespace CubicSystem.CubicPuzzle
     {
         private const int destroyDelay = 500;
 
-        //Cell의 Vertex 위치 정보
-        private readonly Vector2[] vertexPosition = {
+        //Cell의 Hex Vertex 위치 정보
+        private readonly Vector2[] vertexPositionHex = {
             new Vector2(-0.35f, 0.575f),   //LEFT_UP
             new Vector2(0.35f, 0.575f),    //RIGHT_UP
             new Vector2(0.7f, 0f),         //RIGHT
             new Vector2(0.35f, -0.575f),   //RIGHT_DOWN
             new Vector2(-0.35f, -0.575f),  //LEFT_DOWN
             new Vector2(-0.7f, 0f),        //LEFT
+        };
+
+        //Cell의 Square Vertex 위치 정보
+        private readonly Vector2[] vertexPositionSquare = {
+            new Vector2(-0.5f, 0.475f),   //LEFT_UP
+            new Vector2(0.5f, 0.475f),    //RIGHT_UP
+            new Vector2(0.5f, -0.475f),   //RIGHT_DOWN
+            new Vector2(-0.5f, -0.475f),  //LEFT_DOWN
         };
 
         //Block을 생성하는 Cell인가?
@@ -36,6 +44,7 @@ namespace CubicSystem.CubicPuzzle
 
 
         private ReactiveProperty<CellStyle> cellStyle = new ReactiveProperty<CellStyle>(CellStyle.NONE);
+        public CellStyle Style => cellStyle.Value;
         public IObservable<CellStyle> CellStyleObservable => cellStyle;
 
 
@@ -98,7 +107,9 @@ namespace CubicSystem.CubicPuzzle
          */
         public Vector3 GetVertexPosition(int vetexIndex)
         {
-            return Position + vertexPosition[vetexIndex];
+            Vector2 localPos = CellStyle.HEX == cellStyle.Value ? vertexPositionHex[vetexIndex] 
+                                                : vertexPositionSquare[vetexIndex];
+            return Position + localPos;
         }
 
         /**

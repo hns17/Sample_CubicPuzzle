@@ -4,7 +4,7 @@ namespace CubicSystem.CubicPuzzle
 {
     public interface ISwipeBlockEvent
     {
-        public MatchHelpInfo GetMatchHelpInfo();
+        public ThreeMatchHelpInfo GetMatchHelpInfo();
         public UniTask DoSwipeAction(BlockModel from, BlockModel to);
     }
 }

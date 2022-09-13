@@ -12,7 +12,7 @@ namespace CubicSystem.CubicPuzzle
     public class ThreeMatchBoardActManager :BoardActManager, ISwipeBlockEvent
     {
         //매치 가능한 블럭 정보를 기록
-        private MatchHelpInfo matchHelper;
+        private ThreeMatchHelpInfo matchHelper;
         
         //current swipe blocks
         private BlockModel[] swipeBlock = new BlockModel[2];
@@ -31,7 +31,7 @@ namespace CubicSystem.CubicPuzzle
 
         public override void Initalize()
         {
-            matchHelper ??= new MatchHelpInfo(board);
+            matchHelper ??= new ThreeMatchHelpInfo(board);
             matchHelper.Clear();
         }
 
@@ -173,7 +173,7 @@ namespace CubicSystem.CubicPuzzle
             return isMatched;
         }
 
-        public MatchHelpInfo GetMatchHelpInfo()
+        public ThreeMatchHelpInfo GetMatchHelpInfo()
         {
             return matchHelper;
         }
