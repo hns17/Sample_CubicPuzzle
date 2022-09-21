@@ -2,8 +2,12 @@ using Cysharp.Threading.Tasks;
 
 namespace CubicSystem.CubicPuzzle
 {
+    /**
+     *  @brief  OneTouch Board GameObject
+     */
     public class OneTouchBoardPresenter :BoardPresenter
     {
+        //Input Event
         private IOneTouchBlockEvent oneTouchEvent;
 
         public override void InitalizeStart()

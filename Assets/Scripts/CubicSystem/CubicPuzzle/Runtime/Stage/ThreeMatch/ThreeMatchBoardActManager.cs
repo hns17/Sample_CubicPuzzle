@@ -26,7 +26,7 @@ namespace CubicSystem.CubicPuzzle
         {
             matchEvaluator = matchEvalFactory.Create(board);
             //create extra pattern event
-            extraEvent = new ThreeMatchExtraPatternEvent(board, extraPattern.patternData[board.BoardStyle].container);
+            extraEvent = new ThreeMatchExtraPatternEvent(board, extraPattern.patternData[board.BoardType].container);
         }
 
         public override void Initalize()
@@ -89,7 +89,17 @@ namespace CubicSystem.CubicPuzzle
             }
         }
 
-
+        /**
+         *  @brief  ThreeMatch BoardMatchEvent
+         *  @detail 1. Match된 블럭이 있는 경우 파괴
+         *          2. 파괴된 블럭이 있는 경우 DropDownAndFill
+         *          3. 보드 전체를 대상으로 Match 평가하기
+         *              - Match된 블럭이 없을 때까지 1~3을 반복
+         *          4. 보드 완료 미션 확인
+         *              - 완료인 경우 : 보드 상태 변경 후 관련 이벤트 진행
+         *              - 완료되지 않은 경우 : 파괴 가능한 블럭이 있는지 확인
+         *                - 더 이상 진행이 불가능 보드인 경우 보드 상태 변경 후 관련 이벤트 실행
+         */
         public override async UniTask MatchEvent()
         {
             board.SetBoardState(BoardState.MATCH_EVENT);
@@ -102,6 +112,8 @@ namespace CubicSystem.CubicPuzzle
 
                 //Start Drop And Fille
                 await eventDropNFill.StartDropAndFill();
+
+                swipeBlock[0] = swipeBlock[1] = null;
             } while(Evaluator(null, true));
 
 
@@ -116,7 +128,10 @@ namespace CubicSystem.CubicPuzzle
             board.SetBoardState(BoardState.READY);
         }
 
-
+        /**
+         *  @brief  Match Block 파괴 이벤트
+         *  @param  matchBlocks : Match Block List
+         */
         protected override UniTask DestroyMatchBlocks(List<BlockModel> matchBlocks)
         {
             //eval extra pattern
@@ -134,7 +149,7 @@ namespace CubicSystem.CubicPuzzle
         */
         protected override async UniTask<bool> IsPossibleBoard()
         {
-            var blocks = board.Blocks;
+            List<BlockModel> blocks = board.Blocks;
             bool isMatched = false;
             matchHelper.Clear();
 
@@ -145,7 +160,7 @@ namespace CubicSystem.CubicPuzzle
                     continue;
                 }
 
-                var blockIndex = blocks[i].Idx;
+                int blockIndex = blocks[i].Idx;
                 //대상 Block을 전체 Neigh Block과 Swipe
                 for(BlockNeighType neighType = BlockNeighType.START; neighType < BlockNeighType.NONE; neighType++) {
                     BlockModel neighBlock = board.GetNeighBlock(blocks[i], neighType);

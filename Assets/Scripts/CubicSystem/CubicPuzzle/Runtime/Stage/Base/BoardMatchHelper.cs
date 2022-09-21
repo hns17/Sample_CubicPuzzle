@@ -1,9 +1,14 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 
 namespace CubicSystem.CubicPuzzle
 {
+    /**
+     *  @brief  BoardMatchHelper Object
+     *          시간이 지나면 매치 가능한 블럭을 표시
+     */
     public class BoardMatchHelper :MonoBehaviour
     {
         //외곽선 표시를 위한 LineRenderer
@@ -31,7 +36,7 @@ namespace CubicSystem.CubicPuzzle
          */
         private IEnumerator AnimateTargetBlock(Vector2 to)
         {
-            var from = tfDummyBlock.localPosition;
+            Vector2 from = tfDummyBlock.localPosition;
 
             float speed = 1.5f;
 
@@ -57,7 +62,7 @@ namespace CubicSystem.CubicPuzzle
             }
             //활성화
             else if(!gameObject.activeSelf){
-                var vertexList = helpInfo.CalcOutLineVertex();
+                List<Vector2> vertexList = helpInfo.CalcOutLineVertex();
 
                 //Clear LineRenderer
                 lineRenderer.positionCount = 0;

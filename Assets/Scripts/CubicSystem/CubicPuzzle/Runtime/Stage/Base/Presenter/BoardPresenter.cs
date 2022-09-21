@@ -83,7 +83,6 @@ namespace CubicSystem.CubicPuzzle
         }
 
         /**
-         *  @author hns17@naver.com
          *  @brief  터치 시작 이벤트
          */
         protected virtual void TouchStart()
@@ -99,7 +98,6 @@ namespace CubicSystem.CubicPuzzle
         }
 
         /**
-         *  @author hns17@naver.com
          *  @brief  터치 종료 이벤트
          */
         protected virtual void TouchCancel()
@@ -108,7 +106,6 @@ namespace CubicSystem.CubicPuzzle
         }
 
         /**
-         *  @author hns17@naver.com
          *  @brief  터치 슬라이드 이벤트
          */
         protected virtual void TouchPosition_performed()

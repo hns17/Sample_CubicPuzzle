@@ -40,6 +40,7 @@ namespace CubicSystem.CubicPuzzle
                     //extra match block indices
                     CubicSpanArray<int> extraIndices = new CubicSpanArray<int>(stackalloc int[20]);
                     if(RecursiveEvalExtraPattern(matchBlocks[index], extraPatterns[i], ref extraIndices)) {
+                        
                         //Extra Match Block인 경우 상태 Extra로 변경 및 정보 구성
                         List<BlockModel> matchs = ListPool<BlockModel>.Get();
                         for(int j = 0; j < extraIndices.Count; j++) {
@@ -104,7 +105,7 @@ namespace CubicSystem.CubicPuzzle
             }
             else {
                 //search child node
-                var neighs = pattern.child;
+                List<PatternNode> neighs = pattern.child;
                 for(int i = 0; i < neighs.Count; i++) {
                     if(!RecursiveEvalExtraPattern(neighBlock, neighs[i], ref extraIndices)) {
                         return false;

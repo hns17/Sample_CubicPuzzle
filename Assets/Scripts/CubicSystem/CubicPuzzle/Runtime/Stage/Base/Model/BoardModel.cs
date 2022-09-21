@@ -27,7 +27,7 @@ namespace CubicSystem.CubicPuzzle
 
         //전체 Block Count
         public int BlockCount => Blocks.Count;
-        public virtual BoardType BoardStyle=>BoardType.HEX;
+        public virtual BoardType BoardType=>BoardType.HEX;
 
         //현재 Board 상태 확인을 위한 Ractive용 변수
         //값 확인 및 이벤트 등록을 위해 Value와 Observable만 공개
@@ -114,6 +114,10 @@ namespace CubicSystem.CubicPuzzle
         }
 
 
+        /**
+         *  @brief  Board 파괴 이벤트
+         *  @param  token : Task 중단을 위한 token 정보
+         */
         public async virtual UniTask DestroyBoard(CancellationToken token)
         {
             List<UniTask> destroyTasks = UnityEngine.Pool.ListPool<UniTask>.Get();
@@ -173,7 +177,7 @@ namespace CubicSystem.CubicPuzzle
         {
             BlockModel res = null;
             if(target != null) {
-                var idx = GetNeighIndex(target.Idx, neighType);
+                int idx = GetNeighIndex(target.Idx, neighType);
                 res = idx >= 0 ? Blocks[idx] : null;
             }
 
@@ -189,7 +193,7 @@ namespace CubicSystem.CubicPuzzle
         public void SwapBlock(int firstIdx, int secondIdx)
         {
             //Block Container 정보 Swap
-            var temp = Blocks[firstIdx];
+            BlockModel temp = Blocks[firstIdx];
             Blocks[firstIdx] = Blocks[secondIdx];
             Blocks[secondIdx] = temp;
 
@@ -198,6 +202,10 @@ namespace CubicSystem.CubicPuzzle
             Blocks[secondIdx]?.SetIndex(secondIdx);
         }
 
+        /**
+         *  @brief  상태가 match인 블럭 리스트 반환
+         *  @return List<BlockModel> : Match 상태인 블럭들
+         */
         public List<BlockModel> GetMatchBlocks()
         {
             List<BlockModel> matchBlocks = UnityEngine.Pool.ListPool<BlockModel>.Get();
@@ -211,7 +219,8 @@ namespace CubicSystem.CubicPuzzle
 
 
         /**
-         *  @brief      Board 정보 초기화
+         *  @brief  Board 정보 초기화
+         *  @param  boardInfo : BoardInfo
          */
         public virtual void Initialize(PuzzleBoardInfo boardInfo)
         {
@@ -248,7 +257,7 @@ namespace CubicSystem.CubicPuzzle
          */
         public int GetNeighIndex(int targetIndex, BlockNeighType neighType)
         {
-            return CubicPuzzleUtility.GetNeighIndex(BoardStyle, Col, Row, targetIndex, neighType);
+            return CubicPuzzleUtility.GetNeighIndex(this.BoardType, Col, Row, targetIndex, neighType);
         }
 
         /**

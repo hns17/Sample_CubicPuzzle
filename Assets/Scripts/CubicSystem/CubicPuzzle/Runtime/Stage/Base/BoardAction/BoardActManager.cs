@@ -30,6 +30,10 @@ namespace CubicSystem.CubicPuzzle
             eventDropNFill = dropEventFactory.Create(boardModel);
         }
 
+
+        /**
+         *  @brief  Board 초기화 함수
+         */
         public virtual void Initalize()
         {
 
@@ -66,16 +70,23 @@ namespace CubicSystem.CubicPuzzle
 
         /**
          *  @brief  기록된 Match Block의 상태를 변경
+         *  @param  matchIndices : Match Block Indices
          */
         public void UpdateMatchBlockState(HashSet<int> matchIndices)
         {
-            var blocks = board.Blocks;
+            List<BlockModel> blocks = board.Blocks;
             foreach(int index in matchIndices) {
                 blocks[index].SetBlockState(BlockState.MATCH);
             }
         }
 
-
+        /**
+         *  @brief  Match 평가 함수
+         *  @param  block : 평가 대상이 되는 블럭, null 인 경우 전체 보드 평가
+         *  @param  isUpdate : true인 경우 match된 블럭 상태 변경
+         *  @param  matchIndices : Match Block Indices
+         *  @return bool : 매치된 블럭이 있는 경우(true)/없는 경우(false)
+         */
         public bool Evaluator(BlockModel block, bool isUpdate, HashSet<int> matchIndices = null)
         {
             matchIndices ??= Pool.HashSetPool<int>.Get();
@@ -89,11 +100,15 @@ namespace CubicSystem.CubicPuzzle
             return false;
         }
 
+
+        /**
+         *  @brief  Match 가능한 블럭이 없을 때 수행되는 보드 이벤트
+         */
         public async UniTask NoMoreMatchEvent()
         {
-            var blocks = board.Blocks;
+            List<BlockModel> blocks = board.Blocks;
             //모든 Block의 색상을 기본 색상으로 변경
-            foreach(var block in blocks) {
+            foreach(BlockModel block in blocks) {
                 if(block.IsEnableBlock()) {
                     block.SetMatchColor(MatchColorType.NONE);
                     block.SetBlockState(BlockState.MATCH);
@@ -121,9 +136,9 @@ namespace CubicSystem.CubicPuzzle
          */
         public bool IsThereFillInfo()
         {
-            var cells = board.Cells;
+            List<CellModel> cells = board.Cells;
             bool checkFillInfo = false;
-            foreach(var cell in cells) {
+            foreach(CellModel cell in cells) {
                 if(cell.IsFillBlock) {
                     checkFillInfo = true;
                     break;

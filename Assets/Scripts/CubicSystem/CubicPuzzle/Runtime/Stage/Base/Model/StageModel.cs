@@ -4,6 +4,7 @@ using Zenject;
 using UniRx;
 using Cysharp.Threading.Tasks;
 using UnityEngine.SceneManagement;
+using System;
 
 namespace CubicSystem.CubicPuzzle
 {
@@ -19,10 +20,6 @@ namespace CubicSystem.CubicPuzzle
         //현재 진행 중인 Level
         public int Level { get; private set; }
 
-
-        //Board Object Parent
-        private Transform parent;
-
         //Unitask List
         private List<UniTask> taskAction = new List<UniTask>();
 
@@ -30,6 +27,8 @@ namespace CubicSystem.CubicPuzzle
         private List<BoardModel> activeBoards = new List<BoardModel>();
 
         private HashSet<string> clearBoardGuids = new HashSet<string>();
+
+        private Func<PuzzleBoardInfo, BoardModel> createBoard;
 
         [Inject] private CubicPuzzleStageData stageData;
         [Inject] private BoardModel.Factory boardFactory;
@@ -43,7 +42,12 @@ namespace CubicSystem.CubicPuzzle
         private void InjectDependencies(StagePresenter.Factory presenterFactory)
         {
             //Make Stage GameObject
-            parent = presenterFactory.Create(this).transform;
+            Transform parent = presenterFactory.Create(this).transform;
+
+            createBoard = (boardInfo) =>
+            {
+                return boardFactory.Create(boardInfo, parent);
+            };
 
             this.Level = 0;
             MakePhase(Level);
@@ -62,13 +66,13 @@ namespace CubicSystem.CubicPuzzle
                 return;
             }
 
-            var boardInfos = stageData.boards;
-            var phaseIndices = stageData.phaseInfos[Level].container;
+            List<PuzzleBoardInfo> boardInfos = stageData.boards;
+            List<int> phaseIndices = stageData.phaseInfos[Level].container;
 
             //activeBoards.Clear();
 
             //지정된 단계의 보드를 구성
-            foreach(var boardIndex in phaseIndices) {
+            foreach(int boardIndex in phaseIndices) {
                 MakeBoard(boardInfos[boardIndex]);
             }
         }
@@ -82,9 +86,9 @@ namespace CubicSystem.CubicPuzzle
 
             BoardModel newBoard = null;
             //사용되지 않는 BoardModel Instance를 찾는다.
-            foreach(var actBoard in activeBoards) {
+            foreach(BoardModel actBoard in activeBoards) {
                 if(actBoard.State == BoardState.DESTROYED
-                    && actBoard.BoardStyle == boardInfo.boardData.boardType) {
+                    && actBoard.BoardType == boardInfo.boardData.boardType) {
                     newBoard = actBoard;
                     break;
                 }
@@ -96,7 +100,7 @@ namespace CubicSystem.CubicPuzzle
             }
             //없는 경우 새로 생성
             else {
-                newBoard = boardFactory.Create(boardInfo, parent);
+                newBoard = createBoard?.Invoke(boardInfo);
 
                 //보드 클리어 이벤트 등록
                 newBoard.StateObservable.Subscribe(state =>
@@ -122,7 +126,7 @@ namespace CubicSystem.CubicPuzzle
          */
         private async UniTask ClearBoardEvent(BoardModel clearBoard)
         {
-            var nextBoardIndices = clearBoard.BoardInfo.nextBoardIndices;
+            List<int> nextBoardIndices = clearBoard.BoardInfo.nextBoardIndices;
 
             //더 이상 진행할 Board가 없는 경우
             //현재 Phase의 모든 보드가 클리어되면 다음 Phase로 진행
@@ -143,7 +147,7 @@ namespace CubicSystem.CubicPuzzle
         {
             //모든 보드가 클리어 상태인지 확인
             bool isNextPhase = true;
-            foreach(var actBoard in activeBoards) {
+            foreach(BoardModel actBoard in activeBoards) {
                 if(actBoard.State != BoardState.CLEAR 
                     && actBoard.State != BoardState.DESTROYED) {
                     isNextPhase = false;
@@ -157,7 +161,7 @@ namespace CubicSystem.CubicPuzzle
 
                 taskAction.Clear();
                 //모든 보드를 파괴하고 다음 Phase의 Board를 생성
-                foreach(var actBoard in activeBoards) {
+                foreach(BoardModel actBoard in activeBoards) {
                     taskAction.Add(actBoard.DestroyBoard(ctsManager.GetDefaultCancellationTokenSource().Token));
                 }
 
@@ -172,7 +176,7 @@ namespace CubicSystem.CubicPuzzle
          */
         private async UniTask NextBoard(BoardModel clearBoard)
         {
-            var nextBoardIndices = clearBoard.BoardInfo.nextBoardIndices;
+            List<int> nextBoardIndices = clearBoard.BoardInfo.nextBoardIndices;
 
             //Destroy Clear Board
             await clearBoard.DestroyBoard(ctsManager.GetDefaultCancellationTokenSource().Token);
@@ -181,12 +185,12 @@ namespace CubicSystem.CubicPuzzle
             //activeBoards.RemoveAt(clearBoardIndex);
             clearBoardGuids.Add(clearBoard.BoardInfo.guid);
             
-            var boardInfos = stageData.boards;
-            foreach(var nextBoardIndex in nextBoardIndices) {
+            List<PuzzleBoardInfo> boardInfos = stageData.boards;
+            foreach(int nextBoardIndex in nextBoardIndices) {
                 //Next Board의 PrevBoard가 전부 클리어인지 확인
                 bool isPrevBoardComplete = true;
-                var prevBoardIndices = boardInfos[nextBoardIndex].prevBoardIndices;
-                foreach(var prevBoardIndex in prevBoardIndices) {
+                List<int> prevBoardIndices = boardInfos[nextBoardIndex].prevBoardIndices;
+                foreach(int prevBoardIndex in prevBoardIndices) {
                     //prev Board 정보가 Clear 목록에 없는 경우...
                     if(!clearBoardGuids.Contains(boardInfos[prevBoardIndex].guid)) {
                         isPrevBoardComplete = false;

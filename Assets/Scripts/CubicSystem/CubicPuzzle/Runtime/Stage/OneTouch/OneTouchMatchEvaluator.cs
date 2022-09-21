@@ -3,18 +3,24 @@ using System.Collections.Generic;
 
 namespace CubicSystem.CubicPuzzle
 {
+    /**
+     *  @brief  OneTouch Match Evaluator
+     */
     public class OneTouchMatchEvaluator :IMatchEvaluator
     {
         private BoardModel board;
         private const int MatchCount = 2;
         
+        //BFS 기반 이웃 탐색에 사용될 자료구조
         private Queue<BlockModel> searchs = new Queue<BlockModel>();
+
+        //탐색할 이웃 블록 정보
         private List<BlockNeighType> blockNeighs = new List<BlockNeighType>();
 
         public OneTouchMatchEvaluator(BoardModel board)
         {
             this.board = board;
-            blockNeighs = CubicPuzzleUtility.GetBlockNeighTypes(board.BoardStyle);
+            blockNeighs = CubicPuzzleUtility.GetBlockNeighTypes(board.BoardType);
         }
 
         /**
@@ -27,13 +33,13 @@ namespace CubicSystem.CubicPuzzle
             searchs.Enqueue(target);
 
             while(searchs.Count > 0) {
-                var popItem = searchs.Dequeue();
+                BlockModel popItem = searchs.Dequeue();
                 matchIndices.Add(popItem.Idx);
 
-                var matchColor = popItem.Color;
+                MatchColorType matchColor = popItem.Color;
 
-                foreach(var neigh in blockNeighs) {
-                    var neighBlock = board.GetNeighBlock(popItem, neigh);
+                foreach(BlockNeighType neigh in blockNeighs) {
+                    BlockModel neighBlock = board.GetNeighBlock(popItem, neigh);
 
                     if(neighBlock == null || !neighBlock.IsEnableBlock()) {
                         continue;
@@ -53,9 +59,9 @@ namespace CubicSystem.CubicPuzzle
         */
         private bool EvalMatchBoard(HashSet<int> matchIndices)
         {
-            var blocks = board.Blocks;
+            List<BlockModel> blocks = board.Blocks;
 
-            for(var i = 0; i < blocks.Count; i++) {
+            for(int i = 0; i < blocks.Count; i++) {
                 if(EvalMatchBlock(blocks[i], matchIndices)) {
                     return true;
                 }

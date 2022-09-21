@@ -15,7 +15,7 @@ namespace CubicSystem.CubicPuzzle
     public class SquareBoardModel : BoardModel
     {
         public override Vector2 CellSize => new Vector2(1f, 1f);
-        public override BoardType BoardStyle => BoardType.SQUARE;
+        public override BoardType BoardType => BoardType.SQUARE;
 
         /**
          *  @brief  Board에 사용될 Cell & Block 생성

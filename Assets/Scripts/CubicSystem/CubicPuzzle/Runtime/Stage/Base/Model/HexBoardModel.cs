@@ -15,7 +15,7 @@ namespace CubicSystem.CubicPuzzle
     public class HexBoardModel : BoardModel
     {
         public override Vector2 CellSize => new Vector2(1f, 1.15f);
-        public override BoardType BoardStyle => BoardType.HEX;
+        public override BoardType BoardType => BoardType.HEX;
 
         /**
          *  @brief  Board에 사용될 Cell & Block 생성

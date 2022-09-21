@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Unity.Collections;
+using Zenject;
 
 namespace CubicSystem.CubicPuzzle
 {
@@ -115,14 +116,7 @@ namespace CubicSystem.CubicPuzzle
             };
 
 
-        private BoardModel board;
-
-
-        public ThreeMatchEvaluator(BoardModel board)
-        {
-            this.board = board;
-        }
-
+        [Inject] private BoardModel board;
 
         /**
         *  @brief  Board의 매치 Block을 확인 후 상태 업데이트
@@ -131,15 +125,15 @@ namespace CubicSystem.CubicPuzzle
         public bool EvalMatchBoard(HashSet<int> matchIndices)
         {
             bool res = false;
-            var blocks = board.Blocks;
+            List<BlockModel> blocks = board.Blocks;
 
             List<List<BlockNeighType>> boardLineMatchNeighTypes = null;
-            BoardLineMatchNeighTypes.TryGetValue(board.BoardStyle, out boardLineMatchNeighTypes);
+            BoardLineMatchNeighTypes.TryGetValue(board.BoardType, out boardLineMatchNeighTypes);
 
             List<List<BlockNeighType>> boardSquareMatchNeighTypes = null;
-            BoardSquareMatchNeighTypes.TryGetValue(board.BoardStyle, out boardSquareMatchNeighTypes);
+            BoardSquareMatchNeighTypes.TryGetValue(board.BoardType, out boardSquareMatchNeighTypes);
 
-            foreach(var block in blocks) {
+            foreach(BlockModel block in blocks) {
                 if(!block.IsEnableBlock()) {
                     continue;
                 }
@@ -167,10 +161,10 @@ namespace CubicSystem.CubicPuzzle
         {
             bool res = false;
             List<List<BlockNeighType>> blockLineMatchNeighTypes = null;
-            BlockLineMatchNeighTypes.TryGetValue(board.BoardStyle, out blockLineMatchNeighTypes);
+            BlockLineMatchNeighTypes.TryGetValue(board.BoardType, out blockLineMatchNeighTypes);
 
             List<List<BlockNeighType>> blockSquareMatchNeighTypes = null;
-            BlockSquareMatchNeighTypes.TryGetValue(board.BoardStyle, out blockSquareMatchNeighTypes);
+            BlockSquareMatchNeighTypes.TryGetValue(board.BoardType, out blockSquareMatchNeighTypes);
 
 
             if(block.IsEnableBlock()) {
@@ -183,7 +177,7 @@ namespace CubicSystem.CubicPuzzle
                 foreach(var matchNeighTypes in blockSquareMatchNeighTypes) {
                     res |= EvalSquareMatched(block, matchNeighTypes, matchIndices);
                     for(BlockNeighType i = BlockNeighType.START; i < BlockNeighType.NONE; i++) {
-                        var neighBlock = board.GetNeighBlock(block, i);
+                        BlockModel neighBlock = board.GetNeighBlock(block, i);
                         res |= EvalSquareMatched(neighBlock, matchNeighTypes, matchIndices);
                     }
                 }
@@ -228,7 +222,7 @@ namespace CubicSystem.CubicPuzzle
          */
         private void RecursiveEvalLineBlockMatched(BlockModel block, BlockNeighType blockNeighType, ref CubicSpanArray<int> indices)
         {
-            var neighBlock = board.GetNeighBlock(block, blockNeighType);
+            BlockModel neighBlock = board.GetNeighBlock(block, blockNeighType);
             if(neighBlock != null && neighBlock.IsEnableBlock()) {
                 if(neighBlock.IsCompareColor(block.Color)) {
                     indices.Add(neighBlock.Idx);
@@ -254,8 +248,8 @@ namespace CubicSystem.CubicPuzzle
             CubicSpanArray<int> indices = new CubicSpanArray<int>(stackalloc int[board.BlockCount]);
 
             //Target Block과 이웃 Block 평가하기
-            foreach(var neighType in neighTypes) {
-                var neighBlock = board.GetNeighBlock(block, neighType);
+            foreach(BlockNeighType neighType in neighTypes) {
+                BlockModel neighBlock = board.GetNeighBlock(block, neighType);
                 if(neighBlock == null || !neighBlock.IsEnableBlock()) {
                     break;
                 }

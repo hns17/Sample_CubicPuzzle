@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace CubicSystem.CubicPuzzle
 {
+    /**
+     *  @brief  ThreeMatch Board GameObject
+     */
     public class ThreeMatchBoardPresenter :BoardPresenter
     {
         //Touch를 기다린 시간

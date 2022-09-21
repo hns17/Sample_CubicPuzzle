@@ -53,7 +53,10 @@ namespace CubicSystem.CubicPuzzle
             board.SetBoardState(BoardState.READY);
         }
 
-
+        /**
+         *  @brief  진행 가능한 Board인지 체크
+         *  @return bool
+         */
         protected override async UniTask<bool> IsPossibleBoard()
         {
             await UniTask.Yield();

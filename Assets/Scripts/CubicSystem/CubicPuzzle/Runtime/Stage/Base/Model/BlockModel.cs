@@ -30,6 +30,8 @@ namespace CubicSystem.CubicPuzzle
         public MatchColorType Color => color.Value;
         public IObservable<MatchColorType> ColorObservable => color;
 
+
+        //블럭의 Type, IObservable, Value Getter 공개
         private ReactiveProperty<BlockType> blockType = new ReactiveProperty<BlockType>();
         public IObservable<BlockType> BlockTypeObservable => blockType;
         public BlockType BlockType
@@ -73,6 +75,11 @@ namespace CubicSystem.CubicPuzzle
             factory.Create(this, parent);
         }
 
+        /**
+         *  @brief  Block 정보 초기화
+         *  @param  itemData : BlockItemData
+         *  @param  position : 위치
+         */
         public void Initialize(BoardItemData itemData, Vector2 position)
         {
             Initialize(itemData.blockType, itemData.color, position);
@@ -102,13 +109,13 @@ namespace CubicSystem.CubicPuzzle
 
             //확률의 최대치 구하기
             float maxValue =0f;
-            foreach(var rateValue in blockFillRate.Values) {
+            foreach(float rateValue in blockFillRate.Values) {
                 maxValue += rateValue;
             }
 
 
             //Rnd 값 생성
-            var rndRate = UnityEngine.Random.Range(0, maxValue);
+            float rndRate = UnityEngine.Random.Range(0, maxValue);
 
             //색상 선택하기
             float calcRate = 0f;
@@ -272,7 +279,7 @@ namespace CubicSystem.CubicPuzzle
          */
         public async UniTask MoveBlock(BlockPathData blockPathData, float speed)
         {
-            var pathData = blockPathData.PathData;
+            List<Vector2> pathData = blockPathData.PathData;
 
             for(int i = 0; i < pathData.Count; i++) {
                 if(pathData.Count <= i) {
@@ -301,6 +308,10 @@ namespace CubicSystem.CubicPuzzle
             isShakePosition.Value = false;
         }
 
+
+        /**
+         *  @brief  Block 파괴 이벤트
+         */
         public async UniTask DestroyBlock()
         {
             await ShakeScale();
@@ -310,6 +321,9 @@ namespace CubicSystem.CubicPuzzle
             state.Value = BlockState.EMPTY;
         }
 
+        /*
+         *  @brief  Block Size Shake 이벤트
+         */
         public async UniTask ShakeScale()
         {
             isShakeScale.Value = true;

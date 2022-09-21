@@ -3,16 +3,26 @@ using Zenject;
 
 namespace CubicSystem.CubicPuzzle
 {
+    /**
+     *  @brief  BoardModel CustomFactory
+     */
     public class BoardModelFactory :IFactory<PuzzleBoardInfo, Transform, BoardModel>
     {
         [Inject] private DiContainer container;
-        public BoardModel Create(PuzzleBoardInfo param1, Transform param2)
+
+        /**
+         *  @brief  BoardModel 생성
+         *  @param  boardInfo : board data
+         *  @param  parent : presenter 생성에 사용될 parent 정보(StagePresenter Transform)
+         *  @return BoardModel
+         */
+        public BoardModel Create(PuzzleBoardInfo boardInfo, Transform parent)
         {
-            if(param1.boardData.boardType == BoardType.HEX){
-                return container.Instantiate<HexBoardModel>(new object[] { param1, param2 });
+            if(boardInfo.boardData.boardType == BoardType.HEX){
+                return container.Instantiate<HexBoardModel>(new object[] { boardInfo, parent });
             }
-            else if(param1.boardData.boardType == BoardType.SQUARE) {
-                return container.Instantiate<SquareBoardModel>(new object[] { param1, param2 });
+            else if(boardInfo.boardData.boardType == BoardType.SQUARE) {
+                return container.Instantiate<SquareBoardModel>(new object[] { boardInfo, parent });
             }
 
             return null;

@@ -42,12 +42,14 @@ namespace CubicSystem.CubicPuzzle
         public Vector2 Position => position.Value;
         public IObservable<Vector2> PositionObservable => position;
 
-
+        //Cell의 Style 정보, Sprite에 대응
+        //Value 및 Observable 공개
         private ReactiveProperty<CellStyle> cellStyle = new ReactiveProperty<CellStyle>(CellStyle.NONE);
         public CellStyle Style => cellStyle.Value;
         public IObservable<CellStyle> CellStyleObservable => cellStyle;
 
-
+        //Cell의 Type 정보
+        //Value 및 Observable 공개
         private ReactiveProperty<CellType> cellType = new ReactiveProperty<CellType>();
         public IObservable<CellType> CellTypeObservable => cellType;
         public CellType CellType
@@ -84,6 +86,8 @@ namespace CubicSystem.CubicPuzzle
 
         /**
          *  @brief  Cell 정보 초기화
+         *  @param  itemData : 생성된 Board 정보
+         *  @param  position : 초기 위치
          */
         public void Initialize(BoardItemData itemData, Vector2 position)
         {
@@ -114,8 +118,8 @@ namespace CubicSystem.CubicPuzzle
 
         /**
          *  @brief  Cell의 상태를 확인
-         *  @state  비교하려는 상태 정보
-         *  @return 동일한 경우(true) / 다른 경우(false)
+         *  @param  state : 비교하려는 상태 정보
+         *  @return bool : 동일한 경우(true) / 다른 경우(false)
          */
         public bool IsCompareState(CellState state)
         {
@@ -127,11 +131,11 @@ namespace CubicSystem.CubicPuzzle
 
         /**
          *  @brief  활성화 된 Cell인지 확인
-         *  @return 활성화(true) / 비활성화(false)
+         *  @return bool : 활성화(true) / 비활성화(false)
          */
         public bool IsEnableCell()
         {
-            var state = this.State;
+            CellState state = this.State;
 
             if(CellType == CellType.NONE || state == CellState.EMPTY) {
                 return false;
@@ -157,6 +161,10 @@ namespace CubicSystem.CubicPuzzle
             this.cellType.Value = cellType;
         }
 
+
+        /**
+         *  @brief  Cell 파괴 이벤트
+         */
         public async UniTask DestroyCell()
         {
             state.Value = CellState.DESTROYED;

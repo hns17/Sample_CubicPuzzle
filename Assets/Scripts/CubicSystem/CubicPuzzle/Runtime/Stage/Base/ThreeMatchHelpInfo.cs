@@ -61,7 +61,7 @@ namespace CubicSystem.CubicPuzzle
             this.ToBlock = to;
 
             MatchIndices.Clear();
-            foreach(var index in indices) {
+            foreach(int index in indices) {
                 MatchIndices.Add(index);
             }
         }
@@ -80,7 +80,7 @@ namespace CubicSystem.CubicPuzzle
         public List<Vector2> CalcOutLineVertexHex()
         {
             //정보 가져오기
-            var cells = board.Cells;
+            List<CellModel> cells = board.Cells;
             List<Vector2> outLineVertexPositions = ListPool<Vector2>.Get();
 
             if(MatchCount <= 0) {
@@ -90,12 +90,12 @@ namespace CubicSystem.CubicPuzzle
             int vertexCnt = 1;
             int targetBlockIdx = -1;
 
-            BlockNeighType[] detectOrderNeighType = detectOrderNeighs[board.BoardStyle];
-            int offsetCnt = board.BoardStyle == BoardType.HEX ? 2 : 1;
+            BlockNeighType[] detectOrderNeighType = detectOrderNeighs[board.BoardType];
+            int offsetCnt = board.BoardType == BoardType.HEX ? 2 : 1;
 
             //외곽선을 그리기 위한 시작 블럭 선택하기
-            foreach(var index in MatchIndices) {
-                var neighIdx = board.GetNeighIndex(index, detectOrderNeighType[vertexCnt]);
+            foreach(int index in MatchIndices) {
+                int neighIdx = board.GetNeighIndex(index, detectOrderNeighType[vertexCnt]);
 
                 if(!MatchIndices.Contains(neighIdx)) {
                     targetBlockIdx = index;

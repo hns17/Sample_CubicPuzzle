@@ -30,6 +30,8 @@ namespace CubicSystem.CubicPuzzle
         {
             stepCount = 0;
             this.board = board;
+
+            //Setup PathTable Object
             pathTable = new Dictionary<BlockModel, BlockPathData>();
             pathDataPool = new ObjectPool<BlockPathData>(
                 ()=> {
@@ -92,6 +94,7 @@ namespace CubicSystem.CubicPuzzle
         /**
          *  @brief  이동 경로 정보 추가하기
          *  @param  moveBlock(이동 블럭), movePosition(이동할 위치)
+         *  @param  moveDirection : 이동한 방향 정보
          */
         private void InsertPathData(BlockModel moveBlock, Vector2 movePosition, BlockNeighType moveDirection = BlockNeighType.NONE)
         {
@@ -119,6 +122,7 @@ namespace CubicSystem.CubicPuzzle
 
         /**
          *  @brief  블럭 아래로 떨어뜨리기
+         *  @param  targetBlock : DropDown 시킬 블럭
          *  @return 떨어지는 블럭이 있는 경우(true) / 없는 경우(false)
          */
         private bool BlockDropDownEvent(BlockModel targetBlock)

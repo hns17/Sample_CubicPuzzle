@@ -9,6 +9,7 @@ namespace CubicSystem.CubicPuzzle
 {
     public static class CubicPuzzleUtility
     {
+        //Block¿« NeighType List
         private readonly static Dictionary<BoardType, List<BlockNeighType>> NeighTypeTable
             = new Dictionary<BoardType, List<BlockNeighType>>() {
                 { BoardType.HEX, new List<BlockNeighType>(){

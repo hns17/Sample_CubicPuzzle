@@ -3,6 +3,9 @@ using Zenject;
 
 namespace CubicSystem.CubicPuzzle
 {
+    /**
+     *  @brief  Stage GameObject
+     */
     public class StagePresenter :MonoBehaviour
     {
         private StageModel stageModel;
