@@ -301,8 +301,10 @@ MonoBehaviour:
   pfBoard: {fileID: 2999946838806715814, guid: b211a968752416b42ba1f44eee783f81, type: 3}
   pfCell: {fileID: 4709905463819592292, guid: 6ce3e0d087bad1e4390abf12969d8c02, type: 3}
   pfBlock: {fileID: 1835392057517818112, guid: a8ae057a50e3b424592d9c2507020b8a, type: 3}
-  stageData: {fileID: 11400000, guid: a3ebea6fa4a9494499ea3a766ad50d61, type: 2}
+  stageData: {fileID: 11400000, guid: b87ec931cc35ad1409ad8017007e3804, type: 2}
   stageInputManager: {fileID: 1012751358}
+  defaultPattenDataInBlocks: {fileID: 11400000, guid: 39fb859633465ab4f8886c24fe497e91, type: 2}
+  defaultPattenDataInBoards: {fileID: 11400000, guid: 9db1f9362ce168946b01247165702a7f, type: 2}
   extraPattenData: {fileID: 11400000, guid: 5d9a3542ddf9bc740bb3c70ba3e44e17, type: 2}
 --- !u!114 &1012751356
 MonoBehaviour:

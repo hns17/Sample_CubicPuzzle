@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ff93d5a2ea83c94cb9b0750c70763ba, type: 3}
-  m_Name: ExtraPatternData
+  m_Name: ThreeMatch_ExtraPatternData
   m_EditorClassIdentifier: 
   patternData:
     keys: 0000000001000000

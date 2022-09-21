@@ -5,13 +5,15 @@ namespace CubicSystem.CubicPuzzle
 {
     public abstract class StageMonoInstaller :MonoInstaller
     {
+        [SerializeField] protected CubicPuzzleStageData stageData;
+        [SerializeField] protected StageInputManager stageInputManager;
+
+        [Header("[Prefab]", order = 1)]
         [SerializeField] protected GameObject pfStage;
         [SerializeField] protected GameObject pfBoard;
         [SerializeField] protected GameObject pfCell;
         [SerializeField] protected GameObject pfBlock;
 
-        [SerializeField] protected CubicPuzzleStageData stageData;
-        [SerializeField] protected StageInputManager stageInputManager;
 
         public override void InstallBindings()
         {

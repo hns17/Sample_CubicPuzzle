@@ -44,10 +44,10 @@ namespace CubicSystem.CubicPuzzle
         private void Initialize(bool isEnable)
         {
             if(!isEnable) {
-                transform.localPosition = new Vector3(-2000f, -2000f, 0f);
+                objView.transform.localPosition = new Vector3(-2000f, -2000f, 0f);
             }
             else {
-                transform.localPosition = Block.Position;
+                objView.transform.localPosition = Vector3.zero;
             }
 
             objView.transform.localScale = Vector3.one;

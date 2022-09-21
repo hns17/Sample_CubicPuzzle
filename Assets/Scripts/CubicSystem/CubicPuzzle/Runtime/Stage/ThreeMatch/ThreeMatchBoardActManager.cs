@@ -22,7 +22,7 @@ namespace CubicSystem.CubicPuzzle
 
         [Inject]
         private void InjectDependices(CubicPuzzlePatternData extraPattern
-            , ThreeMatchEvaluatorFactory matchEvalFactory)
+            , MatchEvaluatorFactory matchEvalFactory)
         {
             matchEvaluator = matchEvalFactory.Create(board);
             //create extra pattern event
@@ -85,9 +85,8 @@ namespace CubicSystem.CubicPuzzle
                         break;
                     }
                 }
+                swipeBlock[0] = swipeBlock[1] = null;
             }
-
-            swipeBlock[0] = swipeBlock[1] = null;
         }
 
 

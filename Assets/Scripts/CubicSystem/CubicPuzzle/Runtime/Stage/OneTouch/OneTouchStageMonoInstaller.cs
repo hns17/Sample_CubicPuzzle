@@ -13,8 +13,8 @@ namespace CubicSystem.CubicPuzzle
                 .To<OneTouchBoardActManager>()
                 .AsSingle();
 
-            Container.Bind<IFactory<BoardModel, IMatchEvaluator>>()
-                .To<OneTouchMatchEvaluatorFactory>()
+            Container.BindFactory<BoardModel, IMatchEvaluator, MatchEvaluatorFactory>()
+                .To<OneTouchMatchEvaluator>()
                 .AsSingle();
         }
     }

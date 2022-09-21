@@ -10,7 +10,7 @@ namespace CubicSystem.CubicPuzzle
     {
 
         [Inject]
-        private void InjectDependices(IFactory<BoardModel, IMatchEvaluator> matchEvalFactory)
+        private void InjectDependices(MatchEvaluatorFactory matchEvalFactory)
         {
             this.matchEvaluator = matchEvalFactory.Create(board);
         }
@@ -60,22 +60,5 @@ namespace CubicSystem.CubicPuzzle
             return Evaluator(null, false);
         }
 
-
-        /**
-         *  @brief   CustomFactoryClass
-         */
-        //public new class Factory :IFactory<BoardModel, BoardActManager>
-        //{
-        //    [Inject] private DiContainer diContainer;
-        //    public BoardActManager Create(BoardModel param)
-        //    {
-        //        var newActManager = diContainer.Instantiate<OneTouchBoardActManager>(new object[] { param });
-
-        //        newActManager.matchEvaluator = new OneTouchMatchEvaluator(param);
-        //        newActManager.eventDropNFill = new HexDropDownAndFillEvent(param);
-
-        //        return newActManager;
-        //    }
-        //}
     }
 }

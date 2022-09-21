@@ -9,7 +9,7 @@ namespace CubicSystem.CubicPuzzle
      *  @detail Line(세로, 대각선, 역대각선) Match, Square Match(인접한 4개의 블럭)가 있는지 
      *          평가하고 블럭의 상태를 Update
      */
-    public class ThreeMatchHexEvaluator : IMatchEvaluator
+    public class ThreeMatchEvaluator :IMatchEvaluator
     {
         private const int LineMatchCount = 3;
 
@@ -21,11 +21,22 @@ namespace CubicSystem.CubicPuzzle
         *       LEFT_DOWN(역 대각선)
         *  }
         */
-        private readonly List<List<BlockNeighType>> BoardLineMatchNeighTypes = new List<List<BlockNeighType>>{
-            new List<BlockNeighType>{ BlockNeighType.RIGHT_DOWN},
-            new List<BlockNeighType>{ BlockNeighType.DOWN},
-            new List<BlockNeighType>{ BlockNeighType.LEFT_DOWN}
-        };
+        private readonly Dictionary<BoardType, List<List<BlockNeighType>>> BoardLineMatchNeighTypes =
+            new Dictionary<BoardType, List<List<BlockNeighType>>> {
+                {
+                    BoardType.HEX, new List<List<BlockNeighType>> {
+                        new List<BlockNeighType>{ BlockNeighType.RIGHT_DOWN},
+                        new List<BlockNeighType>{ BlockNeighType.DOWN},
+                        new List<BlockNeighType>{ BlockNeighType.LEFT_DOWN}
+                    }
+                },
+                {
+                    BoardType.SQUARE, new List<List<BlockNeighType>>{
+                        new List<BlockNeighType>{ BlockNeighType.RIGHT},
+                        new List<BlockNeighType>{ BlockNeighType.DOWN}
+                    }
+                }
+            };
 
 
         /**
@@ -36,11 +47,22 @@ namespace CubicSystem.CubicPuzzle
         *       RIGHT_UP, LEFT_DOWN(역 대각선)
         *  }
         */
-        private readonly List<List<BlockNeighType>> BlockLineMatchNeighTypes = new List<List<BlockNeighType>>{
-            new List<BlockNeighType>{ BlockNeighType.LEFT_UP, BlockNeighType.RIGHT_DOWN},
-            new List<BlockNeighType>{ BlockNeighType.UP, BlockNeighType.DOWN},
-            new List<BlockNeighType>{ BlockNeighType.RIGHT_UP, BlockNeighType.LEFT_DOWN}
-        };
+        private readonly Dictionary<BoardType, List<List<BlockNeighType>>> BlockLineMatchNeighTypes =
+            new Dictionary<BoardType, List<List<BlockNeighType>>> {
+                {
+                    BoardType.HEX, new List<List<BlockNeighType>> {
+                        new List<BlockNeighType>{ BlockNeighType.LEFT_UP, BlockNeighType.RIGHT_DOWN},
+                        new List<BlockNeighType>{ BlockNeighType.UP, BlockNeighType.DOWN},
+                        new List<BlockNeighType>{ BlockNeighType.RIGHT_UP, BlockNeighType.LEFT_DOWN}
+                    }
+                },
+                {
+                    BoardType.SQUARE, new List<List<BlockNeighType>> {
+                        new List<BlockNeighType>{ BlockNeighType.LEFT, BlockNeighType.RIGHT},
+                        new List<BlockNeighType>{ BlockNeighType.UP, BlockNeighType.DOWN}
+                    }
+                }
+            };
 
 
         /**
@@ -51,11 +73,19 @@ namespace CubicSystem.CubicPuzzle
         *      Down, LeftDown, LeftUp
         *  }
         */
-        private readonly List<List<BlockNeighType>> BoardSquareMatchNeighTypes = new List<List<BlockNeighType>>{
-             new List<BlockNeighType>{ BlockNeighType.RIGHT_UP, BlockNeighType.RIGHT_DOWN, BlockNeighType.DOWN},
-             new List<BlockNeighType>{ BlockNeighType.RIGHT_DOWN, BlockNeighType.DOWN, BlockNeighType.LEFT_DOWN},
-             new List<BlockNeighType>{ BlockNeighType.DOWN, BlockNeighType.LEFT_DOWN, BlockNeighType.LEFT_UP},
-        };
+        private readonly Dictionary<BoardType, List<List<BlockNeighType>>> BoardSquareMatchNeighTypes =
+            new Dictionary<BoardType, List<List<BlockNeighType>>> {
+                {
+                    BoardType.HEX, new List<List<BlockNeighType>>{
+                         new List<BlockNeighType>{ BlockNeighType.RIGHT_UP, BlockNeighType.RIGHT_DOWN, BlockNeighType.DOWN},
+                         new List<BlockNeighType>{ BlockNeighType.RIGHT_DOWN, BlockNeighType.DOWN, BlockNeighType.LEFT_DOWN},
+                         new List<BlockNeighType>{ BlockNeighType.DOWN, BlockNeighType.LEFT_DOWN, BlockNeighType.LEFT_UP}
+                    }
+                },
+                {
+                    BoardType.SQUARE, new List<List<BlockNeighType>>()
+                }
+            };
 
         /**
          *  @brief  Block을 대상으로 Square Match 평가에 사용될 NeighType List
@@ -67,69 +97,30 @@ namespace CubicSystem.CubicPuzzle
          *      Down, LeftDown, LeftUp
          *  }
          */
-        private readonly List<List<BlockNeighType>> BlockSquareMatchNeighTypes = new List<List<BlockNeighType>>{
-             new List<BlockNeighType>{ BlockNeighType.LEFT_UP, BlockNeighType.UP, BlockNeighType.RIGHT_UP},
-             new List<BlockNeighType>{ BlockNeighType.UP, BlockNeighType.RIGHT_UP, BlockNeighType.RIGHT_DOWN},
-             new List<BlockNeighType>{ BlockNeighType.RIGHT_UP, BlockNeighType.RIGHT_DOWN, BlockNeighType.DOWN},
-             new List<BlockNeighType>{ BlockNeighType.RIGHT_DOWN, BlockNeighType.DOWN, BlockNeighType.LEFT_DOWN},
-             new List<BlockNeighType>{ BlockNeighType.DOWN, BlockNeighType.LEFT_DOWN, BlockNeighType.LEFT_UP},
-             new List<BlockNeighType>{ BlockNeighType.LEFT_DOWN, BlockNeighType.LEFT_UP, BlockNeighType.UP},
-        };
+        private readonly Dictionary<BoardType, List<List<BlockNeighType>>> BlockSquareMatchNeighTypes =
+            new Dictionary<BoardType, List<List<BlockNeighType>>> {
+                {
+                    BoardType.HEX, new List<List<BlockNeighType>>{
+                         new List<BlockNeighType>{ BlockNeighType.LEFT_UP, BlockNeighType.UP, BlockNeighType.RIGHT_UP},
+                         new List<BlockNeighType>{ BlockNeighType.UP, BlockNeighType.RIGHT_UP, BlockNeighType.RIGHT_DOWN},
+                         new List<BlockNeighType>{ BlockNeighType.RIGHT_UP, BlockNeighType.RIGHT_DOWN, BlockNeighType.DOWN},
+                         new List<BlockNeighType>{ BlockNeighType.RIGHT_DOWN, BlockNeighType.DOWN, BlockNeighType.LEFT_DOWN},
+                         new List<BlockNeighType>{ BlockNeighType.DOWN, BlockNeighType.LEFT_DOWN, BlockNeighType.LEFT_UP},
+                         new List<BlockNeighType>{ BlockNeighType.LEFT_DOWN, BlockNeighType.LEFT_UP, BlockNeighType.UP}
+                    }
+                },
+                {
+                    BoardType.SQUARE, new List<List<BlockNeighType>>()
+                }
+            };
 
 
         private BoardModel board;
 
-        //Board 평가 함수 Set
-        private List<Func<BlockModel, HashSet<int>, bool>> boardEvaluator;
 
-        //Block 평가 함수 Set
-        private List<Func<BlockModel, HashSet<int>, bool>> blockEvaluator;
-        //private List<Func<BlockModel, bool, bool>> possibleEvaluator;
-
-        public ThreeMatchHexEvaluator(BoardModel board)
+        public ThreeMatchEvaluator(BoardModel board)
         {
             this.board = board;
-
-            //var aa = UniTaskHelper.Func<BlockModel, UniTask<bool>>
-            //    (async (block) => await EvalLineMatched(block, neighTypes));
-
-            boardEvaluator = new List<Func<BlockModel, HashSet<int>, bool>>();
-            //Make BoardLineEvaluator
-            foreach(var matchNeighTypes in BoardLineMatchNeighTypes) {
-                boardEvaluator.Add((block, matchIndices) =>
-                {
-                    return EvalLineMatched(block, matchNeighTypes, matchIndices);
-                });
-            }
-            //Make Board SquareEvaluator
-            foreach(var matchNeighTypes in BoardSquareMatchNeighTypes) {
-                boardEvaluator.Add((block, matchIndices) =>
-                {
-                    return EvalSquareMatched(block, matchNeighTypes, matchIndices);
-                });
-            }
-
-
-            blockEvaluator = new List<Func<BlockModel, HashSet<int>, bool>>();
-            //Make Block LineEvaluator
-            foreach(var matchNeighTypes in BlockLineMatchNeighTypes) {
-                blockEvaluator.Add((block, matchIndices) =>
-                {
-                    return EvalLineMatched(block, matchNeighTypes, matchIndices);
-                });
-            }
-            //Make Block SquareEvaluator
-            foreach(var matchNeighTypes in BlockSquareMatchNeighTypes) {
-                blockEvaluator.Add((block, matchIndices) =>
-                {
-                    bool res = EvalSquareMatched(block, matchNeighTypes, matchIndices);
-                    for(BlockNeighType i = BlockNeighType.START; i<BlockNeighType.NONE; i++) {
-                        var neighBlock = board.GetNeighBlock(block, i);
-                        res |= EvalSquareMatched(neighBlock, matchNeighTypes, matchIndices);
-                    }
-                    return res;
-                });
-            }
         }
 
 
@@ -141,14 +132,26 @@ namespace CubicSystem.CubicPuzzle
         {
             bool res = false;
             var blocks = board.Blocks;
-            
+
+            List<List<BlockNeighType>> boardLineMatchNeighTypes = null;
+            BoardLineMatchNeighTypes.TryGetValue(board.BoardStyle, out boardLineMatchNeighTypes);
+
+            List<List<BlockNeighType>> boardSquareMatchNeighTypes = null;
+            BoardSquareMatchNeighTypes.TryGetValue(board.BoardStyle, out boardSquareMatchNeighTypes);
+
             foreach(var block in blocks) {
                 if(!block.IsEnableBlock()) {
                     continue;
                 }
 
-                foreach(var eval in boardEvaluator) {
-                    res |= eval(block, matchIndices);
+                //eval line match
+                foreach(var matchNeighTypes in boardLineMatchNeighTypes) {
+                    res |= EvalLineMatched(block, matchNeighTypes, matchIndices);
+                }
+
+                //eval square match
+                foreach(var matchNeighTypes in boardSquareMatchNeighTypes) {
+                    res |= EvalSquareMatched(block, matchNeighTypes, matchIndices);
                 }
             }
 
@@ -163,13 +166,29 @@ namespace CubicSystem.CubicPuzzle
         public bool EvalMatchBlock(BlockModel block, HashSet<int> matchIndices)
         {
             bool res = false;
+            List<List<BlockNeighType>> blockLineMatchNeighTypes = null;
+            BlockLineMatchNeighTypes.TryGetValue(board.BoardStyle, out blockLineMatchNeighTypes);
+
+            List<List<BlockNeighType>> blockSquareMatchNeighTypes = null;
+            BlockSquareMatchNeighTypes.TryGetValue(board.BoardStyle, out blockSquareMatchNeighTypes);
+
 
             if(block.IsEnableBlock()) {
-                foreach(var eval in blockEvaluator) {
-                    res |= eval(block, matchIndices);
+                //eval line match
+                foreach(var matchNeighTypes in blockLineMatchNeighTypes) {
+                    res |= EvalLineMatched(block, matchNeighTypes, matchIndices);
+                }
+
+                //eval square match
+                foreach(var matchNeighTypes in blockSquareMatchNeighTypes) {
+                    res |= EvalSquareMatched(block, matchNeighTypes, matchIndices);
+                    for(BlockNeighType i = BlockNeighType.START; i < BlockNeighType.NONE; i++) {
+                        var neighBlock = board.GetNeighBlock(block, i);
+                        res |= EvalSquareMatched(neighBlock, matchNeighTypes, matchIndices);
+                    }
                 }
             }
-            
+
             return res;
         }
 
@@ -177,12 +196,12 @@ namespace CubicSystem.CubicPuzzle
          *  @brief  Line 평가 함수
          *  @block  target Block, neighTypes : 평가할 이웃 Block 리스트
          */
-        private bool EvalLineMatched(BlockModel block, 
+        private bool EvalLineMatched(BlockModel block,
                                         List<BlockNeighType> neighTypes,
                                         HashSet<int> matchIndices)
         {
             bool res = false;
-            
+
             //Initialize Match index List
             CubicSpanArray<int> indices = new CubicSpanArray<int>(stackalloc int[board.BlockCount]);
             indices.Add(block.Idx);
@@ -223,7 +242,7 @@ namespace CubicSystem.CubicPuzzle
          *  @param  block : targetBlock, neighTypes : 평가할 이웃 목록
          *  @return bool(true : Match, false : No Match)
          */
-        private bool EvalSquareMatched(BlockModel block, 
+        private bool EvalSquareMatched(BlockModel block,
                                         List<BlockNeighType> neighTypes,
                                         HashSet<int> matchIndices)
         {
@@ -252,7 +271,7 @@ namespace CubicSystem.CubicPuzzle
             if(neighTypes.Count == indices.Count) {
                 res = true;
                 indices.Add(block.Idx);
-                for(int i = 0; i <indices.Count; i++) {
+                for(int i = 0; i < indices.Count; i++) {
                     matchIndices?.Add(indices[i]);
                 }
             }
