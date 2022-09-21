@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UniRx;
 
 namespace CubicSystem.CubicPuzzle
@@ -18,7 +19,7 @@ namespace CubicSystem.CubicPuzzle
             this.clearValue = clearValue;
 
             //Board Block의 상태가 Destroy로 변할때 달성 수치 +1
-            var blocks = board.Blocks;
+            List<BlockModel> blocks = board.Blocks;
             blocks.ForEach(x => x.StateObservable.Subscribe(state=> {
                 if(state == BlockState.DESTROYED) {
                     RunQuest(1);
