@@ -59,9 +59,7 @@ namespace CubicSystem.CubicPuzzle
             Container.BindInstance<CubicPuzzleStageData>(stageData);
 
             Container.Bind<CTSManager>().AsSingle();
-            Container.BindFactory<BoardModel, IDropAndFillEvent, DropDownAndFillEventFactory>()
-                .To<DropDownAndFillEvent>()
-                .AsSingle();
+            Container.Bind<DropDownAndFillEventFactory>().AsSingle();
         }
     }
 }
